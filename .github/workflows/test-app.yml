@@ -19,10 +19,12 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: 16 # Use the Node.js version compatible with your project
+        node-version: 16 # Ensure compatibility with your project
 
     - name: Install dependencies
       run: npm install
+      working-directory: ./the-brink # Points to the folder containing package.json
 
     - name: Run tests
       run: npm test -- --watchAll=false
+      working-directory: ./the-brink # Points to the folder containing package.json
