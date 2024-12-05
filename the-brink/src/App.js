@@ -1,14 +1,12 @@
 import React from 'react';
-import './App.css';
+import ProfilePage from './ProfilePage'; // Import ProfilePage component
 
-function App() {
-  return (
-    <div >
-      <header className= "App-header">
-      <h1>Hello, World!</h1>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    return (
+        <div>
+            <ProfilePage /> {/* Render the ProfilePage */}
+        </div>
+    );
+};
 
-export default App;
+export default App; // Ensure this is a default export
