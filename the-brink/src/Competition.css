@@ -96,6 +96,27 @@ body{
     background: linear-gradient(to bottom, #fdfdfd,  #5197d4);
 }
 
+.login-button-container{
+    top: 120px;
+    left: 20px;
+}
+
+.login-button{
+    display: block;
+    margin: 20px auto; 
+    padding: 10px 20px;
+    background-color: #002855;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-button:hover{
+    background-color: #00509e;
+}
+
 @media (max-width: 768px){
     .competitions-grid{
         grid-template-columns: repeat(2,1fr);
