@@ -31,8 +31,13 @@ const competitionData= [
 const Competitions = () => {
 
     const navigate = useNavigate();
+
     const handleApplyNowClick = (route) => {
         navigate(route);
+    };
+
+    const handleLoginClick=() =>{
+        navigate('/login');
     };
 
 
@@ -42,6 +47,8 @@ const Competitions = () => {
             <div className="banner">
                 <img src={banner} alt="banner" className='banner-image' />
             </div>
+            
+           
 
 
             <h2>Competitions</h2>
@@ -60,6 +67,7 @@ const Competitions = () => {
                     </div>
                 ))}
             </div>
+            <button onClick={handleLoginClick} className= 'login-button'>Login</button>
         </div>
     );
 };
