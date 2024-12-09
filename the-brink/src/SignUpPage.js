@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SignUpPage.css';
-import banner from '/Users/maevetierney/Documents/COMP-49X-24-25-the-brink/the-brink/src/PitchSuiteBanner.png';
+import banner from './PitchSuiteBanner.png';
 
 const Login = () => {
 

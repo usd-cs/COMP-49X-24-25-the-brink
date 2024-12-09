@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
-import logo from "/Users/maevetierney/Documents/COMP-49X-24-25-the-brink/the-brink/src/ACE Pitch Competition Banner.png"; 
+import React, { useState } from 'react';
+import './Competition.css';
+import Banner from './ace-pitch-competition-banner.png';
 
-export default function ACEApplicationForm(){
+export default function ACEApplicationForm() {
     const [formData, setFormData] = useState({
         corporateName: "",
         address: "",
@@ -11,10 +12,10 @@ export default function ACEApplicationForm(){
         hubZone: "",
         rural: "",
         womenOwned: "",
-        disasterImpacted:"",
-        primaryContact: {name: "", title: "", phone: "", email: "",},
-        secondaryContact: {name: "", title: "", phone: "", email: "",},
-        agency:"",
+        disasterImpacted: "",
+        primaryContact: { name: "", title: "", phone: "", email: "" },
+        secondaryContact: { name: "", title: "", phone: "", email: "" },
+        agency: "",
         awardAmount: "",
         contractNumber: "",
         grantStartEnd: "",
@@ -27,29 +28,29 @@ export default function ACEApplicationForm(){
     });
 
     const handleChange = (e) => {
-        const {name, value, dataset} = e.target; 
-        if(dataset.section){
+        const { name, value, dataset } = e.target;
+        if (dataset.section) {
             setFormData({
-            ...formData,
-            [dataset.section]: {...formData[dataset.section], [name]: value,
-            },  
+                ...formData,
+                [dataset.section]: { ...formData[dataset.section], [name]: value },
             });
-        } else{
-            setFormData({...formData,[name]: value });
-        }  
+        } else {
+            setFormData({ ...formData, [name]: value });
+        }
     };
-        
+
     const handleSubmit = (e) => {
-        e.preventDefault(); 
-        console.log("Submitted Data; ", formData);
-        alert("Form Submitted Sucessfully!");
+        e.preventDefault();
+        console.log("Submitted Data: ", formData);
+        alert("Form Submitted Successfully!");
     };
+
 
     return(
         <div>
         <div className ="application-wrapper">
             <div className="logo-banner"> 
-                <img src={logo} alt="ACE Bannner" />
+                <img src={Banner} alt="ACE Bannner" />
             </div>
 
         
