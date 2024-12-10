@@ -9,5 +9,6 @@ COPY package.json /the-brink/
 RUN npm install
 
 EXPOSE 3000
+EXPOSE 5432
 
 CMD ["npm", "start"]
