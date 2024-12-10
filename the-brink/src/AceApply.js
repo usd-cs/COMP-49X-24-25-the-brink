@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Correctly import useNavigate
 import './Competition.css';
 import Banner from './ace-pitch-competition-banner.png';
 
@@ -27,6 +28,8 @@ export default function ACEApplicationForm() {
         successRecord: "",
     });
 
+    const navigate = useNavigate(); // Correct initialization of navigate
+
     const handleChange = (e) => {
         const { name, value, dataset } = e.target;
         if (dataset.section) {
@@ -43,6 +46,10 @@ export default function ACEApplicationForm() {
         e.preventDefault();
         console.log("Submitted Data: ", formData);
         alert("Form Submitted Successfully!");
+    };
+
+    const goToHomePage = () => {
+        navigate('/'); // Redirect to the home page
     };
 
 
@@ -227,6 +234,7 @@ export default function ACEApplicationForm() {
 
 
             </form>
+            <button onClick={goToHomePage} className="home-button">Go to Home</button>
         </div>
         </div>
         </div>
