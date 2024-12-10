@@ -45,6 +45,24 @@ body{
     margin-bottom: 30px;
 }
 
+.go-home-button {
+    background-color: #eb5151;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.go-home-button:hover {
+    background-color: #f92452;
+}
+
 h2{
     font-size: 20px;
     font-weight: bold;
