@@ -1,26 +1,19 @@
-version: '3.8'
-
 services:
   frontend:
+    container_name: react
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    depends_on:
-      - db
 
   db:
+    container_name: postgres
     image: postgres:15
     environment:
       POSTGRES_USER: PitchSuite
       POSTGRES_PASSWORD: theBrink0628
       POSTGRES_DB: brinkdatabase
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready"]
-      interval: 1s
-      timeout: 5s
-      retries: 10
     ports:
       - "5432:5432"
  
