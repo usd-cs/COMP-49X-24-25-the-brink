@@ -234,7 +234,7 @@ export default function ACEApplicationForm() {
 
 
             </form>
-            <button onClick={goToHomePage} className="home-button">Go to Home</button>
+            <button onClick={goToHomePage} className="home-button">Home</button>
         </div>
         </div>
         </div>
