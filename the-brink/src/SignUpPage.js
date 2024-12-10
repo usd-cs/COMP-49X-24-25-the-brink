@@ -30,7 +30,7 @@ const SignUpPage = () => {
                 <p className="login-link">
                     <span onClick={handleLoginClick} className="link-text">Login</span>
                 </p>
-                <button onClick={handleHomeClick} className="home-button">Go to Home</button>
+                <button onClick={handleHomeClick} className="home-button">Home</button>
             </div>
         </div>
     );

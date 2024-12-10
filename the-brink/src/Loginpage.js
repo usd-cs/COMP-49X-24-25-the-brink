@@ -28,9 +28,9 @@ const Login = () => {
                     <button type="submit" className="login-button">Login</button>
                 </form>
                 <p className="signup-link">
-                    <span onClick={handleSignUpClick} className="link-text">Sign Up</span>
+                    <span onClick={handleSignUpClick} className="link-text">No Account? Click here to Sign Up</span>
                 </p>
-                <button onClick={handleHomeClick} className="home-button">Go to Home</button>
+                <button onClick={handleHomeClick} className="home-button">Home</button>
             </div>
         </div>
     );

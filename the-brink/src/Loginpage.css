@@ -82,3 +82,23 @@ body{
 .singup-link:hover{
     text-decoration: underline;
 }
+.home-container{
+    display:flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.home-button{
+    background-color: #002b5c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 35px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+
+}
+
+.home-button:hover{
+    background-color: #5095df; 
+}
