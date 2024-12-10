@@ -1,12 +1,13 @@
 import React from 'react';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Competition.css';
-import banner from  "/Users/maevetierney/Documents/COMP-49X-24-25-the-brink/the-brink/src/PitchSuiteBanner.png";
-import aceLogo from '/Users/maevetierney/Documents/COMP-49X-24-25-the-brink/the-brink/src/aceCircleLogo.png';
-import usdLogo from "/Users/maevetierney/Documents/COMP-49X-24-25-the-brink/the-brink/src/usd-logo.png";
-import socialLogo from "/Users/maevetierney/Documents/COMP-49X-24-25-the-brink/the-brink/src/SocialInnovationCircleLogo.png";
-import techLogo from "/Users/maevetierney/Documents/COMP-49X-24-25-the-brink/the-brink/src/techCircleLogo.png";
 
+// Corrected relative paths
+import banner from './PitchSuiteBanner.png';
+import aceLogo from './aceCircleLogo.png';
+import usdLogo from './usd-logo.png';
+import socialLogo from './SocialInnovationCircleLogo.png';
+import techLogo from './techCircleLogo.png';
 
 const competitionData= [
     {
