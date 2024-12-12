@@ -1,5 +1,5 @@
 import React from 'react';
-import ProfilePage from './ProfilePage'; // Import ProfilePage component
+import ProfilePage from './ProfilePage';
 import SignUpPage from './SignUpPage';
 import Login from './Loginpage';
 import './SignUpPage.css';
@@ -17,9 +17,9 @@ function App() {
         <Route path="/ace-apply" element={<AceApply />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/profile" element={<ProfilePage />} /> {/* Added ProfilePage route */}
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
-   </div>
+    </div>
   );
 }
 
