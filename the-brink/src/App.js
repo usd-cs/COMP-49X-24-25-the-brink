@@ -3,7 +3,7 @@ import ProfilePage from './ProfilePage';
 import SignUpPage from './SignUpPage';
 import Login from './Loginpage';
 import './SignUpPage.css';
-import { Routes, Route } from 'react-router-dom'; // Remove BrowserRouter here
+import { Routes, Route } from 'react-router-dom';
 import Competition from './Competition';
 import AceApply from './AceApply';
 import './Competition.css';
@@ -11,13 +11,15 @@ import './AceApply.css';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Competition />} />
-      <Route path="/ace-apply" element={<AceApply />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<SignUpPage />} />
-      <Route path="/profile" element={<ProfilePage />} />
-    </Routes>
+    <div>
+      <Routes>
+        <Route path="/" element={<Competition />} />
+        <Route path="/ace-apply" element={<AceApply />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+      </Routes>
+    </div>
   );
 }
 
