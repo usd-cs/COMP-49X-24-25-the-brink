@@ -30,7 +30,7 @@ const Login = () => {
                 <p className="signup-link">
                     <span onClick={handleSignUpClick} className="link-text">No Account? Click here to Sign Up</span>
                 </p>
-                <button onClick={handleHomeClick} className="home-button">Home</button>
+                <button onClick={handleHomeClick} className="home-button" aria-label="Home">Home</button>
             </div>
         </div>
     );
