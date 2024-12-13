@@ -1,0 +1,147 @@
+
+body{
+    font-family: Arial, sans-serif; 
+    background: linear-gradient(to bottom, #e6eef9,  #a0c4ff);
+    margin: 0;
+    padding: 0; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    min-height:100vh;
+}
+
+.application-wrapper{
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    background: linear-gradient(to bottom, #e6eef9,  #a0c4ff);
+    min-height: 100vh; 
+    padding: 20px;
+}
+.logo-banner {
+    width: 100%;
+    height: 100%;
+    background: url('ace-pitch-competition-banner.png');
+    background-size: cover;
+    background-position : center;
+    text-align: center;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container{
+    width: 800px;
+    background-color: #f5f5f5;
+    padding: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.15);
+    margin-top: 20px;
+}
+
+.form-title{
+    text-align: center;
+    font-size: 24px; 
+    font-weight:bold;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+h2{
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    color: #444;
+    text-align: center;
+    border-bottom: 2px solid #d3d3d3;
+    padding-bottom: 5px;
+}
+h3{
+    display:block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+label{
+    display:block;
+    margin-bottom: 10px;
+    font-size: 14px; 
+    color: #555;
+}
+
+.form-container input[type="text"], 
+.form-container input [type="email"], 
+.form-container input[type="number"], 
+.form-container textarea {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    background: #f9f9f9;
+    box-shadow: inset 0px 2px 5px rgba(0,0,0,0.05);
+}
+
+.form-container textarea {
+    height:80px;
+    resize: none;
+}
+
+.submit-button {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer; 
+    font-size: 16;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    margin-bottom:10px;
+}
+
+.submit-button:hover{
+    background-color: #0056b3;
+}
+
+.home-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    height: 100px;
+    padding: 20px;
+}
+
+.home-button{
+    background-color: #002b5c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 40px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+
+}
+
+.home-button:hover{
+    background-color: #5095df; 
+}
+
+@media screen and (max-width: 768px){
+    .grant-form {
+        padding: 20px;
+        width: 90%;
+    }
+    h2{
+        font-size: 18px;
+    }
+    .submit-button{
+        font-size: 14px;
+    }
+
+}
