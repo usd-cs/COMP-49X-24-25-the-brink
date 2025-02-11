@@ -177,7 +177,7 @@ export default function ACEApplicationForm() {
                 </label>
                 <label>
                     Contract Number*:
-                    <input type= "text" name="ContractNumber" value={formData.contractNumber} onChange={handleChange} />
+                    <input type= "text" name="contractNumber" value={formData.contractNumber} onChange={handleChange} />
                 </label>
                 <label>
                     Grant Start-End Date*:
