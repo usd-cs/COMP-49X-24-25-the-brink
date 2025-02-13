@@ -1,7 +1,12 @@
-require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
+const bodyParser = require('body-parser');
+require('dotenv').config();
+
+const PORT = process.env.PORT || 3000;
+
 
 const app = express();
 app.use(cors());
@@ -36,5 +41,5 @@ app.post('/send-email', async (req, res) => {
     }
 });
 
-app.listen(5000, () => console.log("Server running on port 5000")); 
+app.listen(5000, () => console.log('Server running on port ${PORT}')); 
 

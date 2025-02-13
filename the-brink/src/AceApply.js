@@ -42,15 +42,33 @@ export default function ACEApplicationForm() {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        const response = await fetch('http://localhost:3000/sendemail',{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+
+            },
+            body: JSON.stringify({
+                email: formData.primaryContact.email,
+                name: formData.primaryContact.name
+            }),
+        });
+    
+    const result = await response.json();
+    if(response.ok){
         console.log("Submitted Data: ", formData);
         alert("Form Submitted Successfully!");
+    } else{
+        console.error("Error");
+        alert("Failed to send email");
     };
 
     const goToHomePage = () => {
         navigate('/'); // Redirect to the home page
     };
+};
 
 
     return(
