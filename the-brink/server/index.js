@@ -1,15 +1,16 @@
-const path = require('path');
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
-const bodyParser = require('body-parser');
-require('dotenv').config();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000', // Change this to match your frontend port
+    methods: ['POST'],s
+}));
 app.use(express.json());
 
 //Nodemailer transporter setup 
@@ -22,14 +23,14 @@ const transporter = nodemailer.createTransport({
 
 });
 
-app.post('/send-email', async (req, res) => {
+app.post('/sendemail', async (req, res) => {
     const {email, name} = req.body; 
 
     const mailOptions = {
         from: process.env.EMAIL_USER, 
         to: email,
         subject: 'Application Confirmation', 
-        text: 'Hello, ${name}, \n\nThank you for your application on PitchSuite! Please keep an eye out for further updates as the competition gets closer!'
+        text: `Hello, ${name}, \n\nThank you for your application on PitchSuite! Please keep an eye out for further updates as the competition gets closer!`
     }; 
     try{
         await transporter.sendMail(mailOptions); 
@@ -41,5 +42,5 @@ app.post('/send-email', async (req, res) => {
     }
 });
 
-app.listen(5000, () => console.log('Server running on port ${PORT}')); 
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`)); 
 
