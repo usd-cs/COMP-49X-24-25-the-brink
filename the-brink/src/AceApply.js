@@ -46,6 +46,7 @@ export default function ACEApplicationForm () {
     e.preventDefault()
     console.log('Submitted Data: ', formData)
     alert('Form Submitted Successfully!')
+    navigate('/')
   }
 
   const goToHomePage = () => {
