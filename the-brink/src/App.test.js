@@ -82,7 +82,7 @@ test('form submission on ACE Application Form works', async () => {
   fireEvent.change(screen.getByLabelText(/NAICS\*:/i), { target: { value: '1234' } });
 
   // If you have 4 separate radio groups for hubZone, rural, womenOwned, and disasterImpacted,
-  // you likely have four "Yes" radios. Let's click them all:
+  // you likely have four "Yes" radios:
   const yesRadios = screen.getAllByRole('radio', { name: /Yes/i });
   fireEvent.click(yesRadios[0]); // hubZone
   fireEvent.click(yesRadios[1]); // rural
@@ -90,23 +90,23 @@ test('form submission on ACE Application Form works', async () => {
   fireEvent.click(yesRadios[3]); // disasterImpacted
 
   // Primary Contact
-  const nameInputs = screen.getAllByLabelText(/^Name:/i);
-  fireEvent.change(nameInputs[0], { target: { value: 'Alice' } }); // Primary name
+  const nameInputs = screen.getAllByLabelText('Name:', { exact: false });
+  fireEvent.change(nameInputs[0], { target: { value: 'Alice' } });
 
-  const titleInputs = screen.getAllByLabelText(/^Title:/i);
-  fireEvent.change(titleInputs[0], { target: { value: 'CEO' } }); // Primary title
+  const titleInputs = screen.getAllByLabelText('Title:', { exact: false });
+  fireEvent.change(titleInputs[0], { target: { value: 'CEO' } });
 
-  const phoneInputs = screen.getAllByLabelText(/^Phone:/i);
-  fireEvent.change(phoneInputs[0], { target: { value: '5551234567' } }); // Primary phone
+  const phoneInputs = screen.getAllByLabelText('Phone:', { exact: false });
+  fireEvent.change(phoneInputs[0], { target: { value: '5551234567' } });
 
-  const emailInputs = screen.getAllByLabelText(/^Email:/i);
-  fireEvent.change(emailInputs[0], { target: { value: 'alice@test.com' } }); // Primary email
+  const emailInputs = screen.getAllByLabelText('Email:', { exact: false });
+  fireEvent.change(emailInputs[0], { target: { value: 'alice@test.com' } });
 
   // Secondary Contact
-  fireEvent.change(nameInputs[1], { target: { value: 'Bob' } }); // Secondary name
-  fireEvent.change(titleInputs[1], { target: { value: 'CFO' } }); // Secondary title
-  fireEvent.change(phoneInputs[1], { target: { value: '5557654321' } }); // Secondary phone
-  fireEvent.change(emailInputs[1], { target: { value: 'bob@test.com' } }); // Secondary email
+  fireEvent.change(nameInputs[1], { target: { value: 'Bob' } });
+  fireEvent.change(titleInputs[1], { target: { value: 'CFO' } });
+  fireEvent.change(phoneInputs[1], { target: { value: '5557654321' } });
+  fireEvent.change(emailInputs[1], { target: { value: 'bob@test.com' } });
 
   // SBIR/STTR details
   fireEvent.change(screen.getByLabelText(/Agency\*:/i), { target: { value: 'NASA' } });
