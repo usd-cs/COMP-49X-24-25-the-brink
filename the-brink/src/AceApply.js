@@ -233,7 +233,7 @@ export default function ACEApplicationForm() {
 
             <h2>Primary Contact*</h2>
             <label>
-              Name:
+              Primary Contact Name:
               <input
                 type="text"
                 name="name"
@@ -244,7 +244,7 @@ export default function ACEApplicationForm() {
               />
             </label>
             <label>
-              Title:
+              Primary Contact Title:
               <input
                 type="text"
                 name="title"
@@ -255,7 +255,7 @@ export default function ACEApplicationForm() {
               />
             </label>
             <label>
-              Phone:
+              Primary Contact Phone:
               <input
                 type="tel"
                 name="phone"
@@ -272,7 +272,7 @@ export default function ACEApplicationForm() {
               )}
             </label>
             <label>
-              Email:
+              Primary Contact Email:
               <input
                 type="email"
                 name="email"
@@ -289,7 +289,7 @@ export default function ACEApplicationForm() {
 
             <h2>Secondary Contact*</h2>
             <label>
-              Name:
+              Secondary Contact Name:
               <input
                 type="text"
                 name="name"
@@ -300,7 +300,7 @@ export default function ACEApplicationForm() {
               />
             </label>
             <label>
-              Title:
+              Secondary Contact Title:
               <input
                 type="text"
                 name="title"
@@ -311,7 +311,7 @@ export default function ACEApplicationForm() {
               />
             </label>
             <label>
-              Phone:
+              Secondary Contact Phone:
               <input
                 type="tel"
                 name="phone"
@@ -328,7 +328,7 @@ export default function ACEApplicationForm() {
               )}
             </label>
             <label>
-              Email:
+              Secondary Contact Email:
               <input
                 type="email"
                 name="email"
@@ -343,7 +343,8 @@ export default function ACEApplicationForm() {
               )}
             </label>
 
-            <h2>SBIR/STTR phase 1 award details, if applicable. 
+            <h2>
+              SBIR/STTR phase 1 award details, if applicable.
               *Phase II SBIR/STTR awardees are not eligible for Tier 1 grant awards*
             </h2>
             <label>
@@ -390,7 +391,11 @@ export default function ACEApplicationForm() {
               />
             </label>
 
-            <h2>Each Hub shall require all prospective grant recipients to submit the following Information for a Tier 1 Award. Submission of required documents is for consideration and does not guarantee a grant award.</h2>
+            <h2>
+              Each Hub shall require all prospective grant recipients to submit
+              the following Information for a Tier 1 Award. Submission of required
+              documents is for consideration and does not guarantee a grant award.
+            </h2>
             <h2>Grant Narrative</h2>
             <h3>Company Information:</h3>
             <label>
