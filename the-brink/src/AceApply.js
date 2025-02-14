@@ -28,7 +28,6 @@ export default function ACEApplicationForm() {
     successRecord: "",
   });
 
-  // Extend the errors state to include awardAmount
   const [errors, setErrors] = useState({
     primaryContact: { phone: "", email: "" },
     secondaryContact: { phone: "", email: "" },
@@ -53,7 +52,6 @@ export default function ACEApplicationForm() {
       }
     }
     if (name === "awardAmount") {
-      // Ensure award amount is a valid number
       if (isNaN(parseFloat(value)) || value.trim() === "") {
         error = "Award amount must be a valid numeric value.";
       }
@@ -133,7 +131,7 @@ export default function ACEApplicationForm() {
   return (
     <div>
       <div className="application-wrapper">
-        <div className="logo-banner"> 
+        <div className="logo-banner">
           <img src={Banner} alt="ACE Bannner" />
         </div>
         <div className="form-container">
@@ -143,52 +141,52 @@ export default function ACEApplicationForm() {
               <h2>Business Information</h2>
               <label>
                 Corporate Name*:
-                <input 
-                  type="text" 
-                  name="corporateName" 
-                  value={formData.corporateName} 
-                  onChange={handleChange} 
-                  required 
+                <input
+                  type="text"
+                  name="corporateName"
+                  value={formData.corporateName}
+                  onChange={handleChange}
+                  required
                 />
               </label>
               <label>
                 Address*:
-                <input 
-                  type="text" 
-                  name="address" 
-                  value={formData.address} 
-                  onChange={handleChange} 
-                  required 
+                <input
+                  type="text"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                  required
                 />
               </label>
               <label>
                 dba*:
-                <input 
-                  type="text" 
-                  name="dba" 
-                  value={formData.dba} 
-                  onChange={handleChange} 
-                  required 
+                <input
+                  type="text"
+                  name="dba"
+                  value={formData.dba}
+                  onChange={handleChange}
+                  required
                 />
               </label>
               <label>
                 DUNS*:
-                <input 
-                  type="text" 
-                  name="duns" 
-                  value={formData.duns} 
-                  onChange={handleChange} 
-                  required 
+                <input
+                  type="text"
+                  name="duns"
+                  value={formData.duns}
+                  onChange={handleChange}
+                  required
                 />
               </label>
               <label>
                 NAICS*:
-                <input 
-                  type="text" 
-                  name="naics" 
-                  value={formData.naics} 
-                  onChange={handleChange} 
-                  required 
+                <input
+                  type="text"
+                  name="naics"
+                  value={formData.naics}
+                  onChange={handleChange}
+                  required
                 />
               </label>
             </div>
@@ -236,38 +234,38 @@ export default function ACEApplicationForm() {
             <h2>Primary Contact*</h2>
             <label>
               Name:
-              <input 
-                type="text" 
-                name="name" 
-                value={formData.primaryContact.name} 
-                data-section="primaryContact" 
-                onChange={handleChange} 
-                required 
+              <input
+                type="text"
+                name="name"
+                value={formData.primaryContact.name}
+                data-section="primaryContact"
+                onChange={handleChange}
+                required
               />
             </label>
             <label>
               Title:
-              <input 
-                type="text" 
-                name="title" 
-                value={formData.primaryContact.title} 
-                data-section="primaryContact" 
-                onChange={handleChange} 
-                required 
+              <input
+                type="text"
+                name="title"
+                value={formData.primaryContact.title}
+                data-section="primaryContact"
+                onChange={handleChange}
+                required
               />
             </label>
             <label>
               Phone:
-              <input 
-                type="tel" 
-                name="phone" 
-                value={formData.primaryContact.phone} 
-                data-section="primaryContact" 
-                onChange={handleChange} 
+              <input
+                type="tel"
+                name="phone"
+                value={formData.primaryContact.phone}
+                data-section="primaryContact"
+                onChange={handleChange}
                 onBlur={(e) => validateField(e.target.name, e.target.value, "primaryContact")}
-                pattern="\d{10}" 
-                title="Please enter exactly 10 digits" 
-                required 
+                pattern="\d{10}"
+                title="Please enter exactly 10 digits"
+                required
               />
               {errors.primaryContact.phone && (
                 <span className="error">{errors.primaryContact.phone}</span>
@@ -275,14 +273,14 @@ export default function ACEApplicationForm() {
             </label>
             <label>
               Email:
-              <input 
-                type="email" 
-                name="email" 
-                value={formData.primaryContact.email} 
-                data-section="primaryContact" 
-                onChange={handleChange} 
+              <input
+                type="email"
+                name="email"
+                value={formData.primaryContact.email}
+                data-section="primaryContact"
+                onChange={handleChange}
                 onBlur={(e) => validateField(e.target.name, e.target.value, "primaryContact")}
-                required 
+                required
               />
               {errors.primaryContact.email && (
                 <span className="error">{errors.primaryContact.email}</span>
@@ -292,38 +290,38 @@ export default function ACEApplicationForm() {
             <h2>Secondary Contact*</h2>
             <label>
               Name:
-              <input 
-                type="text" 
-                name="name" 
-                value={formData.secondaryContact.name} 
-                data-section="secondaryContact" 
-                onChange={handleChange} 
-                required 
+              <input
+                type="text"
+                name="name"
+                value={formData.secondaryContact.name}
+                data-section="secondaryContact"
+                onChange={handleChange}
+                required
               />
             </label>
             <label>
               Title:
-              <input 
-                type="text" 
-                name="title" 
-                value={formData.secondaryContact.title} 
-                data-section="secondaryContact" 
-                onChange={handleChange} 
-                required 
+              <input
+                type="text"
+                name="title"
+                value={formData.secondaryContact.title}
+                data-section="secondaryContact"
+                onChange={handleChange}
+                required
               />
             </label>
             <label>
               Phone:
-              <input 
-                type="tel" 
-                name="phone" 
-                value={formData.secondaryContact.phone} 
-                data-section="secondaryContact" 
-                onChange={handleChange} 
+              <input
+                type="tel"
+                name="phone"
+                value={formData.secondaryContact.phone}
+                data-section="secondaryContact"
+                onChange={handleChange}
                 onBlur={(e) => validateField(e.target.name, e.target.value, "secondaryContact")}
-                pattern="\d{10}" 
-                title="Please enter exactly 10 digits" 
-                required 
+                pattern="\d{10}"
+                title="Please enter exactly 10 digits"
+                required
               />
               {errors.secondaryContact.phone && (
                 <span className="error">{errors.secondaryContact.phone}</span>
@@ -331,14 +329,14 @@ export default function ACEApplicationForm() {
             </label>
             <label>
               Email:
-              <input 
-                type="email" 
-                name="email" 
-                value={formData.secondaryContact.email} 
-                data-section="secondaryContact" 
-                onChange={handleChange} 
+              <input
+                type="email"
+                name="email"
+                value={formData.secondaryContact.email}
+                data-section="secondaryContact"
+                onChange={handleChange}
                 onBlur={(e) => validateField(e.target.name, e.target.value, "secondaryContact")}
-                required 
+                required
               />
               {errors.secondaryContact.email && (
                 <span className="error">{errors.secondaryContact.email}</span>
@@ -350,23 +348,23 @@ export default function ACEApplicationForm() {
             </h2>
             <label>
               Agency*:
-              <input 
-                type="text" 
-                name="agency" 
-                value={formData.agency} 
-                onChange={handleChange} 
-                required 
+              <input
+                type="text"
+                name="agency"
+                value={formData.agency}
+                onChange={handleChange}
+                required
               />
             </label>
             <label>
               Award Amount*:
-              <input 
-                type="text" 
-                name="awardAmount" 
-                value={formData.awardAmount} 
-                onChange={handleChange} 
+              <input
+                type="text"
+                name="awardAmount"
+                value={formData.awardAmount}
+                onChange={handleChange}
                 onBlur={(e) => validateField(e.target.name, e.target.value)}
-                required 
+                required
               />
               {errors.awardAmount && (
                 <span className="error">{errors.awardAmount}</span>
@@ -374,21 +372,21 @@ export default function ACEApplicationForm() {
             </label>
             <label>
               Contract Number*:
-              <input 
-                type="text" 
-                name="contractNumber" 
-                value={formData.contractNumber} 
-                onChange={handleChange} 
+              <input
+                type="text"
+                name="contractNumber"
+                value={formData.contractNumber}
+                onChange={handleChange}
               />
             </label>
             <label>
               Grant Start-End Date*:
-              <input 
-                type="text" 
-                name="grantStartEnd" 
-                value={formData.grantStartEnd} 
-                onChange={handleChange} 
-                required 
+              <input
+                type="text"
+                name="grantStartEnd"
+                value={formData.grantStartEnd}
+                onChange={handleChange}
+                required
               />
             </label>
 
@@ -397,54 +395,54 @@ export default function ACEApplicationForm() {
             <h3>Company Information:</h3>
             <label>
               Primary objectives/core competencies; area of specialization; product or service deployment milestones; and history of previous State, federal and non-state funding, and subsequent Commercialization plans.
-              <textarea 
-                name="companyInfo" 
-                value={formData.companyInfo} 
-                onChange={handleChange} 
+              <textarea
+                name="companyInfo"
+                value={formData.companyInfo}
+                onChange={handleChange}
               />
             </label>
             <h3>Customer Discovery and Current Competitive Metrics:</h3>
             <label>
               Key technology objectives, current competitive market, and advantages compared to competing products or services, description of barriers to market adoption of the product or service.
-              <textarea 
-                name="customerDiscovery" 
-                value={formData.customerDiscovery} 
-                onChange={handleChange} 
+              <textarea
+                name="customerDiscovery"
+                value={formData.customerDiscovery}
+                onChange={handleChange}
               />
             </label>
             <h3>Go-to-Market Strategy:</h3>
             <label>
               Market Milestones, milestone dates, market size analysis, and estimated market share after one year of sales and after 5 years; project plan to obtain market share.
-              <textarea 
-                name="goToMarketStrategy" 
-                value={formData.goToMarketStrategy} 
-                onChange={handleChange} 
+              <textarea
+                name="goToMarketStrategy"
+                value={formData.goToMarketStrategy}
+                onChange={handleChange}
               />
             </label>
             <h3>Intellectual Property:</h3>
             <label>
               Patent status, technology lead, trade secrets or other demonstration of a plan to achieve necessary protection to attain a competitive advantage, if applicable.
-              <textarea 
-                name="intellectualProperty" 
-                value={formData.intellectualProperty} 
-                onChange={handleChange} 
+              <textarea
+                name="intellectualProperty"
+                value={formData.intellectualProperty}
+                onChange={handleChange}
               />
             </label>
             <h3>Financing:</h3>
             <label>
               Plans for securing necessary follow-on funding in subsequent years.
-              <textarea 
-                name="financing" 
-                value={formData.financing} 
-                onChange={handleChange} 
+              <textarea
+                name="financing"
+                value={formData.financing}
+                onChange={handleChange}
               />
             </label>
             <label>
               <h3>The Small Business owner's existing record of successfully commercializing other research,</h3> if applicable.
-              <textarea 
-                name="successRecord" 
-                value={formData.successRecord} 
-                onChange={handleChange} 
+              <textarea
+                name="successRecord"
+                value={formData.successRecord}
+                onChange={handleChange}
               />
             </label>
 
