@@ -1,27 +1,33 @@
-# Ignore node_modules and build-related directories
+# Ignore all node_modules directories
 node_modules/
-the-brink/node_modules/
-the-brink/build/
-the-brink/public/
+**/node_modules/
+
+# Ignore build and public directories
+build/
+public/
+dist/
 
 # Ignore Git-related files
 .git/
-the-brink/.gitignore
-.textlintignore
-
-# Ignore configuration and lock files
-package-lock.json
-the-brink/package-lock.json
-the-brink/Dockerfile
-the-brink/docker-compose.yml
-
-# Ignore private keys and sensitive files
-private_key
-private_key.pub
-the-brink/private_key
-the-brink/private_key.pub
+.gitignore
 
 # Ignore CI/CD and system files
 .github/
 .vscode/
 .env
+
+# Ignore dependency lock files
+package-lock.json
+**/package-lock.json
+
+# Ignore Docker-related files
+Dockerfile
+docker-compose.yml
+**/Dockerfile
+**/docker-compose.yml
+
+# Ignore private keys and sensitive files
+private_key
+private_key.pub
+**/private_key
+**/private_key.pub
