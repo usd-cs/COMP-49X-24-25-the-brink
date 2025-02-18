@@ -1,32 +1,28 @@
-# Ignore all node_modules directories
+# Ignore node_modules in both the root and subfolders
 node_modules/
 **/node_modules/
 
-# Ignore build and public directories
+# Ignore build directories
 build/
+**/build/
+
+# Ignore public directories (if not needed)
 public/
-dist/
+**/public/
 
-# Ignore Git-related files
+# Ignore configuration and CI directories
 .git/
-.gitignore
-
-# Ignore CI/CD and system files
 .github/
 .vscode/
 .env
 
-# Ignore dependency lock files
+# Ignore Docker files and lock files
+Dockerfile
+docker-compose.yml
 package-lock.json
 **/package-lock.json
 
-# Ignore Docker-related files
-Dockerfile
-docker-compose.yml
-**/Dockerfile
-**/docker-compose.yml
-
-# Ignore private keys and sensitive files
+# Ignore private and sensitive files
 private_key
 private_key.pub
 **/private_key
