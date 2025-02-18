@@ -23,4 +23,23 @@ const SidebarMenu = ({ activeTab, setActiveTab }) => {
     );
 };
 
+div className="sidebar">
+                <div className="sidebar-header">
+                    <img
+                        src={user.profileImage}
+                        alt="Profile"
+                        className="sidebar-profile-image"
+                    />
+                    <h3>{user.name}</h3>
+                    <p>{user.company}</p>
+                </div>
+                <ul className="sidebar-menu">
+                    <li>Applications</li>
+                    <li>Competitions</li>
+                    <li>Resources</li>
+                    <li>Profile</li>
+                    <li>Messages</li>
+                </ul>
+            </div>
+
 export default SidebarMenu;

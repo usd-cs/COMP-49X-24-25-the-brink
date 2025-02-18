@@ -12,7 +12,7 @@ import './Competition.css';
 import './AceApply.css';
 
 function App() {
-  return <Sidebar/>;
+  return <ProfilePage/>;
 }
 
 export default App;

@@ -1,30 +1,52 @@
-// ProfilePage.js
-import React, { useState } from 'react';
-import SidebarMenu from './SidebarMenu';
-import './ProfilePage.css';
-
+import React from 'react';
+import './ProfilePage.css'; // Ensure the CSS file is updated as well
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400&display=swap" rel="stylesheet"></link>
 const ProfilePage = () => {
-    const [activeTab, setActiveTab] = useState('profile');
-    console.log('Profile Component rendered');
-
-    const renderContent = () => {
-        switch (activeTab) {
-            case 'profile':
-                return <div className="profile-card"><h2>Profile Information</h2><p>Details about the user...</p></div>;
-            case 'settings':
-                return <div className="profile-card"><h2>Settings</h2><p>Modify account settings here...</p></div>;
-            case 'messages':
-                return <div className="profile-card"><h2>Messages</h2><p>View your messages...</p></div>;
-            default:
-                return <div className="profile-card"><h2>Welcome</h2><p>Select an option from the sidebar.</p></div>;
-        }
+    const user = {
+        name: "First Last",
+        company: "Sample Company Name",
+        email: "sampleemail@sample.com",
+        phone: "555.555.5555",
+        profileImage: "https://via.placeholder.com/150",
+        
     };
 
     return (
         <div className="profile-page">
-            <SidebarMenu activeTab={activeTab} setActiveTab={setActiveTab} />
+            {/*<div className="sidebar">
+                <div className="sidebar-header">
+                    <img
+                        src={user.profileImage}
+                        alt="Profile"
+                        className="sidebar-profile-image"
+                    />
+                    <h3>{user.name}</h3>
+                    <p>{user.company}</p>
+                </div>
+                <ul className="sidebar-menu">
+                    <li>Applications</li>
+                    <li>Competitions</li>
+                    <li>Resources</li>
+                    <li>Profile</li>
+                    <li>Messages</li>
+                </ul>
+            </div>*/}
             <div className="main-content">
-                {renderContent()}
+                <div className="profile-card">
+                    <img
+                        src={user.profileImage}
+                        alt="Profile"
+                        className="profile-card-image"
+                    />
+                    {/*<button className="edit-profile-button">Edit Profile</button>*/}
+                    <div className="profile-info">
+                        <p><strong>{user.name}</strong></p>
+                        <p>{user.company}</p>
+                        <p>{user.email}</p>
+                        <p>{user.phone}</p>
+                        <button className="edit-profile-button">Edit Profile</button>
+                    </div>
+                </div>
             </div>
         </div>
     );
