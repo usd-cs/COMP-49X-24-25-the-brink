@@ -2,5 +2,8 @@
   "dependencies": {
     "cors": "^2.8.5",
     "react-router-dom": "^7.0.2"
+  },
+  "devDependencies": {
+    "markdownlint-cli": "^0.44.0"
   }
 }
