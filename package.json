@@ -5,5 +5,10 @@
   },
   "devDependencies": {
     "markdownlint-cli": "^0.44.0"
+  },
+  "textlint": {
+    "ignoreFiles": [
+      "node_modules/**/*"
+    ]
   }
 }
