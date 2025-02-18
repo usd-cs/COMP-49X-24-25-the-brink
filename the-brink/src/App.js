@@ -8,9 +8,13 @@ import Competition from './Competition'
 import AceApply from './AceApply'
 import './Competition.css'
 import './AceApply.css'
+import AdminView from './AdminView'
+import './AdminView.css'
 
 function App () {
-  return (
+  return  <AdminView/>;
+    
+    /* (
     <div>
       <Routes>
         <Route path='/' element={<Competition />} />
@@ -20,7 +24,9 @@ function App () {
         <Route path='/profile' element={<ProfilePage />} />
       </Routes>
     </div>
-  )
+      )
+    */
+  
 }
 
 export default App
