@@ -1,5 +1,13 @@
 {
-  "ignoreFiles": [
-    "node_modules/**/*"
-  ]
+  "rules": {
+    "terminology": {
+      "default": {
+        "node.js": "Node.js",
+        "javascript": "JavaScript",
+        "ES2015": "ES6"
+      }
+    },
+    "no-todo": true,
+    "no-mix-dearu-desumasu": true
+  }
 }

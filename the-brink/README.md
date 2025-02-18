@@ -2,6 +2,8 @@
 
 This project was initialized using [Create React App](https://github.com/facebook/create-react-app).
 
+This project was initialized using Create React App and is built with javascript and node.js.
+
 ## Available Scripts
 
 In the project directory, you can run the following commands:
@@ -12,7 +14,7 @@ This command starts the application in development mode.
 Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
 The page will automatically reload when changes are made.  
-Any lint errors are displayed in the console.
+Any linting errors are displayed in the console.
 
 ### `npm test`
 
