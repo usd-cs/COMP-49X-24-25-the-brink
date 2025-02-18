@@ -1,59 +1,59 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Competition.css';
-import Banner from './ace-pitch-competition-banner.png';
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import './Competition.css'
+import Banner from './ace-pitch-competition-banner.png'
 
-export default function ACEApplicationForm() {
+export default function ACEApplicationForm () {
   const [formData, setFormData] = useState({
-    corporateName: "",
-    address: "",
-    dba: "",
-    duns: "",
-    naics: "",
-    hubZone: "",
-    rural: "",
-    womenOwned: "",
-    disasterImpacted: "",
-    primaryContact: { name: "", title: "", phone: "", email: "" },
-    secondaryContact: { name: "", title: "", phone: "", email: "" },
-    agency: "",
-    awardAmount: "",
-    contractNumber: "",
-    grantStartEnd: "",
-    companyInfo: "",
-    customerDiscovery: "",
-    goToMarketStrategy: "",
-    intellectualProperty: "",
-    financing: "",
-    successRecord: "",
-  });
+    corporateName: '',
+    address: '',
+    dba: '',
+    duns: '',
+    naics: '',
+    hubZone: '',
+    rural: '',
+    womenOwned: '',
+    disasterImpacted: '',
+    primaryContact: { name: '', title: '', phone: '', email: '' },
+    secondaryContact: { name: '', title: '', phone: '', email: '' },
+    agency: '',
+    awardAmount: '',
+    contractNumber: '',
+    grantStartEnd: '',
+    companyInfo: '',
+    customerDiscovery: '',
+    goToMarketStrategy: '',
+    intellectualProperty: '',
+    financing: '',
+    successRecord: ''
+  })
 
   const [errors, setErrors] = useState({
-    primaryContact: { phone: "", email: "" },
-    secondaryContact: { phone: "", email: "" },
-    awardAmount: ""
-  });
+    primaryContact: { phone: '', email: '' },
+    secondaryContact: { phone: '', email: '' },
+    awardAmount: ''
+  })
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   // Validate fields on blur
   const validateField = (name, value, section) => {
-    let error = "";
-    if (name === "phone") {
-      const regex = /^\d{10}$/;
+    let error = ''
+    if (name === 'phone') {
+      const regex = /^\d{10}$/
       if (!regex.test(value)) {
-        error = "Phone number must be exactly 10 digits.";
+        error = 'Phone number must be exactly 10 digits.'
       }
     }
-    if (name === "email") {
-      const regex = /\S+@\S+\.\S+/;
+    if (name === 'email') {
+      const regex = /\S+@\S+\.\S+/
       if (!regex.test(value)) {
-        error = "Please enter a valid email address.";
+        error = 'Please enter a valid email address.'
       }
     }
-    if (name === "awardAmount") {
-      if (isNaN(parseFloat(value)) || value.trim() === "") {
-        error = "Award amount must be a valid numeric value.";
+    if (name === 'awardAmount') {
+      if (isNaN(parseFloat(value)) || value.trim() === '') {
+        error = 'Award amount must be a valid numeric value.'
       }
     }
     if (section) {
@@ -61,31 +61,31 @@ export default function ACEApplicationForm() {
         ...prev,
         [section]: {
           ...prev[section],
-          [name]: error,
-        },
-      }));
+          [name]: error
+        }
+      }))
     } else {
       setErrors(prev => ({
         ...prev,
-        [name]: error,
-      }));
+        [name]: error
+      }))
     }
-  };
+  }
 
   const handleChange = (e) => {
-    const { name, value, dataset } = e.target;
+    const { name, value, dataset } = e.target
     if (dataset.section) {
       setFormData({
         ...formData,
-        [dataset.section]: { ...formData[dataset.section], [name]: value },
-      });
+        [dataset.section]: { ...formData[dataset.section], [name]: value }
+      })
     } else {
-      setFormData({ ...formData, [name]: value });
+      setFormData({ ...formData, [name]: value })
     }
-  };
+  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     // Check for any validation errors before submitting
     if (
@@ -95,55 +95,55 @@ export default function ACEApplicationForm() {
       errors.secondaryContact.email ||
       errors.awardAmount
     ) {
-      alert("Please fix validation errors before submitting.");
-      return;
+      alert('Please fix validation errors before submitting.')
+      return
     }
 
-    console.log("Submitted Data: ", formData);
+    console.log('Submitted Data: ', formData)
     try {
       const response = await fetch('http://localhost:3001/api/ace_applications', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData),
-      });
+        body: JSON.stringify(formData)
+      })
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to submit form');
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Failed to submit form')
       }
-      
-      const result = await response.json();
-      console.log("Application submitted successfully:", result);
-      alert("Form Submitted Successfully!");
+
+      const result = await response.json()
+      console.log('Application submitted successfully:', result)
+      alert('Form Submitted Successfully!')
       // Optionally reset form or navigate here
     } catch (error) {
-      console.error("Error submitting application:", error);
-      alert("Submission failed. Please try again.");
+      console.error('Error submitting application:', error)
+      alert('Submission failed. Please try again.')
     }
-  };
+  }
 
   const goToHomePage = () => {
-    navigate('/');
-  };
+    navigate('/')
+  }
 
   return (
     <div>
-      <div className="application-wrapper">
-        <div className="logo-banner">
-          <img src={Banner} alt="ACE Bannner" />
+      <div className='application-wrapper'>
+        <div className='logo-banner'>
+          <img src={Banner} alt='ACE Bannner' />
         </div>
-        <div className="form-container">
-          <form className="ACE-form" onSubmit={handleSubmit}>
-            <h1 className="form-title">Tier 1- Innovation Grant Award Justification Narrative</h1>
-            <div className="business-info-section">
+        <div className='form-container'>
+          <form className='ACE-form' onSubmit={handleSubmit}>
+            <h1 className='form-title'>Tier 1- Innovation Grant Award Justification Narrative</h1>
+            <div className='business-info-section'>
               <h2>Business Information</h2>
               <label>
                 Corporate Name*:
                 <input
-                  type="text"
-                  name="corporateName"
+                  type='text'
+                  name='corporateName'
                   value={formData.corporateName}
                   onChange={handleChange}
                   required
@@ -152,8 +152,8 @@ export default function ACEApplicationForm() {
               <label>
                 Address*:
                 <input
-                  type="text"
-                  name="address"
+                  type='text'
+                  name='address'
                   value={formData.address}
                   onChange={handleChange}
                   required
@@ -162,8 +162,8 @@ export default function ACEApplicationForm() {
               <label>
                 dba*:
                 <input
-                  type="text"
-                  name="dba"
+                  type='text'
+                  name='dba'
                   value={formData.dba}
                   onChange={handleChange}
                   required
@@ -172,8 +172,8 @@ export default function ACEApplicationForm() {
               <label>
                 DUNS*:
                 <input
-                  type="text"
-                  name="duns"
+                  type='text'
+                  name='duns'
                   value={formData.duns}
                   onChange={handleChange}
                   required
@@ -182,8 +182,8 @@ export default function ACEApplicationForm() {
               <label>
                 NAICS*:
                 <input
-                  type="text"
-                  name="naics"
+                  type='text'
+                  name='naics'
                   value={formData.naics}
                   onChange={handleChange}
                   required
@@ -191,43 +191,43 @@ export default function ACEApplicationForm() {
               </label>
             </div>
 
-            <div className="radio-group">
+            <div className='radio-group'>
               <p>Located in a hub-zone (Y/N):</p>
               <label>
-                <input type="radio" name="hubZone" value="Yes" onChange={handleChange} /> Yes
+                <input type='radio' name='hubZone' value='Yes' onChange={handleChange} /> Yes
               </label>
               <label>
-                <input type="radio" name="hubZone" value="No" onChange={handleChange} /> No
+                <input type='radio' name='hubZone' value='No' onChange={handleChange} /> No
               </label>
             </div>
 
-            <div className="radio-group">
+            <div className='radio-group'>
               <p>Rural (Y/N):</p>
               <label>
-                <input type="radio" name="rural" value="Yes" onChange={handleChange} /> Yes
+                <input type='radio' name='rural' value='Yes' onChange={handleChange} /> Yes
               </label>
               <label>
-                <input type="radio" name="rural" value="No" onChange={handleChange} /> No
+                <input type='radio' name='rural' value='No' onChange={handleChange} /> No
               </label>
             </div>
 
-            <div className="radio-group">
+            <div className='radio-group'>
               <p>Women-owned (Y/N):</p>
               <label>
-                <input type="radio" name="womenOwned" value="Yes" onChange={handleChange} /> Yes
+                <input type='radio' name='womenOwned' value='Yes' onChange={handleChange} /> Yes
               </label>
               <label>
-                <input type="radio" name="womenOwned" value="No" onChange={handleChange} /> No
+                <input type='radio' name='womenOwned' value='No' onChange={handleChange} /> No
               </label>
             </div>
 
-            <div className="radio-group">
+            <div className='radio-group'>
               <p>Disaster-impacted (Y/N):</p>
               <label>
-                <input type="radio" name="disasterImpacted" value="Yes" onChange={handleChange} /> Yes
+                <input type='radio' name='disasterImpacted' value='Yes' onChange={handleChange} /> Yes
               </label>
               <label>
-                <input type="radio" name="disasterImpacted" value="No" onChange={handleChange} /> No
+                <input type='radio' name='disasterImpacted' value='No' onChange={handleChange} /> No
               </label>
             </div>
 
@@ -235,10 +235,10 @@ export default function ACEApplicationForm() {
             <label>
               Primary Contact Name:
               <input
-                type="text"
-                name="name"
+                type='text'
+                name='name'
                 value={formData.primaryContact.name}
-                data-section="primaryContact"
+                data-section='primaryContact'
                 onChange={handleChange}
                 required
               />
@@ -246,10 +246,10 @@ export default function ACEApplicationForm() {
             <label>
               Primary Contact Title:
               <input
-                type="text"
-                name="title"
+                type='text'
+                name='title'
                 value={formData.primaryContact.title}
-                data-section="primaryContact"
+                data-section='primaryContact'
                 onChange={handleChange}
                 required
               />
@@ -257,33 +257,33 @@ export default function ACEApplicationForm() {
             <label>
               Primary Contact Phone:
               <input
-                type="tel"
-                name="phone"
+                type='tel'
+                name='phone'
                 value={formData.primaryContact.phone}
-                data-section="primaryContact"
+                data-section='primaryContact'
                 onChange={handleChange}
-                onBlur={(e) => validateField(e.target.name, e.target.value, "primaryContact")}
-                pattern="\d{10}"
-                title="Please enter exactly 10 digits"
+                onBlur={(e) => validateField(e.target.name, e.target.value, 'primaryContact')}
+                pattern='\d{10}'
+                title='Please enter exactly 10 digits'
                 required
               />
               {errors.primaryContact.phone && (
-                <span className="error">{errors.primaryContact.phone}</span>
+                <span className='error'>{errors.primaryContact.phone}</span>
               )}
             </label>
             <label>
               Primary Contact Email:
               <input
-                type="email"
-                name="email"
+                type='email'
+                name='email'
                 value={formData.primaryContact.email}
-                data-section="primaryContact"
+                data-section='primaryContact'
                 onChange={handleChange}
-                onBlur={(e) => validateField(e.target.name, e.target.value, "primaryContact")}
+                onBlur={(e) => validateField(e.target.name, e.target.value, 'primaryContact')}
                 required
               />
               {errors.primaryContact.email && (
-                <span className="error">{errors.primaryContact.email}</span>
+                <span className='error'>{errors.primaryContact.email}</span>
               )}
             </label>
 
@@ -291,10 +291,10 @@ export default function ACEApplicationForm() {
             <label>
               Secondary Contact Name:
               <input
-                type="text"
-                name="name"
+                type='text'
+                name='name'
                 value={formData.secondaryContact.name}
-                data-section="secondaryContact"
+                data-section='secondaryContact'
                 onChange={handleChange}
                 required
               />
@@ -302,10 +302,10 @@ export default function ACEApplicationForm() {
             <label>
               Secondary Contact Title:
               <input
-                type="text"
-                name="title"
+                type='text'
+                name='title'
                 value={formData.secondaryContact.title}
-                data-section="secondaryContact"
+                data-section='secondaryContact'
                 onChange={handleChange}
                 required
               />
@@ -313,33 +313,33 @@ export default function ACEApplicationForm() {
             <label>
               Secondary Contact Phone:
               <input
-                type="tel"
-                name="phone"
+                type='tel'
+                name='phone'
                 value={formData.secondaryContact.phone}
-                data-section="secondaryContact"
+                data-section='secondaryContact'
                 onChange={handleChange}
-                onBlur={(e) => validateField(e.target.name, e.target.value, "secondaryContact")}
-                pattern="\d{10}"
-                title="Please enter exactly 10 digits"
+                onBlur={(e) => validateField(e.target.name, e.target.value, 'secondaryContact')}
+                pattern='\d{10}'
+                title='Please enter exactly 10 digits'
                 required
               />
               {errors.secondaryContact.phone && (
-                <span className="error">{errors.secondaryContact.phone}</span>
+                <span className='error'>{errors.secondaryContact.phone}</span>
               )}
             </label>
             <label>
               Secondary Contact Email:
               <input
-                type="email"
-                name="email"
+                type='email'
+                name='email'
                 value={formData.secondaryContact.email}
-                data-section="secondaryContact"
+                data-section='secondaryContact'
                 onChange={handleChange}
-                onBlur={(e) => validateField(e.target.name, e.target.value, "secondaryContact")}
+                onBlur={(e) => validateField(e.target.name, e.target.value, 'secondaryContact')}
                 required
               />
               {errors.secondaryContact.email && (
-                <span className="error">{errors.secondaryContact.email}</span>
+                <span className='error'>{errors.secondaryContact.email}</span>
               )}
             </label>
 
@@ -350,8 +350,8 @@ export default function ACEApplicationForm() {
             <label>
               Agency*:
               <input
-                type="text"
-                name="agency"
+                type='text'
+                name='agency'
                 value={formData.agency}
                 onChange={handleChange}
                 required
@@ -360,22 +360,22 @@ export default function ACEApplicationForm() {
             <label>
               Award Amount*:
               <input
-                type="text"
-                name="awardAmount"
+                type='text'
+                name='awardAmount'
                 value={formData.awardAmount}
                 onChange={handleChange}
                 onBlur={(e) => validateField(e.target.name, e.target.value)}
                 required
               />
               {errors.awardAmount && (
-                <span className="error">{errors.awardAmount}</span>
+                <span className='error'>{errors.awardAmount}</span>
               )}
             </label>
             <label>
               Contract Number*:
               <input
-                type="text"
-                name="contractNumber"
+                type='text'
+                name='contractNumber'
                 value={formData.contractNumber}
                 onChange={handleChange}
               />
@@ -383,8 +383,8 @@ export default function ACEApplicationForm() {
             <label>
               Grant Start-End Date*:
               <input
-                type="text"
-                name="grantStartEnd"
+                type='text'
+                name='grantStartEnd'
                 value={formData.grantStartEnd}
                 onChange={handleChange}
                 required
@@ -401,7 +401,7 @@ export default function ACEApplicationForm() {
             <label>
               Primary objectives/core competencies; area of specialization; product or service deployment milestones; and history of previous State, federal and non-state funding, and subsequent Commercialization plans.
               <textarea
-                name="companyInfo"
+                name='companyInfo'
                 value={formData.companyInfo}
                 onChange={handleChange}
               />
@@ -410,7 +410,7 @@ export default function ACEApplicationForm() {
             <label>
               Key technology objectives, current competitive market, and advantages compared to competing products or services, description of barriers to market adoption of the product or service.
               <textarea
-                name="customerDiscovery"
+                name='customerDiscovery'
                 value={formData.customerDiscovery}
                 onChange={handleChange}
               />
@@ -419,7 +419,7 @@ export default function ACEApplicationForm() {
             <label>
               Market Milestones, milestone dates, market size analysis, and estimated market share after one year of sales and after 5 years; project plan to obtain market share.
               <textarea
-                name="goToMarketStrategy"
+                name='goToMarketStrategy'
                 value={formData.goToMarketStrategy}
                 onChange={handleChange}
               />
@@ -428,7 +428,7 @@ export default function ACEApplicationForm() {
             <label>
               Patent status, technology lead, trade secrets or other demonstration of a plan to achieve necessary protection to attain a competitive advantage, if applicable.
               <textarea
-                name="intellectualProperty"
+                name='intellectualProperty'
                 value={formData.intellectualProperty}
                 onChange={handleChange}
               />
@@ -437,7 +437,7 @@ export default function ACEApplicationForm() {
             <label>
               Plans for securing necessary follow-on funding in subsequent years.
               <textarea
-                name="financing"
+                name='financing'
                 value={formData.financing}
                 onChange={handleChange}
               />
@@ -445,17 +445,17 @@ export default function ACEApplicationForm() {
             <label>
               <h3>The Small Business owner's existing record of successfully commercializing other research,</h3> if applicable.
               <textarea
-                name="successRecord"
+                name='successRecord'
                 value={formData.successRecord}
                 onChange={handleChange}
               />
             </label>
 
-            <button type="submit" className="submit-button">Submit</button>
+            <button type='submit' className='submit-button'>Submit</button>
           </form>
-          <button onClick={goToHomePage} className="home-button" aria-label="Home">Home</button>
+          <button onClick={goToHomePage} className='home-button' aria-label='Home'>Home</button>
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -1,19 +1,19 @@
 // server.js
-const express = require('express');
-const cors = require('cors');
-const { Pool } = require('pg');
-const app = express();
+const express = require('express')
+const cors = require('cors')
+const { Pool } = require('pg')
+const app = express()
 
-app.use(cors());
+app.use(cors())
 
 // Middleware to parse JSON request bodies
-app.use(express.json());
+app.use(express.json())
 
 // Create a connection pool using the DATABASE_URL environment variable.
 // In your docker-compose, this is set to: postgres://PitchSuite:theBrink0628@db:5432/brinkdatabase
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
+  connectionString: process.env.DATABASE_URL
+})
 
 // POST endpoint to handle ACE application submissions
 app.post('/api/ace_applications', async (req, res) => {
@@ -38,18 +38,18 @@ app.post('/api/ace_applications', async (req, res) => {
     goToMarketStrategy,
     intellectualProperty,
     financing,
-    successRecord,
-  } = req.body;
+    successRecord
+  } = req.body
 
   // Basic validation: ensure required fields are provided
   if (!corporateName || !address || !primaryContact || !primaryContact.name || !agency) {
-    return res.status(400).json({ error: 'Missing required fields' });
+    return res.status(400).json({ error: 'Missing required fields' })
   }
 
   // Validate awardAmount: ensure it is a valid number
-  const numericAwardAmount = parseFloat(awardAmount);
+  const numericAwardAmount = parseFloat(awardAmount)
   if (isNaN(numericAwardAmount)) {
-    return res.status(400).json({ error: 'Award amount must be a valid numeric value.' });
+    return res.status(400).json({ error: 'Award amount must be a valid numeric value.' })
   }
 
   try {
@@ -87,7 +87,7 @@ app.post('/api/ace_applications', async (req, res) => {
         $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20,
         $21, $22, $23, $24, $25, $26, $27
       ) RETURNING *;
-    `;
+    `
 
     const values = [
       corporateName,
@@ -116,19 +116,19 @@ app.post('/api/ace_applications', async (req, res) => {
       goToMarketStrategy,
       intellectualProperty,
       financing,
-      successRecord,
-    ];
+      successRecord
+    ]
 
-    const result = await pool.query(query, values);
-    res.status(201).json(result.rows[0]);
+    const result = await pool.query(query, values)
+    res.status(201).json(result.rows[0])
   } catch (err) {
-    console.error('Error inserting application:', err.stack);
-    res.status(500).json({ error: 'Internal server error' });
+    console.error('Error inserting application:', err.stack)
+    res.status(500).json({ error: 'Internal server error' })
   }
-});
+})
 
 // Start the server on the port specified by the PORT environment variable (default to 3001)
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+  console.log(`Server running on port ${PORT}`)
+})
