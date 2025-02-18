@@ -1,19 +1,26 @@
-import React from "react";
-import { Avatar } from "@/components/ui/avatar";
-import SidebarMenu from "./SidebarMenu";
-import "./SidebarMenu.css"; // Use Sidebar styles
+// Sidebar.js
+import React from 'react';
+import { Link } from 'react-router-dom'; 
+import './SidebarMenu.css'; 
+const SidebarMenu = ({ activeTab, setActiveTab }) => {
+   // Render the sidebar menu items based on the active tab state
+   console.log('rendering sidebar menu');
+    return (
+        <div className="sidebar">
+            <div className="sidebar-header">
+                <img src="profile.jpg" alt="Profile" className="sidebar-profile-image" />
+                <h3>John Doe</h3>
+            </div>
+            <ul className="sidebar-menu">
+                <li>
+                        <Link to="/" onClick{() => setActiveTab('profile')} className={activeab === 'profile' ? 'active' : ' '}>Profile</Link>
+                </li>
+                <li onClick={() => setActiveTab('profile')} className={activeTab === 'profile' ? 'active' : ''}>Profile</li>
+                <li onClick={() => setActiveTab('settings')} className={activeTab === 'settings' ? 'active' : ''}>Settings</li>
+                <li onClick={() => setActiveTab('messages')} className={activeTab === 'messages' ? 'active' : ''}>Messages</li>
+            </ul>
+        </div>
+    );
+};
 
-const Sidebar = () => {
-  return (
-    <div className="sidebar">
-      <div className="sidebar-header">
-        <Avatar className="sidebar-profile-image" />
-        <h2 className="text-lg font-bold">First Last</h2>
-        <p className="text-sm text-gray-600">Sample Company Name</p>
-      </div>
-      <SidebarMenu />
-    </div>
-  );
-};s
-
-export default Sidebar;
+export default SidebarMenu;

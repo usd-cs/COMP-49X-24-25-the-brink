@@ -1,12 +1,24 @@
-/* Sidebar styling */
+/* Sidebar.css */
 .sidebar {
     width: 18%;
-    background-color: #f4f4f4; /* Light gray background */
+    background-color: #f4f4f4;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar-profile-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
 }
 
 .sidebar-menu {
@@ -20,12 +32,11 @@
     margin: 5px 0;
     text-align: left;
     cursor: pointer;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s;
 }
 
-.sidebar-menu li:hover {
+.sidebar-menu li:hover,
+.sidebar-menu li.active {
     background-color: #ddd;
+    font-weight: bold;
 }
