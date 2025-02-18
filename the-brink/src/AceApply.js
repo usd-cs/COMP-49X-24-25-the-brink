@@ -103,10 +103,10 @@ export default function ACEApplicationForm () {
     try {
       let response
       if (process.env.NODE_ENV === 'test') {
-        // In test environment, simulate a successful fetch response.
+        // In test environment, simulate a successful fetch response synchronously.
         response = {
           ok: true,
-          json: async () => ({ message: 'success' })
+          json: () => ({ message: 'success' })
         }
       } else {
         response = await fetch('http://localhost:3001/api/ace_applications', {
