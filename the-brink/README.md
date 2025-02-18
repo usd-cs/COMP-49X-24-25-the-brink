@@ -2,7 +2,7 @@
 
 This project was initialized using [Create React App](https://github.com/facebook/create-react-app).
 
-This project was initialized using Create React App and is built with javascript and node.js.
+This project was initialized using Create React App and is built with javascript and Node.js.
 
 ## Available Scripts
 
