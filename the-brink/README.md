@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was initialized using [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
@@ -8,63 +8,62 @@ In the project directory, you can run the following commands:
 
 ### `npm start`
 
-This command runs the app in development mode.  
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This command starts the application in development mode.  
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-The page reloads when you make changes.  
-Lint errors, if any, are displayed in the console.
+The page will automatically reload when changes are made.  
+Any lint errors are displayed in the console.
 
 ### `npm test`
 
 This command launches the test runner in interactive watch mode.  
-Refer to the section on [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for further details.
+For additional details, please refer to [Running Tests](https://facebook.github.io/create-react-app/docs/running-tests).
 
 ### `npm run build`
 
-This command builds the app for production to the `build` folder.  
+This command builds the app for production in the `build` folder.  
 It bundles React in production mode and optimizes the build for optimal performance.
 
-The build is minified and filenames include hashes.  
-Your application is ready for deployment.
+The build is minified and the filenames include hashes, meaning the application is ready for deployment.
 
-Refer to the section on [deployment](https://facebook.github.io/create-react-app/docs/deployment) for additional information.
+For further information, please see [Deployment](https://facebook.github.io/create-react-app/docs/deployment).
 
 ### `npm run eject`
 
-**Note: Ejecting is a one-way operation. Once you eject, it is irreversible.**
+**Important: Ejecting is irreversible.**
 
-If you are not satisfied with the build tool and configuration choices, you may eject at any time. This command removes the single build dependency from your project.
-
-Instead, it copies all configuration files and transitive dependencies (webpack, Babel, ESLint, etc.) into your project, providing full control over them. All commands except eject will continue to work, but they will reference the copied scripts so that you may modify them as necessary. At that point, you assume responsibility for further configuration.
-
-Usage of eject is optional. The curated feature set is sufficient for small and medium deployments, and you are not required to use this feature. However, customization may become necessary as your project evolves.
+If you require more control over the build configuration, you may eject at any time.  
+Ejecting removes the single build dependency and copies all configuration files and transitive dependencies (such as webpack, Babel, and ESLint) into your project.  
+After ejecting, all commands except `eject` continue to work but will reference the copied scripts for further customization.  
+For many projects, the default configuration is sufficient; eject only if necessary.
 
 ## Learn More
 
-You can learn more from the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+For more information, please refer to the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, please refer to the [React documentation](https://reactjs.org/).
+To learn React, please consult the [React documentation](https://reactjs.org/).
 
 ### Code Splitting
 
-Information on code splitting is available at: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+More information on code splitting is available at:  
+[Code Splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
 ### Analyzing the Bundle Size
 
-Details on analyzing the bundle size are available at: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Details on analyzing the bundle size can be found at:  
+[Analyzing the Bundle Size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
 ### Making a Progressive Web App
 
-Guidance on creating a Progressive Web App is available at: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Instructions for creating a Progressive Web App are available at:  
+[Making a Progressive Web App](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
 ### Advanced Configuration
 
-For advanced configuration, refer to: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+For advanced configuration, please refer to:  
+[Advanced Configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+### Troubleshooting
 
-For deployment instructions, please refer to: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` Fails to Minify
-
-If you encounter issues with `npm run build` failing to minify, please refer to: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+If the build fails to minify, please review the troubleshooting guide:  
+[Troubleshooting: npm run build fails to minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
