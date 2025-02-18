@@ -1,29 +1,12 @@
-# Ignore node_modules in both the root and subfolders
 node_modules/
-**/node_modules/
-
-# Ignore build directories
 build/
-**/build/
-
-# Ignore public directories (if not needed)
 public/
-**/public/
-
-# Ignore configuration and CI directories
 .git/
 .github/
 .vscode/
 .env
-
-# Ignore Docker files and lock files
 Dockerfile
 docker-compose.yml
 package-lock.json
-**/package-lock.json
-
-# Ignore private and sensitive files
 private_key
 private_key.pub
-**/private_key
-**/private_key.pub

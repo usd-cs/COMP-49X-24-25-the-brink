@@ -1,9 +1,6 @@
-# This workflow executes several linters on changed files based on languages used in your code base whenever
-# you push a code or open a pull request.
-#
-# You can adjust the behavior by modifying this file.
-# For more information, see:
-# https://github.com/github/super-linter
+# This workflow executes several linters on changed files based on languages used in your code base
+# whenever you push code or open a pull request.
+
 name: Lint Code Base
 
 on:
@@ -11,6 +8,7 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+
 jobs:
   run-lint:
     runs-on: ubuntu-latest
@@ -27,3 +25,6 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: "main"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LINTER_RULES_PATH: "."
+          TEXTLINT_CONFIG_FILE: ".textlintrc"
+          FILTER_REGEX_EXCLUDE: "node_modules/|build/|public/|.git/|.github/|.vscode/|.env|Dockerfile|docker-compose.yml|package-lock.json|private_key|private_key.pub"
