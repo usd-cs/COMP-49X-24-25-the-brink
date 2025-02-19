@@ -1,10 +1,12 @@
-import React, { useState , useRef } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Correctly import useNavigate
 import './Competition.css';
 import Banner from './ace-pitch-competition-banner.png';
 import emailjs from '@emailjs/browser';
 
 export default function ACEApplicationForm() {
+    const competition_name = "ACE Pitch Competition"
+
     const [formData, setFormData] = useState({
         corporateName: "",
         address: "",
@@ -28,9 +30,6 @@ export default function ACEApplicationForm() {
         financing: "",
         successRecord: "",
     });
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [name, setName] = useState('');
 
     const navigate = useNavigate(); // Correct initialization of navigate
 
@@ -48,37 +47,32 @@ export default function ACEApplicationForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-    //     emailjs
-    //   .sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, {
-    //     publicKey: 'YOUR_PUBLIC_KEY',
-    //   })
-    //   .then(
-    //     () => {
-    //           console.log('SUCCESS!');
-    //           alert("Form Submitted Successfully!");
-    //     },
-    //     (error) => {
-    //         console.log('FAILED...', error.text);
-    //         alert("Failed to send email");
-    //     },
-    //   );
         
+        // EmailJS Service ID, Template ID, and Public Key
+        const serviceId = 'service_82365a2';
+        const templateId = 'template_qm3zwo8';
+        const publicKey = '7a6W_yNr36rITZqAa';
 
-    
-    // const result = await response.json();
-    // if(response.ok){
-    //     console.log("Submitted Data: ", formData);
-    //     alert("Form Submitted Successfully!");
-    // } else{
-    //     console.error("Error");
-    //     alert("Failed to send email");
-    // };
+        const templateParams = {
+            from_name: 'The Brink',
+            from_email: 'cstclair@sandiego.edu',
+            to_name: formData.primaryContact.name,
+            competition_name: competition_name,
+            corporate_name: formData.corporateName
+        }
+
+        emailjs.send(serviceId, templateId, templateParams, publicKey)
+            .then((response) => {
+                console.log('Email successfully sent.', response);
+            })
+            .catch((error) => {
+                console.error('Error sending email: ', error)
+            });
+    }
 
     const goToHomePage = () => {
         navigate('/'); // Redirect to the home page
     };
-};
 
 
     return(
@@ -89,7 +83,7 @@ export default function ACEApplicationForm() {
             </div>
         
             <div className="form-container">
-                    <form className="ACE-form" ref={form} onSubmit={handleSubmit}>
+                    <form className="ACE-form" onSubmit={handleSubmit}>
                 <h1 className="form-title">Tier 1- Innovation Grant Award Justification Narrative</h1>
                 <div className="business-info-section">
                     <h2> Business Information</h2>
