@@ -5,6 +5,7 @@ WORKDIR /the-brink/
 COPY public/ /the-brink/public
 COPY src/ /the-brink/src
 COPY package.json /the-brink/
+COPY server.js /the-brink/     
 
 RUN npm install
 

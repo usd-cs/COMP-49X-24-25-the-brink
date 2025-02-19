@@ -1,0 +1,3 @@
+VALIDATE_ALL_CODEBASE: false
+FILTER_REGEX_EXCLUDE: "node_modules/|build/|public/|.git/|.github/|.vscode/|.env|Dockerfile|docker-compose.yml|package-lock.json|private_key|private_key.pub"
+TEXTLINT_CONFIG_FILE: ".textlintrc"
