@@ -1,13 +1,18 @@
-# This workflow executes several linters on changed files based on languages used in your code base
-# whenever you push code or open a pull request.
-
 name: Lint Code Base
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
+
+permissions:
+  contents: read
+  checks: write
+  actions: read
+  pull-requests: write # Needed for PR annotations
 
 jobs:
   run-lint:
@@ -16,8 +21,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          # Full git history is needed to get a proper list of changed files within `super-linter`
-          fetch-depth: 0
+          fetch-depth: 0  # Required for full history
 
       - name: Lint Code Base
         uses: github/super-linter@v4
