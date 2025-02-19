@@ -4,7 +4,9 @@ import './Competition.css'
 import Banner from './ace-pitch-competition-banner.png'
 import emailjs from '@emailjs/browser'
 
-export default function ACEApplicationForm () {
+export default function ACEApplicationForm() {
+  const competitionName = "ACE Pitch Competition"
+
   const [formData, setFormData] = useState({
     corporateName: '',
     address: '',
@@ -109,7 +111,7 @@ export default function ACEApplicationForm () {
       from_name: 'The Brink',
       from_email: 'cstclair@sandiego.edu',
       to_name: formData.primaryContact.name,
-      competition_name,
+      competition_name: competitionName,
       corporate_name: formData.corporateName
     }
 
