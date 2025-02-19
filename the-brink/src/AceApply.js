@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState , useRef } from 'react';
 import { useNavigate } from 'react-router-dom'; // Correctly import useNavigate
 import './Competition.css';
 import Banner from './ace-pitch-competition-banner.png';
+import emailjs from '@emailjs/browser';
 
 export default function ACEApplicationForm() {
     const [formData, setFormData] = useState({
@@ -27,6 +28,9 @@ export default function ACEApplicationForm() {
         financing: "",
         successRecord: "",
     });
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
 
     const navigate = useNavigate(); // Correct initialization of navigate
 
@@ -44,26 +48,32 @@ export default function ACEApplicationForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch('http://localhost:3000/sendemail',{
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
 
-            },
-            body: JSON.stringify({
-                email: formData.primaryContact.email,
-                name: formData.primaryContact.name
-            }),
-        });
+    //     emailjs
+    //   .sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, {
+    //     publicKey: 'YOUR_PUBLIC_KEY',
+    //   })
+    //   .then(
+    //     () => {
+    //           console.log('SUCCESS!');
+    //           alert("Form Submitted Successfully!");
+    //     },
+    //     (error) => {
+    //         console.log('FAILED...', error.text);
+    //         alert("Failed to send email");
+    //     },
+    //   );
+        
+
     
-    const result = await response.json();
-    if(response.ok){
-        console.log("Submitted Data: ", formData);
-        alert("Form Submitted Successfully!");
-    } else{
-        console.error("Error");
-        alert("Failed to send email");
-    };
+    // const result = await response.json();
+    // if(response.ok){
+    //     console.log("Submitted Data: ", formData);
+    //     alert("Form Submitted Successfully!");
+    // } else{
+    //     console.error("Error");
+    //     alert("Failed to send email");
+    // };
 
     const goToHomePage = () => {
         navigate('/'); // Redirect to the home page
@@ -77,10 +87,9 @@ export default function ACEApplicationForm() {
             <div className="logo-banner"> 
                 <img src={Banner} alt="ACE Bannner" />
             </div>
-
         
             <div className="form-container">
-            <form className="ACE-form" onSubmit={handleSubmit}>
+                    <form className="ACE-form" ref={form} onSubmit={handleSubmit}>
                 <h1 className="form-title">Tier 1- Innovation Grant Award Justification Narrative</h1>
                 <div className="business-info-section">
                     <h2> Business Information</h2>
