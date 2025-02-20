@@ -1,23 +1,26 @@
-import React from 'react';
-//import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ProfilePage from './ProfilePage';
-import Sidebar from './SidebarMenu';
-import SignUpPage from './SignUpPage';
-import Login from './Loginpage';
-import './SignUpPage.css';
-import { Routes, Route } from 'react-router-dom';
-import Competition from './Competition';
-import AceApply from './AceApply';
-import './Competition.css';
-import './AceApply.css';
+import React from 'react'
+import ProfilePage from './ProfilePage'
+import SignUpPage from './SignUpPage'
+import Login from './Loginpage'
+import './SignUpPage.css'
+import { Routes, Route } from 'react-router-dom'
+import Competition from './Competition'
+import AceApply from './AceApply'
+import './Competition.css'
+import './AceApply.css'
 
-function App() {
-  return <ProfilePage/>;
+function App () {
+  return (
+    <div>
+      <Routes>
+        <Route path='/' element={<Competition />} />
+        <Route path='/ace-apply' element={<AceApply />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<SignUpPage />} />
+        <Route path='/profile' element={<ProfilePage />} />
+      </Routes>
+    </div>
+  )
 }
 
-export default App;
-
-        {/* <Route path="/" element={<Competition />} />
-          <Route path="/ace-apply" element={<AceApply />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUpPage />} />*/}
+export default App

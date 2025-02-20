@@ -1,0 +1,14 @@
+{
+    "rules": {
+      "no-todo": true,
+      "terminology": {
+        "defaultTerms": {
+          "node.js": "Node.js",
+          "javascript": "JavaScript",
+          "ES2015": "ES6"
+        }
+      }
+    },
+    "ignorePatterns": ["node_modules/"]
+  }
+  
