@@ -5,26 +5,20 @@ import './SidebarMenu.css';
 const SidebarMenu = ({ activeTab, setActiveTab }) => {
    // Render the sidebar menu items based on the active tab state
    console.log('rendering sidebar menu');
-    return (
-        <div className="sidebar">
-            <div className="sidebar-header">
-                <img src="profile.jpg" alt="Profile" className="sidebar-profile-image" />
-                <h3>John Doe</h3>
-            </div>
-            <ul className="sidebar-menu">
-                <li>
-                        <Link to="/" onClick{() => setActiveTab('profile')} className={activeab === 'profile' ? 'active' : ' '}>Profile</Link>
-                </li>
-                <li onClick={() => setActiveTab('profile')} className={activeTab === 'profile' ? 'active' : ''}>Profile</li>
-                <li onClick={() => setActiveTab('settings')} className={activeTab === 'settings' ? 'active' : ''}>Settings</li>
-                <li onClick={() => setActiveTab('messages')} className={activeTab === 'messages' ? 'active' : ''}>Messages</li>
-            </ul>
-        </div>
-    );
+   const user = {
+    name: "First Last",
+    company: "Sample Company Name",
+    email: "sampleemail@sample.com",
+    phone: "555.555.5555",
+    profileImage: "https://via.placeholder.com/150",
+    
 };
 
-div className="sidebar">
-                <div className="sidebar-header">
+    return (
+
+
+        <div className="sidebar">
+            <div className="sidebar-header">
                     <img
                         src={user.profileImage}
                         alt="Profile"
@@ -41,5 +35,24 @@ div className="sidebar">
                     <li>Messages</li>
                 </ul>
             </div>
+    ); 
+};
+
 
 export default SidebarMenu;
+
+
+{/*<div className="sidebar">
+            <div className="sidebar-header">
+                <img src="profile.jpg" alt="Profile" className="sidebar-profile-image" />
+                <h3>John Doe</h3>
+            </div>
+            <ul className="sidebar-menu">
+                {/*<li>
+                        <Link to="/" onClick{() => setActiveTab('profile')} className={activeab === 'profile' ? 'active' : ' '}>Profile</Link>
+                </li>}
+                <li onClick={() => setActiveTab('profile')} className={activeTab === 'profile' ? 'active' : ''}>Profile</li>
+                <li onClick={() => setActiveTab('settings')} className={activeTab === 'settings' ? 'active' : ''}>Settings</li>
+                <li onClick={() => setActiveTab('messages')} className={activeTab === 'messages' ? 'active' : ''}>Messages</li>
+            </ul>
+        </div>*/}

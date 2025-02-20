@@ -1,5 +1,6 @@
 import React from 'react';
 import './ProfilePage.css'; // Ensure the CSS file is updated as well
+import SidebarMenu from './SidebarMenu'; // Ensure the SidebarMenu component is imported and updated
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400&display=swap" rel="stylesheet"></link>
 const ProfilePage = () => {
     const user = {
@@ -31,6 +32,8 @@ const ProfilePage = () => {
                     <li>Messages</li>
                 </ul>
             </div>*/}
+            <SidebarMenu />
+
             <div className="main-content">
                 <div className="profile-card">
                     <img
