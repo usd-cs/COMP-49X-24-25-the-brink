@@ -1,70 +1,54 @@
 /* Overall page layout */
 .profile-page {
     display: flex;
+    flex-direction: row;
+    /*justify-content: center;*/
+    /*align-items: center;*/
     height: 100vh;
+    width: 100vw;
     font-family: 'Satoshi', sans-serif; /* Keep current font */
     background-color: rgb(0, 77, 122); /* Light blue background */
+    /*margin: 0;
+    padding: 0;*/
 }
-
-/* Sidebar styling */
 .sidebar {
-    width: 18%;
-    background-color: #f4f4f4; /* Light gray background */
+    flex: 0 0 225px;  /* Fixed width */
+    background-color: #f4f4f4;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Shadow on left to separate it from main content */
+    /*position: relative; /* Ensure it's part of flexbox layout */
+    /*order: 2; /* Move sidebar to the right side */
 }
 
-.sidebar-header {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.sidebar-profile-image {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-}
-
-.sidebar-menu {
-    list-style: none;
-    padding: 0;
-    width: 100%;
-}
-
-.sidebar-menu li {
-    padding: 10px 20px;
-    margin: 5px 0;
-    text-align: left;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.sidebar-menu li:hover {
-    background-color: #ddd;
-}
-
-/* Main content styling */
+/*centered content*/
 .main-content {
     flex: 1;
     display: flex;
+    /*flex-direction: column;*/
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    /*width: 100%;
+    height: 100%;*/
+    padding:20px;
 }
 
 .profile-card {
     background: #ffffff;
-    padding: 20px;
+    padding: 40px;
     border-radius: 10px;
     /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);*/
     text-align: center;
-    width: 80%;
-    height: 80vh;
-    margin: 5vh auto;
+    max-width: 900px;
+    width: 75%;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /*margin: auto;*/
 }
 
 .profile-card-image {
@@ -72,8 +56,15 @@
     height: 150px;
     border-radius: 50%;
     background-color: #d9e8f7; /* Light blue background */
-    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+    margin: 0 auto 20px auto;
+    /*margin-top: 30px;*/
 }
+
+
 
 .edit-profile-button {
     background-color: #2b5797; /* Navy blue button */
@@ -100,3 +91,4 @@
 .profile-info p {
     margin: 5px 0;
 }
+
