@@ -103,14 +103,19 @@ export default function ACEApplicationForm() {
     }
 
     // EmailJS Service ID, Template ID, and Public Key
-    const serviceId = 'service_82365a2'
-    const templateId = 'template_qm3zwo8'
-    const publicKey = '7a6W_yNr36rITZqAa'
+    const serviceId = process.env.DEV_SERVICE_ID
+    const templateId = process.env.DEV_TEMPLATE_ID
+    const publicKey = process.env.DEV_PUBLIC_KEY
+
+    // const serviceId = process.env.BRINK_SERVICE_ID
+    // const templateId = process.env.BRINK_TEMPLATE_ID
+    // const publicKey = process.env.BRINK_PUBLIC_KEY
 
     const templateParams = {
-      from_name: 'The Brink',
-      from_email: 'cstclair@sandiego.edu',
+      from_name: 'The Brink SBDC', 
+      from_email: 'sbdc@sandiego.edu', // Only works if The Brink pays the $15/month fee for professional services
       to_name: formData.primaryContact.name,
+      to_email: formData.primaryContact.email,
       competition_name: competitionName,
       corporate_name: formData.corporateName
     }
