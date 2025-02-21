@@ -12,9 +12,7 @@ import AdminView from './AdminView'
 import './AdminView.css'
 
 function App () {
-  return  <AdminView/>;
-    
-    /* (
+  return (
     <div>
       <Routes>
         <Route path='/' element={<Competition />} />
@@ -22,11 +20,10 @@ function App () {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUpPage />} />
         <Route path='/profile' element={<ProfilePage />} />
+        <Route path='/admin-view' element={<AdminView />} />
       </Routes>
     </div>
-      )
-    */
-  
+  )
 }
 
 export default App
