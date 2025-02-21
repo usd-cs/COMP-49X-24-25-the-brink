@@ -8,6 +8,8 @@ import Competition from './Competition'
 import AceApply from './AceApply'
 import './Competition.css'
 import './AceApply.css'
+import AdminView from './AdminView'
+import './AdminView.css'
 
 function App () {
   return (
@@ -18,6 +20,7 @@ function App () {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUpPage />} />
         <Route path='/profile' element={<ProfilePage />} />
+        <Route path='/admin-view' element={<AdminView />} />
       </Routes>
     </div>
   )
