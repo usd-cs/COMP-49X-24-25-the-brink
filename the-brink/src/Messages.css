@@ -1,0 +1,240 @@
+.sidebar {
+    width: 225px;
+    height: 100vh; /* Ensure it spans the full height */
+    background: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    /*overflow-y: auto; /* Allow scrolling inside the sidebar */
+
+}
+
+/* Full Page Layout */
+.messages-page {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Satoshi', sans-serif; /* Keep current font */
+    background-color: rgb(0, 77, 122); /* Light blue background */
+    padding-top: 60px; /* Adds spacing for the fixed header */
+
+}
+
+/* Header - Fix Spacing */
+.messages-header {
+    background-color: rgb(0, 77, 122); /* Light blue background */
+    color: white;
+    height: 60px;
+    line-height: 60px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Ensures text is aligned left */
+    width: calc(100% - 225px); /* Adjust width to exclude the sidebar */
+    margin-left: 265;
+    position: fixed;
+    top: 0;
+    left: 265px;
+    z-index: 900;
+}
+
+/* Messages container - Fix layout width */
+.messages-container {
+    display: flex;
+    flex: 1;
+    width: calc(100% - 225px); /* Exclude sidebar width */
+    margin-left: 265px; /* Ensure it's aligned with the header */
+    /*padding-top: 80px; /* Push content below the header */
+    overflow-y: auto;
+    
+}
+
+/* Sidebar (Chat List) */
+.messages-sidebar {
+    width: 320px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border-right: 1px solid #ddd;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+/* Sidebar Title */
+.sidebar-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Fix Sidebar Overflow */
+.conversation-list {
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+}
+
+/* Individual conversation item */
+.conversation {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+}
+
+.conversation:hover {
+    background-color: #f5f5f5;
+}
+
+.conversation.active {
+    background-color: #e6e6e6;
+}
+
+/* Avatar */
+.conversation img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Conversation Details */
+.conversation-details {
+    flex: 1;
+    overflow: hidden;
+}
+
+.company-name {
+    font-size: 12px;
+    color: #777;
+    margin: 2px 0;
+}
+
+.last-message {
+    font-size: 14px;
+    color: #444;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Date */
+.message-date {
+    font-size: 12px;
+    color: #999;
+    margin-left: auto;
+}
+
+/* Chat Area - Fix Width */
+.chat-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20px;
+    background: white;
+    position: relative;
+    min-width: 60%;
+}
+
+/* Chat Title - Fix Spacing */
+.chat-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+/* Message Bubbles - Fix Alignment */
+.message {
+    display: flex;
+    align-items: flex-start;
+    margin: 10px 0;
+    max-width: 80%;
+}
+
+/* Left Messages (From Other Users) */
+.message.left {
+    justify-content: flex-start;
+}
+
+/* Right Messages (From Current User) */
+.message.right {
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+}
+
+/* Fix Message Bubbles */
+.message-bubble {
+    background: #f1f1f1;
+    padding: 12px 15px;
+    border-radius: 18px;
+    font-size: 14px;
+    max-width: 70%;
+    word-wrap: break-word;
+    line-height: 1.4;
+}
+
+/* Fix Small Messages Not Changing Bubble Size */
+.message-bubble.small {
+    max-width: 40%;
+}
+
+/* Avatars */
+.user-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Fix User Alignment */
+.message.left .user-avatar {
+    margin-right: 10px;
+}
+
+.message.right .user-avatar {
+    margin-left: 10px;
+}
+
+/* Fix Message Input Box */
+.message-input-container {
+    width: 100%;
+    padding: 10px;
+    background: white;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-top: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+}
+
+.message-input {
+    width: 100%;
+    height: 40px;
+    border: none;
+    padding: 10px;
+    font-size: 14px;
+    outline: none;
+    resize: none;
+    border-radius: 10px;
+    background: #f5f5f5;
+}
