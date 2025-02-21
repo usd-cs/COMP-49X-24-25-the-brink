@@ -7,7 +7,8 @@ COPY src/ /the-brink/src
 COPY package.json /the-brink/
 COPY server.js /the-brink/     
 
-RUN npm install --force
+RUN npm config set legacy-peer-deps true
+RUN npm install 
 
 EXPOSE 3000
 EXPOSE 5432
