@@ -1,9 +1,13 @@
 import React, {useState} from 'react';
 import './AdminView.css'; 
+import logo from './PitchSuiteBanner.png'
+
+
 
 const AdminView = () => {
     const [competition, setCompetition] = useState("Ace Competition"); 
     const [userType, setUserType] =useState("Founders");
+    
 
 
 //Example Static Data 
@@ -32,8 +36,17 @@ const aceApplications = [
     },
 ];
 return(
+    <body>
+        <div className="header-container">
+            <img src={logo} alt="PitchSuite Banner" class="logo" />
+            <div className= "blue-bars">
+                <div className ="dark-blue-bar"></div> 
+                <div className="light-blue-bar"></div>  
+            </div> 
+        </div>
+
+
     <div className="competition-container">
-        
         <div className="competition-controls">
             <select value ={competition} onChange={(e) => setCompetition(e.target.value)}>
                 <option>Ace Competition</option>
@@ -77,6 +90,7 @@ return(
             </tbody>
         </table>
     </div>
+    </body>
 );
 };
 export default AdminView;
