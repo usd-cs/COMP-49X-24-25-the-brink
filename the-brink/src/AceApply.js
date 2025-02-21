@@ -1,10 +1,12 @@
-/* global alert */
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom' // Correctly import useNavigate
 import './Competition.css'
 import Banner from './ace-pitch-competition-banner.png'
+import emailjs from '@emailjs/browser'
 
-export default function ACEApplicationForm () {
+export default function ACEApplicationForm() {
+  const competitionName = "ACE Pitch Competition"
+
   const [formData, setFormData] = useState({
     corporateName: '',
     address: '',
@@ -100,6 +102,32 @@ export default function ACEApplicationForm () {
       return
     }
 
+    // EmailJS Service ID, Template ID, and Public Key
+    const serviceId = process.env.DEV_SERVICE_ID
+    const templateId = process.env.DEV_TEMPLATE_ID
+    const publicKey = process.env.DEV_PUBLIC_KEY
+
+    // const serviceId = process.env.BRINK_SERVICE_ID
+    // const templateId = process.env.BRINK_TEMPLATE_ID
+    // const publicKey = process.env.BRINK_PUBLIC_KEY
+
+    const templateParams = {
+      from_name: 'The Brink SBDC', 
+      from_email: 'sbdc@sandiego.edu', // Only works if The Brink pays the $15/month fee for professional services
+      to_name: formData.primaryContact.name,
+      to_email: formData.primaryContact.email,
+      competition_name: competitionName,
+      corporate_name: formData.corporateName
+    }
+
+    emailjs.send(serviceId, templateId, templateParams, publicKey)
+      .then((response) => {
+        console.log('Email successfully sent.', response)
+      })
+      .catch((error) => {
+        console.error('Error sending email: ', error)
+      })
+
     console.log('Submitted Data: ', formData)
 
     // If in test mode, bypass async fetch and call alert immediately.
@@ -134,7 +162,7 @@ export default function ACEApplicationForm () {
   }
 
   const goToHomePage = () => {
-    navigate('/')
+    navigate('/') // Redirect to the home page
   }
 
   return (

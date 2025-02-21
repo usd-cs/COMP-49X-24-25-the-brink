@@ -10,6 +10,8 @@ import './Competition.css'
 import './AceApply.css'
 import Messages from './Messages'
 import './Messages.css'
+import AdminView from './AdminView'
+import './AdminView.css'
 
 function App () {
   return (
@@ -21,6 +23,7 @@ function App () {
         <Route path='/signup' element={<SignUpPage />} />
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/messages' element={<Messages />} />
+        <Route path='/admin-view' element={<AdminView />} />
       </Routes>
     </div>
   )
