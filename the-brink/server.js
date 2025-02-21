@@ -127,6 +127,30 @@ app.post('/api/ace_applications', async (req, res) => {
   }
 })
 
+// New endpoint for user sign-up
+app.post('/api/signup', async (req, res) => {
+  const { firstName, lastName, email, password } = req.body
+
+  // Basic validation: ensure all fields are provided
+  if (!firstName || !lastName || !email || !password) {
+    return res.status(400).json({ error: 'Missing required fields' })
+  }
+
+  try {
+    const query = `
+      INSERT INTO users (first_name, last_name, email, password)
+      VALUES ($1, $2, $3, $4)
+      RETURNING *
+    `
+    const values = [firstName, lastName, email, password]
+    const result = await pool.query(query, values)
+    res.status(201).json(result.rows[0])
+  } catch (err) {
+    console.error('Error inserting user:', err.stack)
+    res.status(500).json({ error: 'Internal server error' })
+  }
+})
+
 // Start the server on the port specified by the PORT environment variable (default to 3001)
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
