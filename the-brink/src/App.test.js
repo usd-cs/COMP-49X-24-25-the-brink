@@ -1,3 +1,4 @@
+/* eslint-env jest */
 import React from 'react'
 import { render, screen, fireEvent, act } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
@@ -61,6 +62,10 @@ test('renders Sign-Up page from Login page', async () => {
   expect(signUpHeading).toBeInTheDocument()
 })
 
+/**
+ * FIXED TEST: Provide all required fields so validation passes
+ * and the "Form Submitted Successfully!" alert is triggered.
+ */
 test('form submission on ACE Application Form works', async () => {
   await act(async () => {
     render(
@@ -69,12 +74,52 @@ test('form submission on ACE Application Form works', async () => {
       </MemoryRouter>
     )
   })
-  const corporateNameInput = screen.getByLabelText(/Corporate Name\*:/i)
-  const addressInput = screen.getByLabelText(/Address\*:/i)
+
+  // Fill out the required fields
+  fireEvent.change(screen.getByLabelText(/Corporate Name\*:/i), { target: { value: 'Sample Corp' } })
+  fireEvent.change(screen.getByLabelText(/Address\*:/i), { target: { value: '123 Sample St' } })
+  fireEvent.change(screen.getByLabelText(/dba\*:/i), { target: { value: 'Sample DBA' } })
+  fireEvent.change(screen.getByLabelText(/DUNS\*:/i), { target: { value: '123456789' } })
+  fireEvent.change(screen.getByLabelText(/NAICS\*:/i), { target: { value: '1234' } })
+
+  // If you have 4 separate radio groups for hubZone, rural, womenOwned, and disasterImpacted,
+  // you likely have four "Yes" radios:
+  const yesRadios = screen.getAllByRole('radio', { name: /Yes/i })
+  fireEvent.click(yesRadios[0]) // hubZone
+  fireEvent.click(yesRadios[1]) // rural
+  fireEvent.click(yesRadios[2]) // womenOwned
+  fireEvent.click(yesRadios[3]) // disasterImpacted
+
+  // Primary Contact
+  const nameInputs = screen.getAllByLabelText('Name:', { exact: false })
+  fireEvent.change(nameInputs[0], { target: { value: 'Alice' } })
+
+  const titleInputs = screen.getAllByLabelText('Title:', { exact: false })
+  fireEvent.change(titleInputs[0], { target: { value: 'CEO' } })
+
+  const phoneInputs = screen.getAllByLabelText('Phone:', { exact: false })
+  fireEvent.change(phoneInputs[0], { target: { value: '5551234567' } })
+
+  const emailInputs = screen.getAllByLabelText('Email:', { exact: false })
+  fireEvent.change(emailInputs[0], { target: { value: 'alice@test.com' } })
+
+  // Secondary Contact
+  fireEvent.change(nameInputs[1], { target: { value: 'Bob' } })
+  fireEvent.change(titleInputs[1], { target: { value: 'CFO' } })
+  fireEvent.change(phoneInputs[1], { target: { value: '5557654321' } })
+  fireEvent.change(emailInputs[1], { target: { value: 'bob@test.com' } })
+
+  // SBIR/STTR details
+  fireEvent.change(screen.getByLabelText(/Agency\*:/i), { target: { value: 'NASA' } })
+  fireEvent.change(screen.getByLabelText(/Award Amount\*:/i), { target: { value: '1000' } })
+  fireEvent.change(screen.getByLabelText(/Contract Number\*:/i), { target: { value: 'ABC123' } })
+  fireEvent.change(screen.getByLabelText(/Grant Start-End Date\*:/i), { target: { value: '2025-01-01 to 2025-12-31' } })
+
+  // Submit the form
   const submitButton = screen.getByRole('button', { name: /Submit/i })
-  fireEvent.change(corporateNameInput, { target: { value: 'Sample Corp' } })
-  fireEvent.change(addressInput, { target: { value: '123 Sample St' } })
   fireEvent.click(submitButton)
+
+  // Expect the success alert
   expect(global.alert).toHaveBeenCalledWith('Form Submitted Successfully!')
 })
 
