@@ -17,7 +17,7 @@ function App () {
   return (
     <div>
       <Routes>
-        <Route path='/' element={<ProfilePage />} />
+        <Route path='/' element={<Competition />} />
         <Route path='/ace-apply' element={<AceApply />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUpPage />} />
