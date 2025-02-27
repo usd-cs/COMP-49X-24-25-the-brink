@@ -1,0 +1,24 @@
+.competition-container {
+    padding: 20px;
+}
+
+.competition-controls{
+    display: flex;
+    gap: 10px; 
+    margin-bottom: 20px;
+}
+
+.competition-table{
+    width: 100%; 
+    border-collapse: collapse;
+}
+
+.competition-table th, .competition-table td{
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.competition-table th{
+    background-color: #f4f4f4;
+}
