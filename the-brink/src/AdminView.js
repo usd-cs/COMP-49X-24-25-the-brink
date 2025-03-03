@@ -11,19 +11,18 @@ const AdminView = () => {
     const [sortOrder, setSortOrder] = useState(null);
     
 
-
-//Example Static Data 
-const aceApplications = [
+  // Example Static Data
+  const aceApplications = [
     {
-      corporateName: "ABC Corp",
-      address: "123 Business St",
-      dba: "ABC Solutions",
-      duns: "123456789",
-      naics: "541512",
-      hubZone: "Yes",
-      rural: "No",
-      womenOwned: "Yes",
-      minorityOwned: "No",
+      corporateName: 'ABC Corp',
+      address: '123 Business St',
+      dba: 'ABC Solutions',
+      duns: '123456789',
+      naics: '541512',
+      hubZone: 'Yes',
+      rural: 'No',
+      womenOwned: 'Yes',
+      minorityOwned: 'No'
     },
     {
       corporateName: "XYZ Innovations",
