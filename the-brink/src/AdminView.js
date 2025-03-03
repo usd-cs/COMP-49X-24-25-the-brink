@@ -7,6 +7,8 @@ import logo from './PitchSuiteBanner.png'
 const AdminView = () => {
     const [competition, setCompetition] = useState("Ace Competition"); 
     const [userType, setUserType] =useState("Founders");
+    const [filter, setFilter] = useState({column: null, value: null});
+    const [sortOrder, setSortOrder] = useState(null);
     
 
 
@@ -34,7 +36,81 @@ const aceApplications = [
       womenOwned: "No",
       minorityOwned: "Yes",
     },
+    {
+        corporateName: "DEF Innovations",
+        address: "789 Tech Ave",
+        dba: "DEF Tech",
+        duns: "987654321",
+        naics: "541715",
+        hubZone: "No",
+        rural: "No",
+        womenOwned: "No",
+        minorityOwned: "no",
+      },
+      {
+        corporateName: "next",
+        address: "802 San Luis",
+        dba: "ariana Grande",
+        duns: "022873456",
+        naics: "908224",
+        hubZone: "Yes",
+        rural: "Yes",
+        womenOwned: "Yes",
+        minorityOwned: "Yes",
+      },
+      {
+        corporateName: "thank you",
+        address: "33 Fairview Lane",
+        dba: "taylor swift",
+        duns: "022873456",
+        naics: "908224",
+        hubZone: "Yes",
+        rural: "No",
+        womenOwned: "Yes",
+        minorityOwned: "No",
+      },
 ];
+
+//Apply Filter Logic
+let filteredApplications = filter.column 
+            ? aceApplications.filter(app => filter.step === 1
+                ? app[filter.column] === "Yes"
+                : filter.step === 2
+                    ? app[filter.column] === "No"
+                    : true) 
+            : aceApplications;
+
+//Sorting Logic 
+if (sortOrder != null){
+    filteredApplications = [...filteredApplications].sort((a,b) =>{
+        if (sortOrder === "asc") return a.corporateName.localeCompare(b.corporateName);
+        if (sortOrder === "desc") return b.corporateName.localeCompare(a.corporateName );
+        return 0;
+    });
+}
+
+//column logic
+const handleFilter = (column) => {
+    if(filter.column === column) {
+        const nextStep = (filter.step + 1) % 3; 
+        setFilter({column, value: nextStep ==1 ? "Yes" : "No", step: nextStep});
+    }else{
+        setFilter({column, value: "Yes", step: 1});
+    }
+};
+
+//Name sorting
+const handleSort = () => {
+    if (sortOrder === null){
+        setSortOrder("asc");
+    } else if (sortOrder === "asc"){
+        setSortOrder("desc");
+    }else {
+        setSortOrder(null);
+    }
+};
+
+        
 return(
     <body>
         <div className="header-container">
@@ -59,22 +135,44 @@ return(
                 <option> Judges</option>
             </select>
         </div>
+
+
         <table className='competition-table'>
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th className={sortOrder ? "highlight" : ""}
+                        onClick={handleSort}
+                        >
+                        Name {sortOrder === "asc" ? "▲" : sortOrder === "desc" ? "▼" : ""} </th>
                     <th>Address</th>
                     <th>DBA</th>
                     <th>DUNS</th>
                     <th>NAICS</th>
-                    <th>Hubzone</th>
-                    <th>Rural</th>
-                    <th>Women-Owned</th>
-                    <th>Minority-Owned</th>
+                    
+                    <th 
+                        className={filter.column === "hubZone" ? "highlight" : ""}
+                        onClick={() => handleFilter("hubZone")}>
+                    Hubzone {filter.column === "hubZone" ? (filter.step === 1 ? "(Yes)" : filter.step === 2 ? "(No)" : "") : ""}</th>
+
+                    <th 
+                        className={filter.column === "rural" ? "highlight" : ""}
+                        onClick={() => handleFilter("rural")}>
+                    Rural Rural {filter.column === "rural" ? (filter.step === 1 ? "(Yes)" : filter.step === 2 ? "(No)" : "") : ""}</th>
+
+                    <th 
+                        className={filter.column === "womenOwned" ? "highlight" : ""}
+                        onClick={() => handleFilter("womenOwned")}>
+                    Women-Owned Women-Owned {filter.column === "womenOwned" ? (filter.step === 1 ? "(Yes)" : filter.step === 2 ? "(No)" : "") : ""}</th>
+
+                    <th 
+                    className={filter.column === "minorityOwned" ? "highlight" : ""}
+                    onClick={() => handleFilter("minorityOwned")}>
+                    Minority-Owned {filter.column === "minorityOwned" ? (filter.step === 1 ? "(Yes)" : filter.step === 2 ? "(No)" : "") : ""}</th>
+
                 </tr>
             </thead>
             <tbody>
-                {aceApplications.map((app, index) => (
+                {filteredApplications.map((app, index) => (
                     <tr key={index}>
                         <td>{app.corporateName}</td>
                         <td>{app.address}</td>
