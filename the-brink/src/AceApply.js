@@ -120,16 +120,6 @@ export default function ACEApplicationForm() {
       corporate_name: formData.corporateName
     }
 
-    emailjs.send(serviceId, templateId, templateParams, publicKey)
-      .then((response) => {
-        console.log('Email successfully sent.', response)
-      })
-      .catch((error) => {
-        console.error('Error sending email: ', error)
-      })
-
-    console.log('Submitted Data: ', formData)
-
     // If in test mode, bypass async fetch and call alert immediately.
     if (process.env.NODE_ENV === 'test') {
       console.log('Application submitted successfully:', { message: 'success' })
@@ -153,7 +143,17 @@ export default function ACEApplicationForm() {
 
       const result = await response.json()
       console.log('Application submitted successfully:', result)
-      alert('Form Submitted Successfully!')
+      
+      emailjs.send(serviceId, templateId, templateParams, publicKey)
+      .then((response) => {
+        console.log('Email successfully sent.', response)
+        alert('Form Submitted Successfully!')
+        navigate('/')
+      })
+      .catch((error) => {
+        alert('Error sending email: ', error)
+      })
+      
       // Optionally, you can reset the form or navigate after successful submission.
     } catch (error) {
       console.error('Error submitting application:', error)
