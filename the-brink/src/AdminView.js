@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import './AdminView.css'; 
 import SidebarMenu from './SidebarMenu';
 import logo from './PitchSuiteBanner.png'
@@ -11,6 +11,16 @@ const AdminView = () => {
     const [userType, setUserType] =useState("Founders");
     const [filter, setFilter] = useState({column: null, value: null});
     const [sortOrder, setSortOrder] = useState(null);
+    const [flagged, setFlagged] = useState(()=> {
+        return JSON.parse(localStorage.getItem('flaggedApplications')) || {};
+        });
+    const [showFlaggedOnly, setShowFlaggedOnly] = useState(false);
+    
+    useEffect(() => {
+        localStorage.setItem('flaggedApplications', JSON.stringify(flagged));
+    }, [flagged]);
+   
+    
     
 
   // Example Static Data
@@ -70,6 +80,17 @@ const AdminView = () => {
         womenOwned: "Yes",
         minorityOwned: "No",
       },
+      {
+        corporateName: "rip",
+        address: "34 Fairview Lane",
+        dba: "Harry Styles",
+        duns: "022873456",
+        naics: "908224",
+        hubZone: "No",
+        rural: "No",
+        womenOwned: "Yes",
+        minorityOwned: "No",
+      },
 ];
 
 //Apply Filter Logic
@@ -90,6 +111,17 @@ if (sortOrder != null){
     });
 }
 
+//Showing flagged applications
+if(showFlaggedOnly){
+    filteredApplications = filteredApplications.filter(app => flagged[app.corporateName]);
+}
+//Handle flag toggle 
+const toggleFlag = (name) => {
+    setFlagged(prevFlags => ({
+        ...prevFlags, 
+        [name]: !prevFlags[name]
+    }));
+};
 //column logic
 const handleFilter = (column) => {
     if(filter.column === column) {
@@ -113,7 +145,7 @@ const handleSort = () => {
 
         
 return(
-    <body>
+    
         <div className="admin-view-container">
             <SidebarMenu />
             <div className="admin-content">
@@ -143,6 +175,7 @@ return(
 
 
             <table className='competition-table'>
+
                 <thead>
                     <tr>
                         <th className={sortOrder ? "highlight" : ""}
@@ -188,6 +221,12 @@ return(
                             <td>{app.rural}</td>
                             <td>{app.womenOwned}</td>
                             <td>{app.minorityOwned}</td>
+                            <td>
+                            <span 
+                                 className={`flag-circle ${flagged[app.corporateName] ? "flagged" : ""}`}
+                                 onClick={() => toggleFlag(app.corporateName)}
+                                ></span>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
@@ -195,7 +234,7 @@ return(
         </div>
         </div>
         </div>
-    </body>
+    
 );
 };
 export default AdminView;
