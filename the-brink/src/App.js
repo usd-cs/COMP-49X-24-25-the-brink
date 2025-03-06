@@ -5,7 +5,6 @@ import Login from './Loginpage'
 import DashboardPage from './DashboardPage'
 import Competition from './Competition'
 import AceApply from './AceApply'
-import ForgotPassword from './ForgotPassword'
 import './SignUpPage.css'
 import './Competition.css'
 import './AceApply.css'
@@ -25,7 +24,6 @@ function App () {
         <Route path='/ace-apply' element={<AceApply />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUpPage />} />
-        <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route 
           path='/dashboard' 
           element={
