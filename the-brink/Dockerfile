@@ -1,15 +1,8 @@
 FROM node:18-alpine
-
-WORKDIR /the-brink/
-
-COPY public/ /the-brink/public
-COPY src/ /the-brink/src
-COPY package.json /the-brink/
-COPY server.js /the-brink/     
-
-RUN npm install --force
-
+WORKDIR /app
+COPY package.json package-lock.json* ./
+RUN npm install --legacy-peer-deps
+COPY . .
 EXPOSE 3000
-EXPOSE 5432
-
-CMD ["npm", "start"]
+EXPOSE 3001
+CMD ["node", "server.js"]

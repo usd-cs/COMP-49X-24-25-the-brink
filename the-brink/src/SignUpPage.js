@@ -33,11 +33,11 @@ const SignUpPage = () => {
     
     // Send a POST request to the signup endpoint
     try {
-      const response = await fetch('/api/signup', {
+      const response = await fetch('http://localhost:3001/api/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ firstName, lastName, email, password })
-      })
+      })      
 
       if (response.ok) {
         alert("Sign up successful!")
