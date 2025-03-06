@@ -17,10 +17,6 @@ const Login = () => {
     navigate('/')
   }
 
-  const handleForgotPasswordClick = () => {
-    navigate('/forgot-password')
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     setErrorMessage('')
@@ -74,9 +70,6 @@ const Login = () => {
           <button type='submit' className='login-button'>Login</button>
         </form>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
-        <p className='forgot-password-link'>
-          <span onClick={handleForgotPasswordClick} className='link-text'>Forgot Password?</span>
-        </p>
         <p className='signup-link'>
           <span onClick={handleSignUpClick} className='link-text'>No Account? Click here to Sign Up</span>
         </p>

@@ -87,6 +87,7 @@ app.post('/api/ace_applications', async (req, res) => {
         $21, $22, $23, $24, $25, $26, $27
       ) RETURNING *;
     `
+
     const values = [
       corporateName,
       address,
@@ -116,6 +117,7 @@ app.post('/api/ace_applications', async (req, res) => {
       financing,
       successRecord
     ]
+
     const result = await pool.query(query, values)
     res.status(201).json(result.rows[0])
   } catch (err) {
@@ -181,8 +183,6 @@ app.post('/api/login', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' })
   }
 })
-
-// (Optional) Add additional endpoints such as /api/forgot-password here if needed
 
 // Start the server
 const PORT = process.env.PORT || 3001
