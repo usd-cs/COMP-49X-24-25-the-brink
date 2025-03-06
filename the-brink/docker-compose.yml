@@ -1,4 +1,4 @@
----
+version: "3.8"
 
 services:
   frontend:
@@ -6,6 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    command: npm start
     ports:
       - "3000:3000"
     depends_on:
@@ -33,3 +34,8 @@ services:
       - ../.env
     ports:
       - "5433:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:

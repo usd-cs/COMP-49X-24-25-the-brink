@@ -2,6 +2,7 @@
 const express = require('express')
 const cors = require('cors')
 const { Pool } = require('pg')
+const bcrypt = require('bcryptjs')
 const app = express()
 
 app.use(cors())
@@ -41,12 +42,10 @@ app.post('/api/ace_applications', async (req, res) => {
     successRecord
   } = req.body
 
-  // Basic validation: ensure required fields are provided
   if (!corporateName || !address || !primaryContact || !primaryContact.name || !agency) {
     return res.status(400).json({ error: 'Missing required fields' })
   }
 
-  // Validate awardAmount: ensure it is a valid number
   const numericAwardAmount = parseFloat(awardAmount)
   if (isNaN(numericAwardAmount)) {
     return res.status(400).json({ error: 'Award amount must be a valid numeric value.' })
@@ -108,7 +107,7 @@ app.post('/api/ace_applications', async (req, res) => {
       secondaryContact ? secondaryContact.phone : null,
       secondaryContact ? secondaryContact.email : null,
       agency,
-      numericAwardAmount, // Use the validated numeric value
+      numericAwardAmount,
       contractNumber,
       grantStartEnd,
       companyInfo,
@@ -127,7 +126,65 @@ app.post('/api/ace_applications', async (req, res) => {
   }
 })
 
-// Start the server on the port specified by the PORT environment variable (default to 3001)
+// New endpoint for user sign-up
+app.post('/api/signup', async (req, res) => {
+  const { firstName, lastName, email, password } = req.body
+
+  if (!firstName || !lastName || !email || !password) {
+    return res.status(400).json({ error: 'Missing required fields' })
+  }
+
+  try {
+    const saltRounds = 10
+    const hashedPassword = await bcrypt.hash(password, saltRounds)
+
+    const query = `
+      INSERT INTO users (first_name, last_name, email, password)
+      VALUES ($1, $2, $3, $4)
+      RETURNING *
+    `
+    const values = [firstName, lastName, email, hashedPassword]
+    const result = await pool.query(query, values)
+    res.status(201).json(result.rows[0])
+  } catch (err) {
+    console.error('Error inserting user:', err.stack)
+    res.status(500).json({ error: 'Internal server error' })
+  }
+})
+
+// New endpoint for user login
+app.post('/api/login', async (req, res) => {
+  const { email, password } = req.body
+
+  if (!email || !password) {
+    return res.status(400).json({ error: 'Missing email or password' })
+  }
+
+  try {
+    const query = 'SELECT * FROM users WHERE email = $1'
+    const result = await pool.query(query, [email])
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'No account found with that email' })
+    }
+
+    const user = result.rows[0]
+    const passwordMatch = await bcrypt.compare(password, user.password)
+
+    if (!passwordMatch) {
+      return res.status(401).json({ error: 'Incorrect password' })
+    }
+
+    // Generate a dummy token and return the user's first name
+    const token = `dummy-token-for-${user.id}`
+    res.status(200).json({ token, first_name: user.first_name })
+  } catch (err) {
+    console.error('Error during login:', err.stack)
+    res.status(500).json({ error: 'Internal server error' })
+  }
+})
+
+// Start the server
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
