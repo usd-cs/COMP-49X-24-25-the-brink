@@ -8,13 +8,14 @@ import ProfilePage from './ProfilePage'
 import AdminView from './AdminView'
 import DashboardPage from './DashboardPage'
 import ForgotPassword from './ForgotPassword' // Import ForgotPassword component
+import CompetitionDetails from './CompetitionDetails' // Added for the /ace-details route
 
 import './SignUpPage.css'
 import './Competition.css'
 import './AceApply.css'
 import './AdminView.css'
 
-function App () {
+function App() {
   return (
     <div>
       <Routes>
@@ -25,6 +26,8 @@ function App () {
         <Route path='/forgot-password' element={<ForgotPassword />} /> {/* Forgot password route */}
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/admin-view' element={<AdminView />} />
+        <Route path='/competitions' element={<Competition />} />
+        <Route path='/ace-details' element={<CompetitionDetails />} />
         <Route path='/dashboard' element={<DashboardPage />} />
       </Routes>
     </div>
