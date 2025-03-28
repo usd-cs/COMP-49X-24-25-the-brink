@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.6f16d090.css",
+    "main.js": "/static/js/main.c42d5529.js",
+    "static/media/techCircleLogo.png": "/static/media/techCircleLogo.a3203d4295763a08d696.png",
+    "static/media/aceCircleLogo.png": "/static/media/aceCircleLogo.32a709e218a437abd2e9.png",
+    "static/media/ace-pitch-competition-banner.png": "/static/media/ace-pitch-competition-banner.ff63968cf7f25569d910.png",
+    "static/media/PitchSuiteBanner.png": "/static/media/PitchSuiteBanner.91337027add4ac4f9718.png",
+    "static/media/SocialInnovationCircleLogo.png": "/static/media/SocialInnovationCircleLogo.a481d64992234690df09.png",
+    "static/media/usd-logo.png": "/static/media/usd-logo.3661f21f17c24505706c.png",
+    "index.html": "/index.html",
+    "main.6f16d090.css.map": "/static/css/main.6f16d090.css.map",
+    "main.c42d5529.js.map": "/static/js/main.c42d5529.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6f16d090.css",
+    "static/js/main.c42d5529.js"
+  ]
+}

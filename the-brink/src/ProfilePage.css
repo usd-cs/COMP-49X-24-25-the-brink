@@ -67,7 +67,70 @@
     /*margin-top: 30px;*/
 }
 
-
+/* Edit Mode Styling */
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+  
+  .edit-form label {
+    font-size: 12px;
+    font-weight: bold;
+    color: #555;
+    margin-top: 4px;
+  }
+  
+  .edit-input {
+    width: 95%;
+    padding: 8px;
+    font-size: 14px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .edit-input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Buttons */
+  .button-group {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+    margin-bottom: 6px;
+  }
+  
+  .save-button, .cancel-button, .edit-profile-button {
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .save-button {
+    background: #eaeaea;
+    color: rgb(14, 14, 14);
+  }
+  
+  .save-button:hover {
+    background: #bbbaba;
+  }
+  
+  .cancel-button {
+    background: #292929;
+    color: rgb(255, 255, 255);
+  }
+  
+  .cancel-button:hover {
+    background: #585858;
+  }
 
 .edit-profile-button {
     background-color: #2b5797; /* Navy blue button */

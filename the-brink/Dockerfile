@@ -1,15 +1,20 @@
 FROM node:18-alpine
 
-WORKDIR /the-brink/
+# Use a single working directory
+WORKDIR /app
 
-COPY public/ /the-brink/public
-COPY src/ /the-brink/src
-COPY package.json /the-brink/
-COPY server.js /the-brink/     
+# Copy package.json and lock files first to cache layer
+COPY package.json package-lock.json* ./
+RUN npm install --legacy-peer-deps
 
-RUN npm install --force
+# Copy in the specific directories and files
+COPY public/ ./public
+COPY src/ ./src
+COPY server.js ./
 
+# Expose both ports if you need them
 EXPOSE 3000
-EXPOSE 5432
+EXPOSE 3001
 
-CMD ["npm", "start"]
+# Run the server
+CMD ["node", "server.js"]
