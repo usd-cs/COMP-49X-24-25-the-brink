@@ -6,22 +6,26 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    working_dir: /app
     command: npm start
-    ports:
-      - "3000:3000"
-    depends_on:
-      - db
+    volumes:
+      - .:/app
+      - /app/node_modules
     environment:
       FAST_REFRESH: "false"
+      HOST: "0.0.0.0"
+      DANGEROUSLY_DISABLE_HOST_CHECK: "true"
 
   backend:
     container_name: api
     build:
       context: .
       dockerfile: Dockerfile
+    working_dir: /app
     command: node server.js
-    ports:
-      - "3001:3001"
+    volumes:
+      - .:/app
+      - /app/node_modules
     environment:
       DATABASE_URL: postgres://PitchSuite:theBrink0628@db:5432/brinkdatabase
     depends_on:
@@ -31,11 +35,24 @@ services:
     container_name: postgres
     image: postgres:15
     env_file:
-      - ../.env
+      - .env
     ports:
       - "5433:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
+
+  proxy:
+    image: nginx:latest
+    container_name: proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - frontend
+      - backend
 
 volumes:
   db_data:
