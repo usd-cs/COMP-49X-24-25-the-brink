@@ -9,12 +9,10 @@ import AdminView from './AdminView'
 import DashboardPage from './DashboardPage'
 import ForgotPassword from './ForgotPassword' // Import ForgotPassword component
 import CompetitionDetails from './CompetitionDetails' // Added for the /ace-details route
-
 import './SignUpPage.css'
 import './Competition.css'
 import './AceApply.css'
 import './AdminView.css'
-import DashboardPage from './DashboardPage' // Import the dashboard component
 import Messages from './Messages'
 
 function App() {
