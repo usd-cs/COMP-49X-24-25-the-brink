@@ -12,6 +12,15 @@ app.use(cors())
 // Middleware to parse JSON request bodies
 app.use(express.json())
 
+// Removed static file serving to avoid serving React's index.html from /
+// If you need to serve static assets, consider mounting them on a separate path:
+// app.use('/static', express.static(path.join(__dirname, 'public')))
+
+// Test GET route for the root path
+app.get('/', (req, res) => {
+  res.send("Hello from API")
+})
+
 // Create a connection pool using the DATABASE_URL environment variable.
 // In your docker-compose, this is set to: postgres://PitchSuite:theBrink0628@db:5432/brinkdatabase
 const pool = new Pool({
@@ -291,3 +300,4 @@ const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
+

@@ -14,12 +14,14 @@ import './SignUpPage.css'
 import './Competition.css'
 import './AceApply.css'
 import './AdminView.css'
+import DashboardPage from './DashboardPage' // Import the dashboard component
+import Messages from './Messages'
 
 function App() {
   return (
     <div>
       <Routes>
-        <Route path='/' element={<Competition />} />
+        <Route path='/' element={<Messages />} />
         <Route path='/ace-apply' element={<AceApply />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUpPage />} />
@@ -29,6 +31,7 @@ function App() {
         <Route path='/competitions' element={<Competition />} />
         <Route path='/ace-details' element={<CompetitionDetails />} />
         <Route path='/dashboard' element={<DashboardPage />} />
+        <Route path='/messages' element={<Messages />} />
       </Routes>
     </div>
   )
