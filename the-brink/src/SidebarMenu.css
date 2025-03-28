@@ -1,14 +1,35 @@
 /* Sidebar.css */
+
+/*html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  #root, .app-container {
+    width: 100%;
+    height: 100%;
+  }*/
+  
+
 .sidebar {
-    width: 18%;
+    width: 225px;
+    /* Force the sidebar to fill the full viewport: */
+    height: 100vh;
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
     background-color: #f4f4f4;
     display: flex;
     flex-direction: column;
-    align-items: center;
     padding: 20px;
+    margin: 0;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    height: calc(100vh - 80px);
-    z-index: 0;
+    z-index: 1000;
 }
 
 .sidebar-header {
