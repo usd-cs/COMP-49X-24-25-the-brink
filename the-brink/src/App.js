@@ -24,6 +24,8 @@ function App () {
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/messages' element={<Messages />} />
         <Route path='/admin-view' element={<AdminView />} />
+        <Route path='/competitions' element={<Competition />} />
+        <Route path='/ace-details' element={<CompetitionDetails />} /> 
       </Routes>
     </div>
   )
