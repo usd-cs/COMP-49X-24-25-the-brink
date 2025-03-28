@@ -22,7 +22,8 @@ function App () {
         <Route path='/signup' element={<SignUpPage />} />
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/admin-view' element={<AdminView />} />
-        {/* New dashboard route */}
+        <Route path='/competitions' element={<Competition />} />
+        <Route path='/ace-details' element={<CompetitionDetails />} /> 
         <Route path='/dashboard' element={<DashboardPage />} />
       </Routes>
     </div>
