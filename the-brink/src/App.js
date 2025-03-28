@@ -11,12 +11,13 @@ import './AceApply.css'
 import AdminView from './AdminView'
 import './AdminView.css'
 import DashboardPage from './DashboardPage' // Import the dashboard component
+import Messages from './Messages'
 
 function App () {
   return (
     <div>
       <Routes>
-        <Route path='/' element={<Competition />} />
+        <Route path='/' element={<Messages />} />
         <Route path='/ace-apply' element={<AceApply />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUpPage />} />
