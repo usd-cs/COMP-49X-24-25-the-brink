@@ -11,6 +11,7 @@ import './AceApply.css'
 import AdminView from './AdminView'
 import './AdminView.css'
 import DashboardPage from './DashboardPage' // Import the dashboard component
+import Messages from './Messages'
 
 function App () {
   return (
@@ -25,6 +26,7 @@ function App () {
         <Route path='/competitions' element={<Competition />} />
         <Route path='/ace-details' element={<CompetitionDetails />} /> 
         <Route path='/dashboard' element={<DashboardPage />} />
+        <Route path='/messages' element={<Messages />} />
       </Routes>
     </div>
   )
