@@ -11,22 +11,26 @@ import './AceApply.css'
 import AdminView from './AdminView'
 import './AdminView.css'
 import DashboardPage from './DashboardPage' // Import the dashboard component
+import Homepage from './Homepage' 
+import './Homepage.css'
+import JudgesComps from './JudgesComps'
+import './JudgesComps.css'
 
 function App () {
   return (
     <div>
       <Routes>
-        <Route path='/' element={<Competition />} />
+        <Route path='/' element={<Homepage />} />
         <Route path='/ace-apply' element={<AceApply />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUpPage />} />
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/admin-view' element={<AdminView />} />
+        <Route path='/judges-comps' element={<JudgesComps/>}/>
         {/* New dashboard route */}
         <Route path='/dashboard' element={<DashboardPage />} />
       </Routes>
     </div>
   )
 }
-
 export default App
