@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./JudgesComps.css";
 import SidebarMenu from './SidebarMenu';
+import PSBanner from "./PSBanner";
+
 
 const JudgesComps = () =>{
     const [isScoringAvailable, setIsScoringAvailable] = useState(false);
@@ -18,6 +20,7 @@ const JudgesComps = () =>{
     return(
         <div className="my-judgescomps-container">
             <SidebarMenu />
+            <PSBanner/>
             <h2 className="title">My Competitions</h2>
             <div className="competition-card">
                 <img src="aceCircleLogo.png" alt="ACE Pitch Competition" className='competition-logo'/>
