@@ -15,6 +15,8 @@ import Homepage from './Homepage'
 import './Homepage.css'
 import JudgesComps from './JudgesComps'
 import './JudgesComps.css'
+import AppStatusF from './AppStatusF'
+import './AppStatusF.css'
 
 
 function App () {
@@ -28,6 +30,7 @@ function App () {
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/admin-view' element={<AdminView />} />
         <Route path='/judges-comps' element={<JudgesComps/>}/>
+        <Route path='/founder-status' element={<AppStatusF/>}/>
         {/* New dashboard route */}
         <Route path='/dashboard' element={<DashboardPage />} />
       </Routes>
