@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./JudgesComps.css";
 import SidebarMenu from './SidebarMenu';
+import aceLogo from './aceCircleLogo.png'
+
 
 const JudgesComps = () =>{
     const [isScoringAvailable, setIsScoringAvailable] = useState(false);
@@ -20,7 +22,7 @@ const JudgesComps = () =>{
             <SidebarMenu />
             <h2 className="title">My Competitions</h2>
             <div className="competition-card">
-                <img src="aceCircleLogo.png" alt="ACE Pitch Competition" className='competition-logo'/>
+                <img src={aceLogo} alt="ACE Pitch Competition" className='competition-logo'/>
                 <div className="competition-info">
                     <h3>Accelerate California Entrepeneurship Pitch Competition</h3>
                 </div>
