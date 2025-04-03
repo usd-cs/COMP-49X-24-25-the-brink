@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; 
 import './SidebarMenu.css'; 
-import ProfilePage from './ProfilePage';
-import Messages from './Messages';
+
 const SidebarMenu = ({ activeTab, setActiveTab }) => {
   // Render the sidebar menu items based on the active tab state
   console.log('rendering sidebar menu')
@@ -26,11 +25,11 @@ const SidebarMenu = ({ activeTab, setActiveTab }) => {
         <p>{user.company}</p>
       </div>
       <ul className='sidebar-menu'>
-        <li>Applications</li>
-        <li>Competitions</li>
+        <li><Link to="/founder-status">Applications</Link></li>
         <li>Resources</li>
         <li><Link to="/profile">Profile</Link></li>
         <li><Link to="/messages">Messages</Link></li>
+        <li><Link to="/competitions">Competitions</Link></li>
       </ul>
     </div>
   )

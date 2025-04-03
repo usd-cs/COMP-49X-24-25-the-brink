@@ -24,6 +24,7 @@ function App () {
     <div>
       <Routes>
         <Route path='/' element={<Homepage />} />
+        <Route path='/competitions' element={<Competition />}/>
         <Route path='/ace-apply' element={<AceApply />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUpPage />} />
