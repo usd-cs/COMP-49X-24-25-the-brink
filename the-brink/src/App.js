@@ -9,17 +9,19 @@ import AdminView from './AdminView'
 import DashboardPage from './DashboardPage'
 import ForgotPassword from './ForgotPassword'
 import ResetPassword from './ResetPassword' // ✅ Import ResetPassword component
+import CompetitionDetails from './CompetitionDetails' // ✅ Added for the /ace-details route
+import Messages from './Messages'
 
 import './SignUpPage.css'
 import './Competition.css'
 import './AceApply.css'
 import './AdminView.css'
 
-function App () {
+function App() {
   return (
     <div>
       <Routes>
-        <Route path='/' element={<Competition />} />
+        <Route path='/' element={<Messages />} />
         <Route path='/ace-apply' element={<AceApply />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUpPage />} />
@@ -27,7 +29,10 @@ function App () {
         <Route path='/reset-password' element={<ResetPassword />} /> {/* ✅ Reset password route */}
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/admin-view' element={<AdminView />} />
+        <Route path='/competitions' element={<Competition />} />
+        <Route path='/ace-details' element={<CompetitionDetails />} />
         <Route path='/dashboard' element={<DashboardPage />} />
+        <Route path='/messages' element={<Messages />} />
       </Routes>
     </div>
   )

@@ -3,11 +3,18 @@ const cors = require('cors')
 const { Pool } = require('pg')
 const bcrypt = require('bcryptjs')
 const crypto = require('crypto')
+
 const app = express()
 
 app.use(cors())
 app.use(express.json())
 
+// Optional test route
+app.get('/', (req, res) => {
+  res.send("Hello from API")
+})
+
+// Connect to Postgres
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL
 })
@@ -144,7 +151,6 @@ app.post('/api/forgot-password', async (req, res) => {
     const token = crypto.randomBytes(32).toString('hex')
     const expiration = new Date(Date.now() + 24 * 60 * 60 * 1000)
 
-    // Make sure reset_token columns exist
     await pool.query(`ALTER TABLE users ADD COLUMN IF NOT EXISTS reset_token TEXT`)
     await pool.query(`ALTER TABLE users ADD COLUMN IF NOT EXISTS reset_token_expiration TIMESTAMP`)
 
@@ -154,26 +160,17 @@ app.post('/api/forgot-password', async (req, res) => {
     )
 
     const resetLink = `http://localhost:3000/reset-password?token=${token}&email=${encodeURIComponent(email)}`
-
     res.status(200).json({
       name: `${user.first_name || 'User'} ${user.last_name || ''}`.trim(),
       resetLink
     })
   } catch (err) {
-    console.error('Forgot password error:', {
-      message: err.message,
-      stack: err.stack
-    })
+    console.error('Forgot password error:', err)
     res.status(500).json({ error: 'Internal server error' })
   }
 })
 
-// === START SERVER ===
-const PORT = process.env.PORT || 3001
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
-})
-
+// === RESET PASSWORD ===
 app.post('/api/reset-password', async (req, res) => {
   const { email, token, newPassword } = req.body
 
@@ -192,7 +189,6 @@ app.post('/api/reset-password', async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(newPassword, 10)
-
     await pool.query(
       `UPDATE users SET password = $1, reset_token = NULL, reset_token_expiration = NULL WHERE email = $2`,
       [hashedPassword, email]
@@ -203,4 +199,10 @@ app.post('/api/reset-password', async (req, res) => {
     console.error('Error resetting password:', err)
     res.status(500).json({ error: 'Internal server error' })
   }
+})
+
+// === START SERVER ===
+const PORT = process.env.PORT || 3001
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
 })
