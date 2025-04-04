@@ -7,7 +7,8 @@ import SignUpPage from './SignUpPage'
 import ProfilePage from './ProfilePage'
 import AdminView from './AdminView'
 import DashboardPage from './DashboardPage'
-import ForgotPassword from './ForgotPassword' // Import ForgotPassword component
+import ForgotPassword from './ForgotPassword'
+import ResetPassword from './ResetPassword' // ✅ Import ResetPassword component
 
 import './SignUpPage.css'
 import './Competition.css'
@@ -22,7 +23,8 @@ function App () {
         <Route path='/ace-apply' element={<AceApply />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUpPage />} />
-        <Route path='/forgot-password' element={<ForgotPassword />} /> {/* Forgot password route */}
+        <Route path='/forgot-password' element={<ForgotPassword />} />
+        <Route path='/reset-password' element={<ResetPassword />} /> {/* ✅ Reset password route */}
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/admin-view' element={<AdminView />} />
         <Route path='/dashboard' element={<DashboardPage />} />
