@@ -4,35 +4,42 @@ body {
     background-color: #e3eaf4;
 }
 
+/* The parent container for the page, stacking banner above the login box */
 .login-page {
-    display: flex; 
+    display: flex;
     flex-direction: column; 
     align-items: center; 
-    justify-content: flex-start; 
-    height: 100vh;
+    justify-content: flex-start;
+    /* Remove fixed height so content sizes naturally */
+    min-height: 100vh;
 }
 
+/* Banner is in normal flow, so it appears at the top */
 .banner {
-    width: 100%; 
+    width: 100%;
     height: auto;
+    /* No absolute positioning, so it won't overlap the login box */
 }
 
 .banner-image {
+    display: block;
     width: 100%;
     height: auto;
+    /* If your banner is very tall, consider resizing the image itself */
 }
 
+/* The login box sits right below the banner */
 .login-box {
     background-color: #80bcfb;
     padding: 30px 20px;
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0, 0,1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     text-align: center;
     max-width: 1200px;
     width: 100%;
-    height: 800px;
-    margin-top: 1200px;
+    margin-top: 33vh; /* This sets the top margin to 33% of the viewport height */
 }
+
 
 .login-box h2 {
     margin-bottom: 20px;
@@ -40,12 +47,14 @@ body {
     color: #333;
 }
 
+/* Keep the same styling for inputs and buttons, 
+   but ensure no giant heights or margins are forcing extra space */
 .input-field {
     display: block;
-    width: 95%; 
+    width: 95%;
     height: 80px;
     padding: 20px;
-    margin: 40px 0; 
+    margin: 40px auto;
     border: 1px;
     border-radius: 8px;
     font-size: 30px;
@@ -64,6 +73,7 @@ body {
     border-radius: 8px;
     font-size: 40px;
     transition: background-color 0.3s ease;
+    cursor: pointer;
 }
 
 .login-button:hover {
@@ -82,7 +92,7 @@ body {
 }
 
 .forgot-password-link {
-    margin-top: 15px; 
+    margin-top: 15px;
     font-size: 40px;
     color: #007bff;
     cursor: pointer;
