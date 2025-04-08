@@ -1,11 +1,12 @@
-
-.admin-view-container{
+.admin-view-container {
     display: flex;
     flex-direction: row;
     margin-top: 80px;
-}
-
-.sidebar {
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .sidebar {
     width: 18%;
     background-color: #f4f4f4;
     display: flex;
@@ -14,122 +15,192 @@
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     height: calc(100% - 80px);
-    z-index: 0;
-}
-
-.sidebar-header {
+    z-index: 1;
+    position: fixed;
+    left: 0;
+    top: 80px;
+  }
+  
+  .sidebar-header {
     text-align: center;
     font-size: 16px;
     margin-bottom: 20px;
     margin-top: 90px;
-}
-.admin-content{
-    flex-grow: 1; 
+  }
+  
+  .admin-content {
+    flex-grow: 1;
+    margin-left: 0;
     padding: 20px;
+    transition: margin-left 0.3s ease;
+    overflow: hidden;
+    width: 100%;
+    height: calc(100vh - 80px);
+    position: relative;
+  }
+  
+  .admin-content.with-sidebar {
     margin-left: 18%;
-}
-.header-container{
+    width: 82%;
+  }
+  
+  .header-container {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%; 
+    width: 100%;
     height: auto;
     display: flex;
     align-items: flex-start;
     z-index: 10;
-}
-
-.logo{
+  }
+  
+  .logo {
     position: relative;
     z-index: 15;
     width: auto;
-    height: auto; 
+    height: auto;
     max-width: 200px;
-
-}
-.blue-bars{
-    position: absolute; 
-    top: 0; 
-    left: 0; 
+  }
+  
+  .blue-bars {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     z-index: 5;
-
-
-}
-.dark-blue-bar{
+  }
+  
+  .dark-blue-bar {
     background: #003C70;
     flex: 4;
     height: 100%;
-}
-.light-blue-bar{
+  }
+  
+  .light-blue-bar {
     background-color: #DBE5ED;
     height: 100%;
     flex: 1;
-}
-
-
-.competition-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  }
+  
+  .competition-container {
+    margin-top: 140px;
+    overflow-x: auto;
+    overflow-y: auto;
+    height: calc(100vh - 160px);
     width: 100%;
-    padding-left: 100px; 
-}
-
-.competition-controls{
+    padding-bottom: 60px;
+  }
+  
+  .competition-controls {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px; 
+    gap: 10px;
     margin-bottom: 20px;
     margin-top: 75px;
-}
-
-.competition-controls select{
-    width: 250px; 
+  }
+  
+  .competition-controls select {
+    width: 250px;
     padding: 8px;
-    font-size: 16px; 
+    font-size: 16px;
     align-items: flex-start;
-}
-
-.competition-table{
-    width: 75%; 
+  }
+  
+  .competition-table {
+    min-width: 1600px;
     border-collapse: collapse;
     border-radius: 5px;
-}
-
-.competition-table th, .competition-table td{
+    overflow-x: auto;
+  }
+  
+  .competition-table th,
+  .competition-table td {
     border: 1px solid #0c0c0c;
     padding: 8px;
     text-align: left;
-}
-
-.competition-table th{
+    white-space: nowrap;
+  }
+  
+  .competition-table th {
     background-color: #9b9595;
-}
-
-.highlight {
+  }
+  
+  .highlight {
     background-color: #008C00;
     color: white;
-    cursor: pointer; 
-    transition: background-color 0.3s ease-in-out; 
-}
-.highlight:hover{
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .highlight:hover {
     background-color: #00FF00;
-}
-.flag-circle{
+  }
+  
+  .flag-circle {
     display: inline-block;
-    width: 20px; 
+    width: 20px;
     height: 20px;
     border-radius: 50%;
     border: 2px solid #888;
-    cursor: pointer; 
+    cursor: pointer;
     transition: background-color 0.3s;
-}
-.flag-circle.flagged{
+  }
+  
+  .flag-circle.flagged {
     background-color: #003C70;
     border-color: red;
-}
+  }
+  
+  .toggle-sidebar-button {
+    margin-top: 80px;
+    margin-bottom: 10px;
+    padding: 8px 14px;
+    font-size: 14px;
+    background-color: #003C70;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .toggle-sidebar-button:hover {
+    background-color: #00559c;
+  }
+  
+  .sidebar-toggle-arrow {
+    position: absolute;
+    top: 50%;
+    right: -12px;
+    transform: translateY(-50%);
+    background-color: #003C70;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 20;
+  }
+  
+  .sidebar-toggle-collapsed {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    background-color: #003C70;
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    width: 24px;
+    height: 48px;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 20;
+  }
+  

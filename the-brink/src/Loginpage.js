@@ -30,9 +30,10 @@ const Login = () => {
 
       if (response.ok) {
         const data = await response.json()
-        // Store the token and the user's first name in localStorage
         localStorage.setItem('authToken', data.token)
         localStorage.setItem('userName', data.first_name)
+        localStorage.setItem('userEmail', data.email)
+        localStorage.setItem('userRole', data.role) // <-- Add this line
         navigate('/dashboard')
       } else {
         const errorData = await response.json()

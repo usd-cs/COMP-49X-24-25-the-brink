@@ -161,23 +161,26 @@ app.post('/api/login', async (req, res) => {
   }
 
   try {
-    const query = 'SELECT * FROM users WHERE email = $1'
-    const result = await pool.query(query, [email])
-
+    const result = await pool.query('SELECT * FROM users WHERE email = $1', [email])
     if (result.rows.length === 0) {
       return res.status(404).json({ error: 'No account found with that email' })
     }
 
-    const user = result.rows[0]
+    const user = result.rows[0] // ✅ make sure this exists
     const passwordMatch = await bcrypt.compare(password, user.password)
 
     if (!passwordMatch) {
       return res.status(401).json({ error: 'Incorrect password' })
     }
 
-    // Generate a dummy token and return the user's first name
-    const token = `dummy-token-for-${user.id}`
-    res.status(200).json({ token, first_name: user.first_name })
+    const token = `dummy-token-for-${user.id}` // ✅ now user is defined
+
+    res.status(200).json({
+      token,
+      first_name: user.first_name,
+      email: user.email,
+      role: user.role
+    })
   } catch (err) {
     console.error('Error during login:', err.stack)
     res.status(500).json({ error: 'Internal server error' })
@@ -189,3 +192,62 @@ const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
+
+app.get('/api/get-profile', async (req, res) => {
+  const { email } = req.query
+
+  if (!email) return res.status(400).json({ error: 'Email is required' })
+
+  try {
+    const result = await pool.query(
+      'SELECT first_name, last_name, email, phone FROM users WHERE email = $1',
+      [email]
+    )
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'User not found' })
+    }
+
+    res.status(200).json(result.rows[0])
+  } catch (err) {
+    console.error('Error fetching profile:', err)
+    res.status(500).json({ error: 'Internal server error' })
+  }
+})
+
+// === UPDATE PROFILE ===
+app.post('/api/update-profile', async (req, res) => {
+  const { email, name, phone, company } = req.body;
+
+  if (!email) {
+    return res.status(400).json({ error: 'Missing email for update' });
+  }
+
+  try {
+    const [firstName, ...rest] = name.trim().split(' ');
+    const lastName = rest.join(' ') || '';
+
+    await pool.query(
+      `UPDATE users
+       SET first_name = $1, last_name = $2, phone = $3, company = $4
+       WHERE email = $5`,
+      [firstName, lastName, phone, company, email]
+    );
+
+    res.status(200).json({ message: 'Profile updated successfully' });
+  } catch (err) {
+    console.error('Error updating profile:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// GET all ACE applications
+app.get('/api/ace-applications', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM ace_applications');
+    res.status(200).json(result.rows);
+  } catch (err) {
+    console.error('Error fetching ACE applications:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
