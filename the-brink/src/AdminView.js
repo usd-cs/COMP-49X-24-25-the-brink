@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AdminView.css';
 import SidebarMenu from './SidebarMenu';
-import logo from './PitchSuiteBanner.png';
+import PSBanner from './PSBanner';
 
 const AdminView = () => {
   const [applications, setApplications] = useState([]);
@@ -98,14 +98,8 @@ const AdminView = () => {
         </button>
       )}
 
-    <div className={`admin-content ${showSidebar ? 'with-sidebar' : ''}`}>
-        <div className="header-container">
-          <img src={logo} alt="PitchSuite Banner" className="logo" />
-          <div className="blue-bars">
-            <div className="dark-blue-bar"></div>
-            <div className="light-blue-bar"></div>
-          </div>
-        </div>
+      <div className={`admin-content ${showSidebar ? 'with-sidebar' : ''}`}>
+        <PSBanner />
 
         <button
           className="toggle-sidebar-button"
