@@ -1,6 +1,6 @@
-.sidebar {
+/*.sidebar {
     width: 225px;
-    height: 100vh; /* Ensure it spans the full height */
+    height: 100vh; 
     background: #f4f4f4;
     display: flex;
     flex-direction: column;
@@ -11,20 +11,29 @@
     top: 0;
     left: 0;
     z-index: 1000;
-    /*overflow-y: auto; /* Allow scrolling inside the sidebar */
+    /*overflow-y: auto; 
 
-}
-
+}*/
+html, body, #root {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
 /* Full Page Layout */
 .messages-page {
     display: flex;
     flex-direction: row;
     height: 100vh;
-    width: 100vw;
+    width: 100vh;
+    /*width: 100vw;
     font-family: 'Satoshi', sans-serif; /* Keep current font */
-    background-color: rgb(0, 77, 122); /* Light blue background */
-    padding-top: 60px; /* Adds spacing for the fixed header */
+    /*background-color: rgb(0, 77, 122); /* Light blue background */
+    /*padding-top: 60px; /* Adds spacing for the fixed header */
 
+}
+.sidebar{
+    height: 100%;
 }
 
 /* Header - Fix Spacing */
@@ -32,33 +41,34 @@
     background-color: rgb(0, 77, 122); /* Light blue background */
     color: white;
     height: 60px;
-    line-height: 60px;
-    padding: 0 20px;
     display: flex;
     align-items: center;
-    padding: 20px;
     font-size: 24px;
     font-weight: bold;
-    border-bottom: 1px solid #ddd;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* Ensures text is aligned left */
-    width: calc(100% - 225px); /* Adjust width to exclude the sidebar */
-    margin-left: 265;
+    padding-left: 50px;
     position: fixed;
     top: 0;
-    left: 265px;
+    left: 300px;
+    right: 0;
     z-index: 900;
+  
 }
 
-/* Messages container - Fix layout width */
+
 .messages-container {
+    position:absolute;
     display: flex;
-    flex: 1;
-    width: calc(100% - 225px); /* Exclude sidebar width */
+    flex-direction: row;
+    height: calc(100vh - 60px); /* full height minus header */
+    top: 60px;
+    left: 300px;
+    right: 0;
+    overflow: hidden;
+    /*width: calc(100% - 225px);
+    margin-left:m225px;
     margin-left: 265px; /* Ensure it's aligned with the header */
     /*padding-top: 80px; /* Push content below the header */
-    overflow-y: auto;
+
     
 }
 
@@ -79,6 +89,13 @@
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 10px;
+}
+.main-content{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+    overflow: hidden;
 }
 
 /* Fix Sidebar Overflow */
@@ -146,11 +163,10 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    padding: 20px;
     background: white;
     position: relative;
-    min-width: 60%;
+    padding-bottom: 60px;
+    overflow-y: auto;
 }
 
 /* Chat Title - Fix Spacing */
@@ -187,7 +203,7 @@
     padding: 12px 15px;
     border-radius: 18px;
     font-size: 14px;
-    max-width: 70%;
+    max-width: 60%;
     word-wrap: break-word;
     line-height: 1.4;
 }
@@ -216,19 +232,20 @@
 
 /* Fix Message Input Box */
 .message-input-container {
-    width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: auto;
     padding: 10px;
     background: white;
     position: absolute;
-    bottom: 0;
-    left: 0;
     border-top: 1px solid #ddd;
     display: flex;
     align-items: center;
 }
 
 .message-input {
-    width: 100%;
+    width: 60%;
     height: 40px;
     border: none;
     padding: 10px;

@@ -13,7 +13,7 @@ const competitionData = [
   {
     logo: aceLogo,
     title: 'Accelerate California Entrepeneurship Pitch Competition',
-    route: '/ace-apply'
+    route: '/ace-details'
   },
   {
     logo: usdLogo,
