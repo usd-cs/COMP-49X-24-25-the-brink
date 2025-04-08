@@ -10,6 +10,7 @@ const SignUpPage = () => {
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [phone, setPhone] = useState('')
   const [emailValid, setEmailValid] = useState(false)
 
   // Basic email validation regex
@@ -31,12 +32,19 @@ const SignUpPage = () => {
       return
     }
     
+    // Validate phone number: exactly 10 digits 
+    const phoneRegex = /^\d{10}$/
+    if (!phoneRegex.test(phone)) {
+      alert("Please enter a valid 10-digit phone number.")
+      return
+    }
+    
     // Send a POST request to the signup endpoint
     try {
       const response = await fetch('http://localhost:3001/api/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ firstName, lastName, email, password })
+        body: JSON.stringify({ firstName, lastName, email, password, phone })
       })      
 
       if (response.ok) {
@@ -96,6 +104,16 @@ const SignUpPage = () => {
             className='input-field'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+          />
+          <input 
+            type='tel' 
+            placeholder='Phone Number (10 digits)' 
+            className='input-field'
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            pattern="\d{10}"
+            title="Please enter exactly 10 digits"
+            required
           />
           <button 
             type='submit' 
