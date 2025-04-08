@@ -9,23 +9,28 @@ import AdminView from './AdminView'
 import DashboardPage from './DashboardPage'
 import ForgotPassword from './ForgotPassword' // Import ForgotPassword component
 import CompetitionDetails from './CompetitionDetails' // Added for the /ace-details route
+import JudgesComps from './JudgesComps'
+import Messages from './Messages'
+import Homepage from './Homepage' 
 import './SignUpPage.css'
 import './Competition.css'
 import './AceApply.css'
 import './AdminView.css'
-import Messages from './Messages'
+import './Homepage.css'
+import './JudgesComps.css'
 
 function App() {
   return (
     <div>
       <Routes>
-        <Route path='/' element={<Messages />} />
+        <Route path='/' element={<Homepage />} />
         <Route path='/ace-apply' element={<AceApply />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUpPage />} />
         <Route path='/forgot-password' element={<ForgotPassword />} /> {/* Forgot password route */}
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/admin-view' element={<AdminView />} />
+        <Route path='/judges-comps' element={<JudgesComps/>}/>
         <Route path='/competitions' element={<Competition />} />
         <Route path='/ace-details' element={<CompetitionDetails />} />
         <Route path='/dashboard' element={<DashboardPage />} />
@@ -34,5 +39,4 @@ function App() {
     </div>
   )
 }
-
 export default App

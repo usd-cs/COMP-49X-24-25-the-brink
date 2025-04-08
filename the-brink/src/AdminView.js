@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './AdminView.css'; 
 import SidebarMenu from './SidebarMenu';
-import logo from './PitchSuiteBanner.png'
+import PSBanner from './PSBanner';
+//import logo from './PitchSuiteBanner.png'
 
 
 
@@ -149,15 +150,15 @@ return(
         <div className="admin-view-container">
             <SidebarMenu />
             <div className="admin-content">
-
+                {/*
                 <div className="header-container">
                     <img src={logo} alt="PitchSuite Banner" class="logo" />
                     <div className= "blue-bars">
                         <div className ="dark-blue-bar"></div> 
                         <div className="light-blue-bar"></div>  
                     </div> 
-                </div>
-
+                </div> */}
+            <PSBanner/>
 
             <div className="competition-container">
                 <div className="competition-controls">
