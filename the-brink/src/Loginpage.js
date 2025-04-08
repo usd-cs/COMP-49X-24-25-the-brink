@@ -13,6 +13,10 @@ const Login = () => {
     navigate('/signup')
   }
 
+  const handleForgotPasswordClick = () => {
+    navigate('/forgot-password')
+  }
+
   const handleHomeClick = () => {
     navigate('/')
   }
@@ -73,6 +77,9 @@ const Login = () => {
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <p className='signup-link'>
           <span onClick={handleSignUpClick} className='link-text'>No Account? Click here to Sign Up</span>
+        </p>
+        <p className='forgot-password-link'>
+          <span onClick={handleForgotPasswordClick} className='link-text'>Forgot Password? Click here to reset</span>
         </p>
         <button onClick={handleHomeClick} className='home-button' aria-label='Home'>Home</button>
       </div>

@@ -1,11 +1,10 @@
-body{
+body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #e3eaf4;
-
 }
 
-.login-page{
+.login-page {
     display: flex; 
     flex-direction: column; 
     align-items: center; 
@@ -13,17 +12,17 @@ body{
     height: 100vh;
 }
 
-.banner{
+.banner {
     width: 100%; 
     height: auto;
 }
 
-.banner-image{
+.banner-image {
     width: 100%;
     height: auto;
 }
 
-.login-box{
+.login-box {
     background-color: #80bcfb;
     padding: 30px 20px;
     border-radius: 15px;
@@ -35,16 +34,16 @@ body{
     margin-top: 1200px;
 }
 
-.login-box h2{
+.login-box h2 {
     margin-bottom: 20px;
     font-size: 80px; 
     color: #333;
 }
 
-.input-field{
+.input-field {
     display: block;
     width: 95%; 
-    height:  80px;
+    height: 80px;
     padding: 20px;
     margin: 40px 0; 
     border: 1px;
@@ -53,7 +52,7 @@ body{
     text-align: center;
 }
 
-.login-button{
+.login-button {
     display: block;
     width: 98%;
     height: 80px;
@@ -67,28 +66,39 @@ body{
     transition: background-color 0.3s ease;
 }
 
-.login-button:hover{
+.login-button:hover {
     background-color: #001d3d; 
 }
 
-.signup-link{
+.signup-link {
     margin-top: 15px; 
     font-size: 40px;
     color: #007bff;
     cursor: pointer;
 }
 
-
-.singup-link:hover{
+.signup-link:hover {
     text-decoration: underline;
 }
-.home-container{
-    display:flex;
+
+.forgot-password-link {
+    margin-top: 15px; 
+    font-size: 40px;
+    color: #007bff;
+    cursor: pointer;
+}
+
+.forgot-password-link:hover {
+    text-decoration: underline;
+}
+
+.home-container {
+    display: flex;
     justify-content: center;
     margin-top: 20px;
 }
 
-.home-button{
+.home-button {
     background-color: #002b5c;
     color: white;
     border: none;
@@ -96,9 +106,8 @@ body{
     font-size: 35px;
     transition: background-color 0.3s ease;
     cursor: pointer;
-
 }
 
-.home-button:hover{
+.home-button:hover {
     background-color: #5095df; 
 }
