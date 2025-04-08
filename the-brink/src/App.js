@@ -27,6 +27,7 @@ function App() {
     // Keep Routes Alphabetical by Path!
       <Routes>
         <Route path='/' element={<Homepage />} />
+        <Route path='/competitions' element={<Competition />}/>
         <Route path='/ace-apply' element={<AceApply />} />
         <Route path='/ace-details' element={<CompetitionDetails />} />
         <Route path='/admin-view' element={<AdminView />} />
