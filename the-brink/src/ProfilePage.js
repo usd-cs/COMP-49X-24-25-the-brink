@@ -1,37 +1,87 @@
-import React, { useState } from 'react'
-import './ProfilePage.css' // Ensure the CSS file is updated as well
-import SidebarMenu from './SidebarMenu' // Ensure the SidebarMenu component is imported and updated
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import './ProfilePage.css'
+import SidebarMenu from './SidebarMenu'
 
 const ProfilePage = () => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [user, setUser] = useState({
-      name: 'First Last',
-      company: 'Sample Company Name',
-      email: 'sampleemail@sample.com',
-      phone: '555.555.5555',
-      profileImage: 'https://via.placeholder.com/150'
+  const [isEditing, setIsEditing] = useState(false)
+  const [user, setUser] = useState(null)
+  const [editedUser, setEditedUser] = useState({})
+  const navigate = useNavigate()
 
-  });
+  const userEmail = localStorage.getItem('userEmail')
 
-  const [editedUser, setEditedUser] = useState({ ...user });
+  useEffect(() => {
+    if (!userEmail) {
+      console.warn('No email in localStorage — redirecting to login')
+      navigate('/login')
+      return
+    }
+  
+    const fetchProfile = async () => {
+      try {
+        const response = await fetch(`http://localhost:3001/api/get-profile?email=${encodeURIComponent(userEmail)}`)
+        if (response.ok) {
+          const data = await response.json()
+          const fullName = `${data.first_name} ${data.last_name}`
+          setUser({
+            ...data,
+            name: fullName,
+            company: 'N/A',
+            profileImage: 'https://via.placeholder.com/150'
+          })
+          setEditedUser({
+            name: fullName || '',
+            email: data.email || '',
+            phone: data.phone || '',
+            company: 'N/A'
+          })
+        } else {
+          console.error('Failed to fetch profile')
+        }
+      } catch (error) {
+        console.error('Error:', error)
+      }
+    }
+  
+    fetchProfile()
+  }, [userEmail, navigate])  
 
   const handleChange = (e) => {
-    const { name, value } = e.target;  // Extract name and value from event
+    const { name, value } = e.target
     setEditedUser((prev) => ({
       ...prev,
-      [name]: value,  // Update specific field
-    }));
-  };
+      [name]: value
+    }))
+  }
 
-  const saveChanges = () => {
-    setUser({ ...editedUser});
-    setIsEditing(false);
-  };
+  const saveChanges = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/api/update-profile', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: editedUser.email,
+          name: editedUser.name,
+          phone: editedUser.phone,
+          company: editedUser.company
+        })
+      });
+  
+      if (response.ok) {
+        setUser({ ...editedUser });
+        setIsEditing(false);
+      } else {
+        console.error('Failed to update profile');
+      }
+    } catch (error) {
+      console.error('Error updating profile:', error);
+    }
+  };  
 
-  const cancelEditing = () => {
-    setEditedUser({ ...user }); // Reset to original values
-    setIsEditing(false);
-  };
+  if (!user) return <div>Loading profile...</div>
 
   return (
     <div className='profile-page'>
@@ -39,79 +89,62 @@ const ProfilePage = () => {
 
       <div className='main-content'>
         <div className='profile-card'>
-          <img
-            src={user.profileImage}
-            alt='Profile'
-            className='profile-card-image'
-          />
-          {isEditing? (
-            <div className = "edit-from">
-              {/*label>Prifile Image URL:</label>
-              <input
-                  type="text"
-                  name="profileImage"
-                  value={editedUser.profileImage}
-                  onChange={handleChange}
-                  className="edit-input"
-                */}
+          <img src={user.profileImage} alt='Profile' className='profile-card-image' />
+
+          {isEditing ? (
+            <div className='edit-form'>
               <label>Name:</label>
               <input
-                type="text"
-                name="name"
-                value={editedUser.name}
+                type='text'
+                name='name'
+                value={editedUser.name || ''}
                 onChange={handleChange}
-                className="edit-input"
-              />
-              <label>Company:</label>
-              <input
-                type="text"
-                name="company"
-                value={editedUser.company}
-                onChange={handleChange}
-                className="edit-input"
+                className='edit-input'
               />
               <label>Email:</label>
               <input
-                type="email"
-                name="email"
-                value={editedUser.email}
-                onChange={handleChange}
-                className="edit-input"
+                type='email'
+                name='email'
+                value={editedUser.email || ''}
+                disabled
+                className='edit-input'
               />
               <label>Phone:</label>
               <input
-                type="text"
-                name="phone"
-                value={editedUser.phone}
+                type='text'
+                name='phone'
+                value={editedUser.phone || ''}
                 onChange={handleChange}
-                className="edit-input"
+                className='edit-input'
               />
-
-              <div className="button-group">
-                <button className="save-button" onClick={saveChanges}>
-                  Save
-                </button>
-                <button className="cancel-button" onClick={() => setIsEditing(false)}>
-                  Cancel
-                </button>
+              <label>Company:</label>
+              <input
+                type='text'
+                name='company'
+                value={editedUser.company || ''}
+                onChange={handleChange}
+                className='edit-input'
+              />
+              <div className='button-group'>
+                <button className='save-button' onClick={saveChanges}>Save</button>
+                <button className='cancel-button' onClick={() => setIsEditing(false)}>Cancel</button>
               </div>
             </div>
-
           ) : (
-          <div className='profile-info'>
-            <p><strong>{user.name}</strong></p>
-            <p>{user.company}</p>
-            <p>{user.email}</p>
-            <p>{user.phone}</p>
-            <button className='edit-profile-button' onClick={() => setIsEditing(true)}>
-              Edit Profile
-            </button>
-          </div>
+            <div className='profile-info'>
+              <p><strong>{user.name}</strong></p>
+              <p>{user.company}</p>
+              <p>{user.email}</p>
+              <p>{user.phone}</p>
+              <button className='edit-profile-button' onClick={() => setIsEditing(true)}>
+                Edit Profile
+              </button>
+            </div>
           )}
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default ProfilePage
