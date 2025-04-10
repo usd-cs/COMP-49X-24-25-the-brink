@@ -27,15 +27,15 @@ const ProfilePage = () => {
           setUser({
             ...data,
             name: fullName,
-            company: data.company || '',
+            company: 'N/A',
             profileImage: 'https://via.placeholder.com/150'
           })
           setEditedUser({
             name: fullName || '',
             email: data.email || '',
             phone: data.phone || '',
-            company: data.company || ''
-          })          
+            company: 'N/A'
+          })
         } else {
           console.error('Failed to fetch profile')
         }

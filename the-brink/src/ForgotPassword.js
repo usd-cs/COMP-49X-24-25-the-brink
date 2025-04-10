@@ -42,9 +42,8 @@ const ForgotPassword = () => {
       const templateParams = {
         name,
         reset_link: resetLink,
-        time: new Date().toLocaleString(),
-        user_email: email
-      }      
+        time: new Date().toLocaleString()
+      }
 
       const serviceId = "service_4whkesk"
       const templateId = 'template_cndhr08'

@@ -3,6 +3,7 @@ const cors = require('cors');
 const { Pool } = require('pg');
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
+const nodemailer = require('nodemailer');
 const app = express();
 
 app.use(cors());
@@ -16,6 +17,21 @@ app.get('/', (req, res) => {
 // Connect to Postgres
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL
+});
+
+// Nodemailer transporter for Outlook
+const transporter = nodemailer.createTransport({
+  host: "smtp.office365.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+  tls: {
+    ciphers: 'SSLv3',
+    rejectUnauthorized: false
+  }
 });
 
 // === ACE APPLICATION ENDPOINT ===
@@ -82,28 +98,19 @@ app.post('/api/ace_applications', async (req, res) => {
 
 // === USER SIGNUP ===
 app.post('/api/signup', async (req, res) => {
-  const { firstName, lastName, email, password, phone } = req.body;
-
-  if (!firstName || !lastName || !email || !password || !phone) {
+  const { firstName, lastName, email, password } = req.body;
+  if (!firstName || !lastName || !email || !password) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
-  console.log('Signup payload:', { firstName, lastName, email, phone });
-
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
-
     const result = await pool.query(
-      `INSERT INTO users (first_name, last_name, email, password, phone)
-       VALUES ($1, $2, $3, $4, $5) RETURNING id, first_name, last_name, email, phone, role`,
-      [firstName, lastName, email, hashedPassword, phone]
+      `INSERT INTO users (first_name, last_name, email, password)
+       VALUES ($1, $2, $3, $4) RETURNING *`,
+      [firstName, lastName, email, hashedPassword]
     );
-
-    const user = result.rows[0];
-
-    // You can directly return the token here too if you're logging in users immediately
-    const token = `dummy-token-for-${user.id}`;
-    res.status(201).json({ token, ...user });
+    res.status(201).json(result.rows[0]);
   } catch (err) {
     console.error('Error inserting user:', err.stack);
     res.status(500).json({ error: 'Internal server error' });
@@ -139,7 +146,9 @@ app.post('/api/forgot-password', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
     if (result.rows.length === 0) {
-      return res.status(200).json({ message: 'If the email is registered, a reset link will be sent.' });
+      return res.status(200).json({
+        message: 'If the email is registered, you will receive a reset link shortly.'
+      });
     }
 
     const user = result.rows[0];
@@ -155,44 +164,37 @@ app.post('/api/forgot-password', async (req, res) => {
     );
 
     const resetLink = `http://localhost:3000/reset-password?token=${token}&email=${encodeURIComponent(email)}`;
-    res.status(200).json({ resetLink, name: user.first_name });
+    const mailjetPayload = {
+      Messages: [
+        {
+          From: { Email: process.env.MJ_SENDER_EMAIL, Name: process.env.MJ_SENDER_NAME },
+          To: [{ Email: email, Name: user.first_name || "" }],
+          Subject: 'Password Reset Request',
+          TextPart: `Hello,\n\nYou requested a password reset.\n\n${resetLink}\n\nThis link will expire in 24 hours.\n\nIgnore if not requested.`,
+          HTMLPart: `<p>Hello,</p><p>You requested a password reset:</p><p><a href="${resetLink}">${resetLink}</a></p><p>This link expires in 24 hours.</p><p>Ignore if not requested.</p>`
+        }
+      ]
+    };
+
+    const mailjetResponse = await fetch('https://api.mailjet.com/v3.1/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + Buffer.from(`${process.env.MJ_APIKEY_PUBLIC}:${process.env.MJ_APIKEY_PRIVATE}`).toString('base64')
+      },
+      body: JSON.stringify(mailjetPayload)
+    });
+
+    if (!mailjetResponse.ok) {
+      const errorText = await mailjetResponse.text();
+      console.error('Mailjet error response:', mailjetResponse.status, errorText);
+      throw new Error('Failed to send email via Mailjet');
+    }
+
+    console.log(`Password reset link sent to ${email}: ${resetLink}`);
+    res.status(200).json({ message: 'Password reset link has been sent if the email is registered.' });
   } catch (err) {
     console.error('Error processing forgot password request:', err);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
-
-// === RESET PASSWORD ===
-app.post('/api/reset-password', async (req, res) => {
-  const { token, email, newPassword } = req.body;
-  if (!token || !email || !newPassword) {
-    return res.status(400).json({ error: 'Missing required fields' });
-  }
-
-  try {
-    const result = await pool.query(
-      `SELECT reset_token, reset_token_expiration FROM users WHERE email = $1`,
-      [email]
-    );
-
-    if (result.rows.length === 0) {
-      return res.status(400).json({ error: 'Invalid email.' });
-    }
-
-    const { reset_token, reset_token_expiration } = result.rows[0];
-    if (reset_token !== token || new Date() > reset_token_expiration) {
-      return res.status(400).json({ error: 'Invalid or expired token.' });
-    }
-
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
-    await pool.query(
-      `UPDATE users SET password = $1, reset_token = NULL, reset_token_expiration = NULL WHERE email = $2`,
-      [hashedPassword, email]
-    );
-
-    res.status(200).json({ message: 'Password updated successfully.' });
-  } catch (err) {
-    console.error('Error resetting password:', err);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -204,18 +206,12 @@ app.get('/api/get-profile', async (req, res) => {
 
   try {
     const result = await pool.query(
-      'SELECT first_name, last_name, email, phone, company FROM users WHERE email = $1',
+      'SELECT first_name, last_name, email, phone FROM users WHERE email = $1',
       [email]
     );
 
-    if (result.rows.length === 0) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-
-    const user = result.rows[0];
-    console.log('Fetched user profile:', user); // ✅ debug log
-
-    res.status(200).json(user);
+    if (result.rows.length === 0) return res.status(404).json({ error: 'User not found' });
+    res.status(200).json(result.rows[0]);
   } catch (err) {
     console.error('Error fetching profile:', err);
     res.status(500).json({ error: 'Internal server error' });
@@ -256,6 +252,6 @@ app.get('/api/ace-applications', async (req, res) => {
 
 // === START SERVER ===
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

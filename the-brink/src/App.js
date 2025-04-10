@@ -13,7 +13,6 @@ import CompetitionDetails from './CompetitionDetails';
 import JudgesComps from './JudgesComps';
 import Messages from './Messages';
 import Homepage from './Homepage';
-import AppStatusF from './AppStatusF'; // ✅ Add this line
 
 import './SignUpPage.css';
 import './Competition.css';
@@ -25,17 +24,18 @@ import './JudgesComps.css';
 function App() {
   return (
     <div>
-      {/* Keep Routes Alphabetical by Path! */}
+    // Keep Routes Alphabetical by Path!
       <Routes>
         <Route path='/' element={<Homepage />} />
+        <Route path='/competitions' element={<Competition />}/>
         <Route path='/ace-apply' element={<AceApply />} />
         <Route path='/ace-details' element={<CompetitionDetails />} />
         <Route path='/admin-view' element={<AdminView />} />
         <Route path='/competitions' element={<Competition />} />
         <Route path='/dashboard' element={<DashboardPage />} />
-        <Route path='/forgot-password' element={<ForgotPassword />} />
-        <Route path='/founder-status' element={<AppStatusF />} /> {/* ✅ Fixed */}
-        <Route path='/judges-comps' element={<JudgesComps />} />
+        <Route path='/forgot-password' element={<ForgotPassword />} /> {/* Forgot password route */}
+        <Route path='/founder-status' element={<AppStatusF/>}/>
+        <Route path='/judges-comps' element={<JudgesComps/>}/>
         <Route path='/login' element={<Login />} />
         <Route path='/messages' element={<Messages />} />
         <Route path='/profile' element={<ProfilePage />} />
