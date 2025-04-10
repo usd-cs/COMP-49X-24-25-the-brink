@@ -84,3 +84,24 @@
     background-color: #ddd;
     font-weight: bold;
 }
+
+.sidebar-signout {
+    margin-top: 30px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .signout-button {
+    background: none;
+    border: none;
+    color: #003C70;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 8px;
+    width: 100%;
+  }
+  
+  .signout-button:hover {
+    text-decoration: underline;
+  }
+  

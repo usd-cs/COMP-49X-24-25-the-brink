@@ -13,7 +13,6 @@ const SignUpPage = () => {
   const [phone, setPhone] = useState('')
   const [emailValid, setEmailValid] = useState(false)
 
-  // Basic email validation regex
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     return re.test(email)
@@ -31,25 +30,24 @@ const SignUpPage = () => {
       alert("Please enter a valid email address")
       return
     }
-    
-    // Validate phone number: exactly 10 digits 
+
     const phoneRegex = /^\d{10}$/
     if (!phoneRegex.test(phone)) {
       alert("Please enter a valid 10-digit phone number.")
       return
     }
-    
-    // Send a POST request to the signup endpoint
+
     try {
       const response = await fetch('http://localhost:3001/api/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ firstName, lastName, email, password, phone })
-      })      
+      })
 
       if (response.ok) {
-        alert("Sign up successful!")
-        navigate('/login')
+        // Set user session immediately
+        localStorage.setItem('userEmail', email)
+        navigate('/profile')
       } else {
         const errorData = await response.json()
         alert(errorData.error || "Sign up failed")

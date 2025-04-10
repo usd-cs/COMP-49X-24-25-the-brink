@@ -108,89 +108,51 @@ const AdminView = () => {
           {showSidebar ? 'Hide Sidebar' : 'Show Sidebar'}
         </button>
 
-        <div
-          className="competition-container"
-          style={{
-            width: showSidebar ? 'calc(100% - 18%)' : '100%',
-            paddingLeft: showSidebar ? '100px' : '40px',
-            transition: 'all 0.3s ease'
-          }}
-        >
-          <table className="competition-table">
-            <thead>
-              <tr>
-                <th onClick={handleSort}>Name {sortOrder === 'asc' ? '▲' : sortOrder === 'desc' ? '▼' : ''}</th>
-                <th>Address</th>
-                <th>DBA</th>
-                <th>DUNS</th>
-                <th>NAICS</th>
-                <th onClick={() => handleFilter('hub_zone')}>HubZone</th>
-                <th onClick={() => handleFilter('rural')}>Rural</th>
-                <th onClick={() => handleFilter('women_owned')}>Women-Owned</th>
-                <th onClick={() => handleFilter('disaster_impacted')}>Disaster Impacted</th>
-                <th>Primary Contact Name</th>
-                <th>Primary Title</th>
-                <th>Primary Phone</th>
-                <th>Primary Email</th>
-                <th>Secondary Contact Name</th>
-                <th>Secondary Title</th>
-                <th>Secondary Phone</th>
-                <th>Secondary Email</th>
-                <th>Agency</th>
-                <th>Award Amount</th>
-                <th>Contract #</th>
-                <th>Start-End</th>
-                <th>Company Info</th>
-                <th>Customer Discovery</th>
-                <th>Go-to-Market Strategy</th>
-                <th>IP</th>
-                <th>Financing</th>
-                <th>Success Record</th>
-                <th>Created</th>
-                <th>Flag</th>
-              </tr>
-            </thead>
-            <tbody>
-              {displayedApplications.map((app, index) => (
-                <tr key={index}>
-                  <td>{app.corporate_name}</td>
-                  <td>{app.address}</td>
-                  <td>{app.dba}</td>
-                  <td>{app.duns}</td>
-                  <td>{app.naics}</td>
-                  <td>{app.hub_zone ? 'Yes' : 'No'}</td>
-                  <td>{app.rural ? 'Yes' : 'No'}</td>
-                  <td>{app.women_owned ? 'Yes' : 'No'}</td>
-                  <td>{app.disaster_impacted ? 'Yes' : 'No'}</td>
-                  <td>{app.primary_contact_name}</td>
-                  <td>{app.primary_contact_title}</td>
-                  <td>{app.primary_contact_phone}</td>
-                  <td>{app.primary_contact_email}</td>
-                  <td>{app.secondary_contact_name}</td>
-                  <td>{app.secondary_contact_title}</td>
-                  <td>{app.secondary_contact_phone}</td>
-                  <td>{app.secondary_contact_email}</td>
-                  <td>{app.agency}</td>
-                  <td>{app.award_amount}</td>
-                  <td>{app.contract_number}</td>
-                  <td>{app.grant_start_end}</td>
-                  <td>{app.company_info}</td>
-                  <td>{app.customer_discovery}</td>
-                  <td>{app.go_to_market_strategy}</td>
-                  <td>{app.intellectual_property}</td>
-                  <td>{app.financing}</td>
-                  <td>{app.success_record}</td>
-                  <td>{app.created_at}</td>
-                  <td>
-                    <span
-                      className={`flag-circle ${flagged[app.corporate_name] ? 'flagged' : ''}`}
-                      onClick={() => toggleFlag(app.corporate_name)}
-                    ></span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="vertical-table-container">
+          {displayedApplications.map((app, index) => (
+            <div key={index} className="vertical-table">
+              <h3 className="vertical-table-title">{app.corporate_name}</h3>
+              <table>
+                <tbody>
+                  <tr><th>Address</th><td>{app.address}</td></tr>
+                  <tr><th>DBA</th><td>{app.dba}</td></tr>
+                  <tr><th>DUNS</th><td>{app.duns}</td></tr>
+                  <tr><th>NAICS</th><td>{app.naics}</td></tr>
+                  <tr><th>HubZone</th><td>{app.hub_zone ? 'Yes' : 'No'}</td></tr>
+                  <tr><th>Rural</th><td>{app.rural ? 'Yes' : 'No'}</td></tr>
+                  <tr><th>Women-Owned</th><td>{app.women_owned ? 'Yes' : 'No'}</td></tr>
+                  <tr><th>Disaster Impacted</th><td>{app.disaster_impacted ? 'Yes' : 'No'}</td></tr>
+                  <tr><th>Primary Contact Name</th><td>{app.primary_contact_name}</td></tr>
+                  <tr><th>Primary Title</th><td>{app.primary_contact_title}</td></tr>
+                  <tr><th>Primary Phone</th><td>{app.primary_contact_phone}</td></tr>
+                  <tr><th>Primary Email</th><td>{app.primary_contact_email}</td></tr>
+                  <tr><th>Secondary Contact Name</th><td>{app.secondary_contact_name}</td></tr>
+                  <tr><th>Secondary Title</th><td>{app.secondary_contact_title}</td></tr>
+                  <tr><th>Secondary Phone</th><td>{app.secondary_contact_phone}</td></tr>
+                  <tr><th>Secondary Email</th><td>{app.secondary_contact_email}</td></tr>
+                  <tr><th>Agency</th><td>{app.agency}</td></tr>
+                  <tr><th>Award Amount</th><td>{app.award_amount}</td></tr>
+                  <tr><th>Contract #</th><td>{app.contract_number}</td></tr>
+                  <tr><th>Start-End</th><td>{app.grant_start_end}</td></tr>
+                  <tr><th>Company Info</th><td>{app.company_info}</td></tr>
+                  <tr><th>Customer Discovery</th><td>{app.customer_discovery}</td></tr>
+                  <tr><th>Go-to-Market Strategy</th><td>{app.go_to_market_strategy}</td></tr>
+                  <tr><th>IP</th><td>{app.intellectual_property}</td></tr>
+                  <tr><th>Financing</th><td>{app.financing}</td></tr>
+                  <tr><th>Success Record</th><td>{app.success_record}</td></tr>
+                  <tr>
+                    <th>Flag</th>
+                    <td>
+                      <span
+                        className={`flag-circle ${flagged[app.corporate_name] ? 'flagged' : ''}`}
+                        onClick={() => toggleFlag(app.corporate_name)}
+                      ></span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          ))}
         </div>
       </div>
     </div>
