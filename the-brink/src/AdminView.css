@@ -125,7 +125,12 @@
     text-align: left;
     white-space: nowrap;
   }
-  
+  .table-scroll-wrapper {
+    max-height: 600px; /* adjust as needed */
+    overflow-y: auto;
+    overflow-x: auto;
+    border: 1px solid #ccc;
+  }
   .competition-table th {
     background-color: #9b9595;
   }

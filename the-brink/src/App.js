@@ -34,7 +34,7 @@ function App() {
         <Route path='/competitions' element={<Competition />} />
         <Route path='/dashboard' element={<DashboardPage />} />
         <Route path='/forgot-password' element={<ForgotPassword />} /> {/* Forgot password route */}
-        <Route path='/founder-status' element={<AppStatusF/>}/>
+        {/*<Route path='/founder-status' element={<AppStatusF/>}/> */}
         <Route path='/judges-comps' element={<JudgesComps/>}/>
         <Route path='/login' element={<Login />} />
         <Route path='/messages' element={<Messages />} />

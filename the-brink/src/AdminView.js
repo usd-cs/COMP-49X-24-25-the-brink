@@ -116,6 +116,7 @@ const AdminView = () => {
             transition: 'all 0.3s ease'
           }}
         >
+        <div className="table-scroll-wrapper">
           <table className="competition-table">
             <thead>
               <tr>
@@ -191,6 +192,7 @@ const AdminView = () => {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       </div>
     </div>
