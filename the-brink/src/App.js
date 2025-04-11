@@ -14,12 +14,13 @@ import './Competition.css'
 import './AceApply.css'
 import './AdminView.css'
 import Messages from './Messages'
+import UserAnnouncements  from './UserAnnouncemnt'
 
 function App() {
   return (
     <div>
       <Routes>
-        <Route path='/' element={<Messages />} />
+        <Route path='/' element={<UserAnnouncements />} />
         <Route path='/ace-apply' element={<AceApply />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUpPage />} />
