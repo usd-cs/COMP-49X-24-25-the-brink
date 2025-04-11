@@ -14,6 +14,7 @@ import JudgesComps from './JudgesComps';
 import Messages from './Messages';
 import Homepage from './Homepage';
 import AppStatusF from './AppStatusF'; // ✅ Add this line
+import UserAnnouncements  from './UserAnnouncemnt'
 
 import './SignUpPage.css';
 import './Competition.css';
@@ -34,13 +35,14 @@ function App() {
         <Route path='/competitions' element={<Competition />} />
         <Route path='/dashboard' element={<DashboardPage />} />
         <Route path='/forgot-password' element={<ForgotPassword />} />
-        <Route path='/founder-status' element={<AppStatusF />} /> {/* ✅ Fixed */}
+        <Route path='/founder-status' element={<AppStatusF />} /> 
         <Route path='/judges-comps' element={<JudgesComps />} />
         <Route path='/login' element={<Login />} />
         <Route path='/messages' element={<Messages />} />
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/reset-password' element={<ResetPassword />} />
         <Route path='/signup' element={<SignUpPage />} />
+        <Route path='/user-announcements' element={<UserAnnouncements />} />
       </Routes>
     </div>
   );
