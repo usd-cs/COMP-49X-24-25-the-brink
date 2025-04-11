@@ -26,7 +26,7 @@ const Login = () => {
     setErrorMessage('')
 
     try {
-      const response = await fetch('http://localhost:3001/api/login', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -34,9 +34,10 @@ const Login = () => {
 
       if (response.ok) {
         const data = await response.json()
-        // Store the token and the user's first name in localStorage
         localStorage.setItem('authToken', data.token)
         localStorage.setItem('userName', data.first_name)
+        localStorage.setItem('userEmail', data.email)
+        localStorage.setItem('userRole', data.role) // <-- Add this line
         navigate('/dashboard')
       } else {
         const errorData = await response.json()

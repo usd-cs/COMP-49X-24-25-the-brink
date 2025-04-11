@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import emailjs from '@emailjs/browser'
 import './Loginpage.css'
 import banner from './PitchSuiteBanner.png'
 
@@ -10,7 +11,6 @@ const ForgotPassword = () => {
   const [notification, setNotification] = useState('')
 
   const validateEmail = (email) => {
-    // Basic email validation regex
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     return re.test(String(email).toLowerCase())
   }
@@ -32,13 +32,32 @@ const ForgotPassword = () => {
         body: JSON.stringify({ email })
       })
 
-      if (response.ok) {
-        const data = await response.json()
-        setNotification(data.message || 'If this email is registered, you will receive a password reset link shortly.')
-      } else {
+      if (!response.ok) {
         const errorData = await response.json()
-        setErrorMessage(errorData.error || 'Failed to process the request.')
+        throw new Error(errorData.error || 'Failed to process the request.')
       }
+
+      const { name, resetLink } = await response.json()
+
+      const templateParams = {
+        name,
+        reset_link: resetLink,
+        time: new Date().toLocaleString(),
+        user_email: email
+      }      
+
+      const serviceId = "service_4whkesk"
+      const templateId = 'template_cndhr08'
+      const publicKey = "3jd-GlP1F4V8LGQdC"
+
+      console.log("Sending reset email with params:", {
+        serviceId, templateId, publicKey, templateParams
+      })
+
+      await emailjs.send(serviceId, templateId, templateParams, publicKey)
+
+      setNotification('If this email is registered, a password reset link has been sent.')
+
     } catch (error) {
       console.error('Error sending forgot password request:', error)
       setErrorMessage('There was an error processing your request. Please try again later.')
