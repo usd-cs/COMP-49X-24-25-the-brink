@@ -15,22 +15,28 @@ import './AceApply.css'
 import './AdminView.css'
 import Messages from './Messages'
 import UserAnnouncements  from './UserAnnouncemnt'
+import HomePage from './Homepage'
 
 function App() {
   return (
     <div>
+    {/* Keep Routes Alphabetical by Path! */}
       <Routes>
-        <Route path='/' element={<UserAnnouncements />} />
+        <Route path='/' element={<Homepage />} />
         <Route path='/ace-apply' element={<AceApply />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<SignUpPage />} />
-        <Route path='/forgot-password' element={<ForgotPassword />} /> {/* Forgot password route */}
-        <Route path='/profile' element={<ProfilePage />} />
+        <Route path='/ace-details' element={<CompetitionDetails />} />
         <Route path='/admin-view' element={<AdminView />} />
         <Route path='/competitions' element={<Competition />} />
-        <Route path='/ace-details' element={<CompetitionDetails />} />
         <Route path='/dashboard' element={<DashboardPage />} />
+        <Route path='/forgot-password' element={<ForgotPassword />} />
+        <Route path='/founder-status' element={<AppStatusF />} /> 
+        <Route path='/judges-comps' element={<JudgesComps />} />
+        <Route path='/login' element={<Login />} />
         <Route path='/messages' element={<Messages />} />
+        <Route path='/profile' element={<ProfilePage />} />
+        <Route path='/reset-password' element={<ResetPassword />} />
+        <Route path='/signup' element={<SignUpPage />} />
+        <Route path='/user-announcements' element={<UserAnnouncements />} />
       </Routes>
     </div>
   )
