@@ -42,7 +42,7 @@ services:
     ports:
       - "5433:5432"
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - ./db:/docker-entrypoint-initdb.d
 
   proxy:
     image: nginx:latest
@@ -56,6 +56,6 @@ services:
     depends_on:
       - frontend
       - backend
-
+      
 volumes:
   db_data:
