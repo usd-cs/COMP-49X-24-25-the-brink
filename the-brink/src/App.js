@@ -14,6 +14,7 @@ import JudgesComps from './JudgesComps';
 import Messages from './Messages';
 import Homepage from './Homepage';
 import AppStatusF from './AppStatusF'; // ✅ Add this line
+import AdminSettings from './AdminSettings'
 
 import './SignUpPage.css';
 import './Competition.css';
@@ -21,6 +22,7 @@ import './AceApply.css';
 import './AdminView.css';
 import './Homepage.css';
 import './JudgesComps.css';
+import './AdminSettings.css';
 
 function App() {
   return (
@@ -40,6 +42,7 @@ function App() {
         <Route path='/messages' element={<Messages />} />
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/reset-password' element={<ResetPassword />} />
+        <Route path='/settings' element={<AdminSettings />} />
         <Route path='/signup' element={<SignUpPage />} />
       </Routes>
     </div>
