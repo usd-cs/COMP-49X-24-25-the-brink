@@ -22,7 +22,7 @@ function App() {
     <div>
       {/* Keep Routes Alphabetical by Path! */}
       <Routes>
-        <Route path='/' element={<Homepage />} />
+        <Route path='/' element={<ProfilePage />} />
         <Route path='/ace-apply' element={<AceApply />} />
         <Route path='/ace-details' element={<CompetitionDetails />} />
         <Route path='/admin-view' element={<AdminView />} />
