@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 import './ProfilePage.css'
 import SidebarMenu from './SidebarMenu'
 
@@ -29,7 +30,7 @@ const ProfilePage = () => {
           const avatarURL = `/avatars/${avatarFile}`;
 
           localStorage.setItem('profileImage', avatarURL)
-          const profileImage = localStorage.getItem('profileImage') || '/avatars/Default/png'
+          const profileImage = localStorage.getItem('profileImage') || '/avatars/Default.png'
 
           setUser({
             ...data,
