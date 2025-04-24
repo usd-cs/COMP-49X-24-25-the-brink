@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './ProfilePage.css'
 import SidebarMenu from './SidebarMenu'
+import PSBanner from './PSBanner';
+
 
 const ProfilePage = () => {
   const [isEditing, setIsEditing] = useState(false)
@@ -86,6 +88,7 @@ const ProfilePage = () => {
   return (
     <div className='profile-page'>
       <SidebarMenu />
+      <PSBanner/>
 
       <div className='main-content'>
         <div className='profile-card'>

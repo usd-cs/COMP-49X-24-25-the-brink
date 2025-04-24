@@ -54,7 +54,7 @@ const CompetitionDetails = () => {
           </div> 
 
          <div className='right-screen'>
-               <img className='logo' src={AceLogo} alt='Ace Pitch Competition Logo' />
+               <img className='acelogo' src={AceLogo} alt='Ace Pitch Competition Logo' />
                <button type='apply' onClick={toCompetition} className='apply-button'>Apply Here!</button>
           </div> 
           
