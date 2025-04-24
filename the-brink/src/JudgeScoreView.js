@@ -8,18 +8,23 @@ const JudgeScoreView = () => {
   const [applications, setApplications] = useState([]);
   const [filter, setFilter] = useState({ column: null, value: null, step: 0 });
   const [sortOrder, setSortOrder] = useState(null);
+  const [flagged, setFlagged] = useState(() => JSON.parse(localStorage.getItem('flaggedApplications')) || {});
+  const [showFlaggedOnly, setShowFlaggedOnly] = useState(false);
   const [showSidebar, setShowSidebar] = useState(true);
 
   const navigate = useNavigate();
   const token = localStorage.getItem('authToken');
   const role = localStorage.getItem('userRole');
 
-//   useEffect(() => {
-//     if (!token || role !== 'judge') {
-//       navigate('/login');
-//     }
-//   }, [token, role, navigate]);
+  useEffect(() => {
+    if (!token || role !== 'judge') {
+      navigate('/login');
+    }
+  }, [token, role, navigate]);
 
+  useEffect(() => {
+    localStorage.setItem('flaggedApplications', JSON.stringify(flagged));
+  }, [flagged]);
 
   useEffect(() => {
     const fetchApplications = async () => {
@@ -50,6 +55,14 @@ const JudgeScoreView = () => {
     const bVal = b.corporate_name || '';
     return sortOrder === 'asc' ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
   });
+
+  const displayedApplications = showFlaggedOnly
+    ? sortedApplications.filter(app => flagged[app.corporate_name])
+    : sortedApplications;
+
+  const toggleFlag = (name) => {
+    setFlagged(prev => ({ ...prev, [name]: !prev[name] }));
+  };
 
   const handleFilter = (column) => {
     const nextStep = filter.column === column ? (filter.step + 1) % 3 : 1;
@@ -95,51 +108,26 @@ const JudgeScoreView = () => {
           {showSidebar ? 'Hide Sidebar' : 'Show Sidebar'}
         </button>
 
-        <div className="vertical-table-container">
-          {displayedApplications.map((app, index) => (
-            <div key={index} className="vertical-table">
-              <h3 className="vertical-table-title">{app.corporate_name}</h3>
-              <table>
-                <tbody>
-                  <tr><th>Address</th><td>{app.address}</td></tr>
-                  <tr><th>DBA</th><td>{app.dba}</td></tr>
-                  <tr><th>DUNS</th><td>{app.duns}</td></tr>
-                  <tr><th>NAICS</th><td>{app.naics}</td></tr>
-                  <tr><th>HubZone</th><td>{app.hub_zone ? 'Yes' : 'No'}</td></tr>
-                  <tr><th>Rural</th><td>{app.rural ? 'Yes' : 'No'}</td></tr>
-                  <tr><th>Women-Owned</th><td>{app.women_owned ? 'Yes' : 'No'}</td></tr>
-                  <tr><th>Disaster Impacted</th><td>{app.disaster_impacted ? 'Yes' : 'No'}</td></tr>
-                  <tr><th>Primary Contact Name</th><td>{app.primary_contact_name}</td></tr>
-                  <tr><th>Primary Title</th><td>{app.primary_contact_title}</td></tr>
-                  <tr><th>Primary Phone</th><td>{app.primary_contact_phone}</td></tr>
-                  <tr><th>Primary Email</th><td>{app.primary_contact_email}</td></tr>
-                  <tr><th>Secondary Contact Name</th><td>{app.secondary_contact_name}</td></tr>
-                  <tr><th>Secondary Title</th><td>{app.secondary_contact_title}</td></tr>
-                  <tr><th>Secondary Phone</th><td>{app.secondary_contact_phone}</td></tr>
-                  <tr><th>Secondary Email</th><td>{app.secondary_contact_email}</td></tr>
-                  <tr><th>Agency</th><td>{app.agency}</td></tr>
-                  <tr><th>Award Amount</th><td>{app.award_amount}</td></tr>
-                  <tr><th>Contract #</th><td>{app.contract_number}</td></tr>
-                  <tr><th>Start-End</th><td>{app.grant_start_end}</td></tr>
-                  <tr><th>Company Info</th><td>{app.company_info}</td></tr>
-                  <tr><th>Customer Discovery</th><td>{app.customer_discovery}</td></tr>
-                  <tr><th>Go-to-Market Strategy</th><td>{app.go_to_market_strategy}</td></tr>
-                  <tr><th>IP</th><td>{app.intellectual_property}</td></tr>
-                  <tr><th>Financing</th><td>{app.financing}</td></tr>
-                  <tr><th>Success Record</th><td>{app.success_record}</td></tr>
-                  <tr>
-                    <th>Flag</th>
-                    <td>
-                      <span
-                        className={`flag-circle ${flagged[app.corporate_name] ? 'flagged' : ''}`}
-                        onClick={() => toggleFlag(app.corporate_name)}
-                      ></span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          ))}
+        <div>
+          <table>
+            <thead style={{ backgroundColor: 'blue' }}>
+              <tr>
+                <th>Company Name</th>
+                <th>Primary Contact Name</th>
+                <th>Judge 1: Presentation Score</th>
+                <th>Judge 1: Innovation Score</th>
+                <th>Judge 1: Scalability Score</th>
+                <th>Judge 1: Market Understanding Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              {displayedApplications.map((app, index) => (
+                <tr>
+                  <td>app.corporate_name</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
