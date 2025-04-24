@@ -11,6 +11,7 @@ RUN npm install --legacy-peer-deps
 COPY public/ ./public
 COPY src/ ./src
 COPY server.js ./
+# Removed COPY init.sql here.
 
 # Expose both ports if you need them
 EXPOSE 3000
