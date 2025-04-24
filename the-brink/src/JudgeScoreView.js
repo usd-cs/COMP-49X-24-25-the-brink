@@ -16,11 +16,11 @@ const JudgeScoreView = () => {
   const token = localStorage.getItem('authToken');
   const role = localStorage.getItem('userRole');
 
-  useEffect(() => {
-    if (!token || role !== 'judge') {
-      navigate('/login');
-    }
-  }, [token, role, navigate]);
+  // useEffect(() => {
+  //   if (!token || role !== 'judge') {
+  //     navigate('/login');
+  //   }
+  // }, [token, role, navigate]);
 
   useEffect(() => {
     localStorage.setItem('flaggedApplications', JSON.stringify(flagged));
@@ -124,6 +124,43 @@ const JudgeScoreView = () => {
               {displayedApplications.map((app, index) => (
                 <tr>
                   <td>app.corporate_name</td>
+                  <td>app.primary_contact_name</td>
+                  <td>
+                    <select>
+                      <option> 1 </option>
+                      <option> 2 </option>
+                      <option> 3 </option>
+                      <option> 4 </option>
+                      <option> 5 </option>
+                    </select>
+                  </td>
+                  <td>
+                    <select>
+                      <option> 1 </option>
+                      <option> 2 </option>
+                      <option> 3 </option>
+                      <option> 4 </option>
+                      <option> 5 </option>
+                    </select>
+                  </td>
+                  <td>
+                    <select>
+                      <option> 1 </option>
+                      <option> 2 </option>
+                      <option> 3 </option>
+                      <option> 4 </option>
+                      <option> 5 </option>
+                    </select>
+                  </td>
+                  <td>
+                    <select>
+                      <option> 1 </option>
+                      <option> 2 </option>
+                      <option> 3 </option>
+                      <option> 4 </option>
+                      <option> 5 </option>
+                    </select>
+                  </td>
                 </tr>
               ))}
             </tbody>
