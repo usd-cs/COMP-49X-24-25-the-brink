@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './SidebarMenu.css';
 
+
+
 const SidebarMenu = () => {
   const [user, setUser] = useState({
     name: '',
@@ -22,12 +24,18 @@ const SidebarMenu = () => {
         const response = await fetch(`http://localhost:3001/api/get-profile?email=${email}`);
         if (response.ok) {
           const data = await response.json();
+
+          const firstInitial = (data.first_name || 'D')[0].toUpperCase()
+          const avatarFile = `${firstInitial}-Avatar.png`
+          const avatarUrl = `/avatars/${avatarFile}`
+
+
           setUser({
             name: `${data.first_name} ${data.last_name}`,
             company: data.company || 'N/A',
             email: data.email,
             phone: data.phone || 'N/A',
-            profileImage: 'https://via.placeholder.com/150'
+            profileImage: avatarUrl
           });
         } else {
           console.error('Failed to fetch user profile');
