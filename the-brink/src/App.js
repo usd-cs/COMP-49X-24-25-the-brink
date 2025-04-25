@@ -13,14 +13,8 @@ import CompetitionDetails from './CompetitionDetails';
 import JudgesComps from './JudgesComps';
 import Messages from './Messages';
 import Homepage from './Homepage';
-import AppStatusF from './AppStatusF'; // ✅ Add this line
-
-import './SignUpPage.css';
-import './Competition.css';
-import './AceApply.css';
-import './AdminView.css';
-import './Homepage.css';
-import './JudgesComps.css';
+import AppStatusF from './AppStatusF'; 
+import JudgeScoreView from './JudgeScoreView';
 
 function App() {
   return (
@@ -34,8 +28,9 @@ function App() {
         <Route path='/competitions' element={<Competition />} />
         <Route path='/dashboard' element={<DashboardPage />} />
         <Route path='/forgot-password' element={<ForgotPassword />} />
-        <Route path='/founder-status' element={<AppStatusF />} /> {/* ✅ Fixed */}
+        <Route path='/founder-status' element={<AppStatusF />} /> 
         <Route path='/judges-comps' element={<JudgesComps />} />
+        <Route path='/judges-scoring' element={<JudgeScoreView />} />
         <Route path='/login' element={<Login />} />
         <Route path='/messages' element={<Messages />} />
         <Route path='/profile' element={<ProfilePage />} />
