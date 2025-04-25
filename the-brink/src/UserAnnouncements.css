@@ -1,0 +1,55 @@
+.announcements-container {
+    display: flex;
+    height: 100vh;
+    width: (100vh - 300px)
+  }
+  
+  .announcements-content {
+    flex: 1;
+    padding: 2rem;
+    background-color: white;
+  }
+  
+  .announcements-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .announcement-card {
+    background-color: #e3ebf5;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+  }
+  
+  .announcement-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .announcement-heading {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .announcement-sender {
+    margin: 0.25rem 0;
+    color: #555;
+    font-size: 0.95rem;
+  }
+  
+  .announcement-text {
+    margin: 0.25rem 0;
+    font-size: 0.95rem;
+    color: #333;
+  }
+  
+  .announcement-date {
+    font-size: 0.9rem;
+    color: #666;
+    white-space: nowrap;
+  }
+  

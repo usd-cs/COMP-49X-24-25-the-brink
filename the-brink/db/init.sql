@@ -42,11 +42,3 @@ CREATE TABLE IF NOT EXISTS ace_applications (
   success_record TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-INSERT INTO ace_applications (corporate_name, address, dba, duns, naics, hub_zone, rural, women_owned, disaster_impacted, primary_contact_name, 
-primary_contact_title, primary_contact_phone, primary_contact_email, secondary_contact_name, secondary_contact_title, secondary_contact_phone, secondary_contact_email,
-agency, award_amount, contract_number, grant_start_end, company_info, customer_discovery, go_to_market_strategy, intellectual_property, financing, success_record, created_at)
-VALUES ('Company Name', 'Address', 'dba', 'duns', 'naics', 
-True, True, True, True, 'Cristian St.Clair', 'Director', '111-222-3333', 'cristianstclair@gmail.com', 
-'N/A', 'N/A', 'N/A', 'N/A', 'agency', 1000, 'contract', 'May 6th, 2024', 'company info', 
-'customer discovery', 'market strategy', 'IP', 'financing', 'success_record', CURRENT_TIMESTAMP);
