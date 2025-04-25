@@ -16,7 +16,6 @@ import Homepage from './Homepage';
 import AppStatusF from './AppStatusF'; 
 import JudgeScoreView from './JudgeScoreView';
 import AdminSettings from './AdminSettings'
-import AppStatusF from './AppStatusF'; 
 import UserAnnouncements  from './UserAnnouncemnt'
 import OrganizerAnnouncements from './OrganizerAnnouncements'
 
@@ -25,7 +24,7 @@ function App() {
     <div>
       {/* Keep Routes Alphabetical by Path! */}
       <Routes>
-        <Route path='/' element={<ProfilePage />} />
+        <Route path='/' element={<Homepage />} />
         <Route path='/ace-apply' element={<AceApply />} />
         <Route path='/ace-details' element={<CompetitionDetails />} />
         <Route path='/admin-view' element={<AdminView />} />
