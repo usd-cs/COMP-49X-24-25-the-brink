@@ -119,11 +119,65 @@ body{
 
 @media (max-width: 768px){
     .competitions-grid{
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns: 1fr;
+    }
+
+    .competitions{
+        padding-top: 250px; 
+    }
+
+    .competition-logo{
+        width: 150px; 
+        height: 150px;
+    }
+    .competition-info h3{
+        font-size: 30px;
+    }
+    .apply-now-button{
+        font-size: 30px; 
+        padding: 8px 16px;
+    }
+    .login-button{
+        font-size: 30px; 
+        padding:  8px 16px; 
     }
 }
 @media (max-width:480px){
     .competitions-grid{
         grid-template-columns: 1fr;
+    }
+    .competitions {
+        padding-top: 150px;
+    }
+
+    .competitions h2 {
+        font-size: 36px;
+    }
+
+    .competition-logo {
+        width: 120px;
+        height: 120px;
+    }
+
+    .competition-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .competition-info h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .apply-now-button {
+        font-size: 24px;
+        padding: 10px 20px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .login-button {
+        font-size: 24px;
+        padding: 6px 12px;
     }
 }
