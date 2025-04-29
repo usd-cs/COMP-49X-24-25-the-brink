@@ -8,7 +8,7 @@ body{
     max-width: 2000px;
     margin: 0 auto;
     padding: 20px;
-    padding-top: 400px;
+    padding-top: 100px;
     text-align: center;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
    
@@ -123,7 +123,7 @@ body{
     }
 
     .competitions{
-        padding-top: 250px; 
+        padding-top: 100px; 
     }
 
     .competition-logo{
@@ -139,45 +139,11 @@ body{
     }
     .login-button{
         font-size: 30px; 
-        padding:  8px 16px; 
+        padding: 8px 16px;
     }
 }
 @media (max-width:480px){
     .competitions-grid{
         grid-template-columns: 1fr;
-    }
-    .competitions {
-        padding-top: 150px;
-    }
-
-    .competitions h2 {
-        font-size: 36px;
-    }
-
-    .competition-logo {
-        width: 120px;
-        height: 120px;
-    }
-
-    .competition-info {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .competition-info h3 {
-        font-size: 24px;
-        margin-bottom: 10px;
-    }
-
-    .apply-now-button {
-        font-size: 24px;
-        padding: 10px 20px;
-        width: 100%;
-        text-align: center;
-    }
-
-    .login-button {
-        font-size: 24px;
-        padding: 6px 12px;
     }
 }
