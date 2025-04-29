@@ -1,13 +1,15 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Competition.css'
+import PSBanner from './PSBanner';
+
 
 // Corrected relative paths
-import banner from './PitchSuiteBanner.png'
 import aceLogo from './aceCircleLogo.png'
 import usdLogo from './usd-logo.png'
 import socialLogo from './SocialInnovationCircleLogo.png'
 import techLogo from './techCircleLogo.png'
+
 
 const competitionData = [
   {
@@ -42,10 +44,11 @@ const Competitions = () => {
 
   return (
     <div className='competitions'>
+      <PSBanner/>
 
-      <div className='banner'>
+      {/*<div className='banner'>
         <img src={banner} alt='banner' className='banner-image' />
-      </div>
+      </div>*/}
 
       <h2>Competitions</h2>
       <div className='competitions-grid'>
