@@ -1,6 +1,11 @@
+
+
+
+
+
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom' // Correctly import useNavigate
-import './Competition.css'
+import { useNavigate } from 'react-router-dom'
+import './AceApply.css'
 import Banner from './ace-pitch-competition-banner.png'
 import emailjs from '@emailjs/browser'
 
@@ -126,7 +131,7 @@ export default function ACEApplicationForm() {
     }
 
     try {
-      const response = await fetch('http://localhost:3001/api/ace_applications', {
+      const response = await fetch('/api/ace_applications', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

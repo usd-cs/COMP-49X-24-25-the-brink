@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS users (
   password TEXT NOT NULL,
   phone TEXT NOT NULL,
   company TEXT,
-  role TEXT DEFAULT 'user',
+  role TEXT DEFAULT 'user' CHECK (role IN ('admin', 'judge', 'founder', 'user')),
   reset_token TEXT,
   reset_token_expiration TIMESTAMP
 );
@@ -42,3 +42,24 @@ CREATE TABLE IF NOT EXISTS ace_applications (
   success_record TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- NEW: Announcements table
+CREATE TABLE IF NOT EXISTS announcements (
+  id SERIAL PRIMARY KEY,
+  title TEXT NOT NULL,
+  message TEXT NOT NULL,
+  visible_to TEXT[] NOT NULL, -- e.g., ['judge', 'founder']
+  created_by INTEGER REFERENCES users(id),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- NEW: Tracks who read what announcement
+CREATE TABLE IF NOT EXISTS user_announcement_reads (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id),
+  announcement_id INTEGER REFERENCES announcements(id),
+  read_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE(user_id, announcement_id)
+);
+

@@ -1,0 +1,63 @@
+/* src/ResourcesPage.css */
+.resources-container {
+  display: flex;
+  height: 100vh;
+}
+
+.resources-content {
+  flex: 1;
+  padding: 2rem;
+  background-color: #fff;
+  overflow-y: auto;
+}
+
+.resources-content h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.service-card {
+  background: #f9f9f9;
+  padding: 1.25rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.service-card h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+}
+
+.service-card p {
+  flex: 1;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.service-card a {
+  align-self: flex-start;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.more-link {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.more-link a {
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+

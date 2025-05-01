@@ -1,0 +1,30 @@
+# syntax=docker/dockerfile:1.4
+
+# ─── Stage 1: Install only prod deps ─────────────────────────────
+FROM node:18-alpine AS deps
+WORKDIR /app
+
+# Copy manifest and install just "dependencies", not devDependencies
+COPY package.json package-lock.json ./
+RUN --mount=type=cache,target=/root/.npm \
+    npm install --production --prefer-offline --no-audit --progress=false
+
+# ─── Stage 2: Build static assets ────────────────────────────────
+FROM deps AS builder
+WORKDIR /app
+
+# Turn off source-maps (cuts build RAM use)
+ENV GENERATE_SOURCEMAP=false
+
+COPY public ./public
+COPY src    ./src
+RUN npm run build
+
+# ─── Stage 3: Serve via Nginx ────────────────────────────────────
+FROM nginx:stable-alpine
+COPY --from=builder /app/build /usr/share/nginx/html
+COPY nginx.conf            /etc/nginx/nginx.conf
+
+EXPOSE 80 443
+CMD ["nginx", "-g", "daemon off;"]
+

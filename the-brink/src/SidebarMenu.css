@@ -1,82 +1,61 @@
-/* Sidebar.css */
-
-/*html, body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    overflow: hidden;
-    height: 100%;
-  }
-
-  #root, .app-container {
-    width: 100%;
-    height: 100%;
-  }*/
-  
+/* SidebarMenu.css */
 
 .sidebar {
     width: 225px;
-    /* Force the sidebar to fill the full viewport: */
     height: 100vh;
-    
     position: fixed;
     top: 0;
     left: 0;
-    bottom: 0;
     background-color: #f4f4f4;
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    margin: 0;
+    padding: 10px 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     z-index: 1000;
+    /* Make items stack from top to bottom */
+    justify-content: flex-start;
 }
 
 .sidebar-header {
     text-align: center;
     font-size: 16px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
-.sidebar-profile-image {
+.sidebar-profile-initials {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    margin-bottom: 10px;
-    background-color: #d9e8f7;
+    background-color: #003366;
+    color: #fff;
     display: flex;
-    justify-content: center;
     align-items: center;
-    color: #667;
-    font-size: 12px;
-    margin: 0 auto 10px auto;
-
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0 auto 10px;
 }
 
 .sidebar-menu {
     list-style: none;
     padding: 0;
-    margin-top: 20px;
-    width: 87%;
+    margin: 0;
 }
 
+/* Make sure the menu doesn’t grow into the sign out area */
 .sidebar-menu li {
-    width:100%;
-    padding: 12px 15px;
+    padding: 8px 0;
     font-size: 16px;
     text-align: left;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
-/* Menu links */
 .sidebar-menu li a {
     text-decoration: none;
     color: black;
     display: block;
-    width: 100%;
-    padding: 12px 10px;
-    text-align: left;
+    padding: 8px 10px;
 }
 
 .sidebar-menu li:hover,
@@ -85,13 +64,13 @@
     font-weight: bold;
 }
 
+/* Force the sign-out button to sit immediately below the menu */
 .sidebar-signout {
-    margin-top: 30px;
-    width: 100%;
+    margin-top: 20px;  /* space above it */
     text-align: center;
-  }
-  
-  .signout-button {
+}
+
+.signout-button {
     background: none;
     border: none;
     color: #003C70;
@@ -99,9 +78,9 @@
     font-size: 1rem;
     padding: 8px;
     width: 100%;
-  }
-  
-  .signout-button:hover {
+}
+
+.signout-button:hover {
     text-decoration: underline;
-  }
-  
+}
+

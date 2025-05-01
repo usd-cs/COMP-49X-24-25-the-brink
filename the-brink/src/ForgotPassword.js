@@ -26,72 +26,60 @@ const ForgotPassword = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:3001/api/forgot-password', {
+      const response = await fetch('/api/forgot-password', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email })
       })
-
       if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.error || 'Failed to process the request.')
+        const err = await response.json().catch(() => ({}))
+        throw new Error(err.error || 'Request failed.')
       }
-
       const { name, resetLink } = await response.json()
 
-      const templateParams = {
-        name,
-        reset_link: resetLink,
-        time: new Date().toLocaleString(),
-        user_email: email
-      }      
+      // let emailjs know
+      await emailjs.send(
+        'service_4whkesk',
+        'template_cndhr08',
+        { name, reset_link: resetLink, time: new Date().toLocaleString(), user_email: email },
+        '3jd-GlP1F4V8LGQdC'
+      )
 
-      const serviceId = "service_4whkesk"
-      const templateId = 'template_cndhr08'
-      const publicKey = "3jd-GlP1F4V8LGQdC"
+      setNotification('If this email is registered, a reset link has been sent.')
 
-      console.log("Sending reset email with params:", {
-        serviceId, templateId, publicKey, templateParams
-      })
-
-      await emailjs.send(serviceId, templateId, templateParams, publicKey)
-
-      setNotification('If this email is registered, a password reset link has been sent.')
-
-    } catch (error) {
-      console.error('Error sending forgot password request:', error)
-      setErrorMessage('There was an error processing your request. Please try again later.')
+    } catch (err) {
+      console.error(err)
+      setErrorMessage('Error processing request. Please try again.')
     }
-  }
-
-  const handleBackToLogin = () => {
-    navigate('/login')
   }
 
   return (
     <div className='login-page'>
       <div className='banner'>
-        <img src={banner} alt='PitchSuite Banner' className='banner-image' />
+        <img src={banner} alt='Banner' className='banner-image' />
       </div>
-
       <div className='login-box'>
         <h2>Forgot Password</h2>
         <form onSubmit={handleSubmit}>
-          <input 
-            type='email' 
+          <input
+            type='email'
             placeholder='Enter your email'
             className='input-field'
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={e => setEmail(e.target.value)}
+            required
           />
           <button type='submit' className='login-button'>Submit</button>
         </form>
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-        {notification && <p className="notification-message">{notification}</p>}
-        <button onClick={handleBackToLogin} className='login-button'>Back to Login</button>
+        {errorMessage && <p className='error-message'>{errorMessage}</p>}
+        {notification && <p className='notification-message'>{notification}</p>}
+        <button onClick={() => navigate('/login')} className='secondary-button'>
+          Back to Login
+        </button>
       </div>
     </div>
   )
 }
 
 export default ForgotPassword
+

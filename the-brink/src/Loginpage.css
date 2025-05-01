@@ -1,123 +1,57 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #e3eaf4;
-}
+/* --- existing styles above --- */
 
-/* The parent container for the page, stacking banner above the login box */
-.login-page {
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: flex-start;
-    /* Remove fixed height so content sizes naturally */
-    min-height: 100vh;
-}
-
-/* Banner is in normal flow, so it appears at the top */
-.banner {
-    width: 100%;
-    height: auto;
-    /* No absolute positioning, so it won't overlap the login box */
-}
-
-.banner-image {
-    display: block;
-    width: 100%;
-    height: auto;
-    /* If your banner is very tall, consider resizing the image itself */
-}
-
-/* The login box sits right below the banner */
+/* Responsive tweaks for forms */
 .login-box {
-    background-color: #80bcfb;
-    padding: 30px 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    text-align: center;
-    max-width: 1200px;
-    width: 100%;
-    margin-top: 33vh; /* This sets the top margin to 33% of the viewport height */
+  max-width: 400px;
+  width: 90%;
+  padding: 20px;
+  margin-top: 20vh;
 }
-
 
 .login-box h2 {
-    margin-bottom: 20px;
-    font-size: 80px; 
-    color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
 
-/* Keep the same styling for inputs and buttons, 
-   but ensure no giant heights or margins are forcing extra space */
 .input-field {
-    display: block;
-    width: 95%;
-    height: 80px;
-    padding: 20px;
-    margin: 40px auto;
-    border: 1px;
-    border-radius: 8px;
-    font-size: 30px;
-    text-align: center;
+  height: auto;
+  padding: 12px;
+  margin: 0.75rem 0;
+  font-size: 1rem;
 }
 
-.login-button {
-    display: block;
-    width: 98%;
-    height: 80px;
-    padding: 10px;
-    margin-top: 15px;
-    background-color: #002b5c;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 40px;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
+.login-button, .secondary-button {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  margin-top: 0.75rem;
 }
 
-.login-button:hover {
-    background-color: #001d3d; 
+.secondary-button {
+  background-color: transparent;
+  color: #007bff;
+  border: none;
 }
 
-.signup-link {
-    margin-top: 15px; 
-    font-size: 40px;
-    color: #007bff;
-    cursor: pointer;
+.secondary-button:hover {
+  text-decoration: underline;
 }
 
-.signup-link:hover {
-    text-decoration: underline;
+/* Error/notification messages */
+.error-message, .notification-message {
+  font-size: 0.9rem;
+  color: #900;
+  margin-top: 0.5rem;
+  text-align: center;
 }
 
-.forgot-password-link {
-    margin-top: 15px;
-    font-size: 40px;
-    color: #007bff;
-    cursor: pointer;
+/* Very small screens */
+@media (max-width: 360px) {
+  .login-box {
+    padding: 16px;
+    margin-top: 15vh;
+  }
+  .login-box h2 { font-size: 1.25rem; }
+  .input-field, .login-button, .secondary-button { font-size: 0.9rem; padding: 10px; }
 }
 
-.forgot-password-link:hover {
-    text-decoration: underline;
-}
-
-.home-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.home-button {
-    background-color: #002b5c;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 35px;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-}
-
-.home-button:hover {
-    background-color: #5095df; 
-}

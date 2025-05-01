@@ -1,0 +1,19 @@
+# Dockerfile.frontend.dev
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Install deps
+COPY package*.json ./
+RUN npm install
+
+# Copy everything else, mount your local src in compose
+COPY . .
+
+# Let CRA’s fast refresh work normally
+ENV FAST_REFRESH=true
+ENV CHOKIDAR_USEPOLLING=true
+
+# Run the dev server
+CMD ["npm", "start"]
+

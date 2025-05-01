@@ -1,163 +1,173 @@
 /* Overall page layout */
 .profile-page {
-    padding-left: 185px;
-    padding-right: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    font-family: 'Satoshi', sans-serif; /* Keep current font */
-    background-color: rgb(0, 77, 122); /* Light blue background */
-
+  padding-left: 185px;
+  padding-right: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  font-family: 'Satoshi', sans-serif;
+  background-color: rgb(0, 77, 122);
 }
+
+/* Sidebar taken care of in SidebarMenu.css, remove if duplicated */
 .sidebar {
-    flex: 0 0 225px;  /* Fixed width */
-    height: 100vh;
-    background-color: #f4f4f4;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Shadow on left to separate it from main content */
-    /*position: relative; /* Ensure it's part of flexbox layout */
-    /*order: 2; /* Move sidebar to the right side */
+  flex: 0 0 225px;
+  height: 100vh;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
-/*centered content*/
+/* Centered main content */
 .main-content {
-    flex: 1;
-    display: flex;
-
-    /*flex-direction: column;*/
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    padding:20px;
-    justify-content: center;
-    align-items: center;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
 }
 
+/* Card container */
 .profile-card {
-    background: #ffffff;
-    padding: 40px;
-    border-radius: 10px;
-    /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);*/
-    text-align: center;
-    max-width: 900px;
-    width: 75%;
-    height: 75vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /*margin: auto;*/
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 900px;
+  width: 75%;
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
 }
 
-.profile-card-image {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background-color: #d9e8f7; /* Light blue background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #666;
-    margin: 0 auto 20px auto;
-    /*margin-top: 30px;*/
+/* ===== new initials avatar ===== */
+.profile-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #003366;
+  color: white;
+  font-size: 4rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 }
+
+/* Remove old image rule if present */
+/* .profile-card-image { ... } */
 
 /* Edit Mode Styling */
 .edit-form {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    align-items: center;
-  }
-  
-  .edit-form label {
-    font-size: 12px;
-    font-weight: bold;
-    color: #555;
-    margin-top: 4px;
-  }
-  
-  .edit-input {
-    width: 95%;
-    padding: 8px;
-    font-size: 14px;
-    border: 2px solid #ddd;
-    border-radius: 6px;
-    transition: border-color 0.3s ease;
-  }
-  
-  .edit-input:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  
-  /* Buttons */
-  .button-group {
-    display: flex;
-    gap: 6px;
-    margin-top: 8px;
-    margin-bottom: 6px;
-  }
-  
-  .save-button, .cancel-button, .edit-profile-button {
-    padding: 8px 14px;
-    font-size: 14px;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .save-button {
-    background: #eaeaea;
-    color: rgb(14, 14, 14);
-  }
-  
-  .save-button:hover {
-    background: #bbbaba;
-  }
-  
-  .cancel-button {
-    background: #292929;
-    color: rgb(255, 255, 255);
-  }
-  
-  .cancel-button:hover {
-    background: #585858;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+.edit-form label {
+  font-size: 12px;
+  font-weight: bold;
+  color: #555;
+  margin-top: 4px;
+}
+.edit-input {
+  width: 95%;
+  padding: 8px;
+  font-size: 14px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+.edit-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
 
+/* Buttons */
+.button-group {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  margin-bottom: 6px;
+}
+.save-button,
+.cancel-button,
 .edit-profile-button {
-    background-color: #2b5797; /* Navy blue button */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    cursor: pointer;
-    margin-bottom: 20px;
-    transition: background-color 0.3s;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
-
+.save-button {
+  background: #eaeaea;
+  color: #0e0e0e;
+}
+.save-button:hover {
+  background: #bbbaba;
+}
+.cancel-button {
+  background: #292929;
+  color: #fff;
+}
+.cancel-button:hover {
+  background: #585858;
+}
+.edit-profile-button {
+  background-color: #2b5797;
+  color: white;
+  margin-bottom: 20px;
+}
 .edit-profile-button:hover {
-    background-color: rgb(29, 63, 110);
+  background-color: rgb(29, 63, 110);
 }
 
+/* Read-only info */
 .profile-info {
-    font-size: 1.2rem;
-    text-align: center;
-    line-height: 2;
-    margin-top: 50px;
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: 2;
+  margin-top: 20px;
+}
+.profile-info p {
+  margin: 5px 0;
 }
 
-.profile-info p {
-    margin: 5px 0;
+/* Sign-out button (if you moved it inside profile-info) */
+.signout-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 14px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.signout-button:hover {
+  background-color: #a71d2a;
+}
+
+/* Scrollbar styling inside the card, optional */
+.profile-card::-webkit-scrollbar {
+  width: 6px;
+}
+.profile-card::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 3px;
 }
 

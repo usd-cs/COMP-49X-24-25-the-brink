@@ -1,43 +1,40 @@
-import React from 'react'
-import { useNavigate, Navigate } from 'react-router-dom'
+import React from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 
 const DashboardPage = () => {
-  const token = localStorage.getItem('authToken')
-  const userName = localStorage.getItem('userName')
-  const userRole = localStorage.getItem('userRole')
-  const navigate = useNavigate()
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
-  if (!token) {
-    return <Navigate to="/login" replace />
-  }
-
-  const handleSignOut = () => {
-    localStorage.removeItem('authToken')
-    localStorage.removeItem('userName')
-    localStorage.removeItem('userRole')
-    localStorage.removeItem('userEmail')
-    navigate('/login')
-  }
-
-  const goToProfile = () => {
-    navigate('/profile')
-  }
-
-  const goToAdminView = () => {
-    navigate('/admin-view')
+  // Redirect to login if not authenticated
+  if (!user) {
+    return <Navigate to="/login" replace />;
   }
 
   return (
-    <div style={{ textAlign: 'center', padding: '2rem' }}>
-      <h1>Dashboard</h1>
-      <p>Hello {userName ? userName : 'User'}, you have successfully logged in!</p>
-      <button onClick={goToProfile} style={{ marginRight: '1rem' }}>Go to Profile</button>
-      {userRole === 'admin' && (
-        <button onClick={goToAdminView} style={{ marginRight: '1rem' }}>Admin Panel</button>
-      )}
-      <button onClick={handleSignOut}>Sign Out</button>
+    <div className="dashboard-page" style={{ textAlign: 'center', padding: '2rem' }}>
+      <h1>Welcome, {user.firstName} ({user.role})</h1>
+      <div style={{ marginTop: '1rem' }}>
+        <button onClick={() => navigate('/profile')} style={{ marginRight: '1rem' }}>
+          Profile
+        </button>
+        {user.role === 'admin' && (
+          <>
+            <button onClick={() => navigate('/admin-view')} style={{ marginRight: '1rem' }}>
+              Admin Panel
+            </button>
+            <button onClick={() => navigate('/admin-announcements')} style={{ marginRight: '1rem' }}>
+              Admin Announcements
+            </button>
+          </>
+        )}
+        <button onClick={() => { logout(); navigate('/login'); }}>
+          Sign Out
+        </button>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default DashboardPage
+export default DashboardPage;
+

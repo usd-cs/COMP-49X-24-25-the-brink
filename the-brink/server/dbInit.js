@@ -1,0 +1,67 @@
+const { Pool } = require('pg');
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
+});
+
+async function createTables() {
+  try {
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS users (
+        id SERIAL PRIMARY KEY,
+        first_name TEXT NOT NULL,
+        last_name TEXT NOT NULL,
+        email TEXT UNIQUE NOT NULL,
+        password TEXT NOT NULL,
+        phone TEXT NOT NULL,
+        company TEXT,
+        role TEXT DEFAULT 'user',
+        reset_token TEXT,
+        reset_token_expiration TIMESTAMP
+      );
+    `);
+
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS ace_applications (
+        id SERIAL PRIMARY KEY,
+        corporate_name TEXT NOT NULL,
+        address TEXT NOT NULL,
+        dba TEXT,
+        duns TEXT,
+        naics TEXT,
+        hub_zone BOOLEAN,
+        rural BOOLEAN,
+        women_owned BOOLEAN,
+        disaster_impacted BOOLEAN,
+        primary_contact_name TEXT NOT NULL,
+        primary_contact_title TEXT,
+        primary_contact_phone TEXT,
+        primary_contact_email TEXT,
+        secondary_contact_name TEXT,
+        secondary_contact_title TEXT,
+        secondary_contact_phone TEXT,
+        secondary_contact_email TEXT,
+        agency TEXT NOT NULL,
+        award_amount NUMERIC,
+        contract_number TEXT,
+        grant_start_end TEXT,
+        company_info TEXT,
+        customer_discovery TEXT,
+        go_to_market_strategy TEXT,
+        intellectual_property TEXT,
+        financing TEXT,
+        success_record TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
+    console.log('✅ Tables ensured');
+  } catch (err) {
+    console.error('❌ Error creating tables:', err);
+    throw err;
+  }
+}
+
+module.exports = createTables;
+
