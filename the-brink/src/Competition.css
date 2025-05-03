@@ -90,7 +90,7 @@ body{
 .banner-image{
     width: 100%;
     height:auto;
-}
+} 
 
 .page-content{
     background: linear-gradient(to bottom, #fdfdfd,  #5197d4);
@@ -143,6 +143,7 @@ body{
         font-size: 30px; 
         padding: 8px 16px;
     }
+    
 }
 @media (max-width:480px){
     .competitions-grid{
