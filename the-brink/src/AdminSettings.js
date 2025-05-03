@@ -27,8 +27,10 @@ const AdminSettings = () => {
         }));
     }; 
     return(
+        <div className="admin-settings-layout">
+        <SidebarMenu/>
         <div className="admin-settings-container">
-             <SidebarMenu/>
+
              <PSBanner/>
             <h2 className="settings-title">Settings</h2>
             <div className="settings-card">
@@ -69,6 +71,7 @@ const AdminSettings = () => {
                 </div>
             </div>
 
+        </div>
         </div>
     )
 }
