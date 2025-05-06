@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import './JudgeScoreView.css';
 import SidebarMenu from './SidebarMenu';
 import PSBanner from './PSBanner';
@@ -64,107 +64,148 @@ const JudgeScoreView = () => {
     setFlagged(prev => ({ ...prev, [name]: !prev[name] }));
   };
 
-  // const handleFilter = (column) => {
-  //   const nextStep = filter.column === column ? (filter.step + 1) % 3 : 1;
-  //   setFilter({ column, step: nextStep, value: nextStep === 1 });
-  // };
+  const columns = ["Judge 1: Solution Score",
+    "Judge 1: Market Score",
+    "Judge 1: Milestone Score",
+    "Judge 1: Technology Score",
+    "Judge 1: Competition Score",
+    "Judge 1: Team Score",
+    "Judge 2: Solution Score",
+    "Judge 2: Market Score",
+    "Judge 2: Milestone Score",
+    "Judge 2: Technology Score",
+    "Judge 2: Competition Score",
+    "Judge 2: Team Score",
+    "Judge 3: Solution Score",
+    "Judge 3: Market Score",
+    "Judge 3: Milestone Score",
+    "Judge 3: Technology Score",
+    "Judge 3: Competition Score",
+    "Judge 3: Team Score"]; 
 
-  // const handleSort = () => {
-  //   setSortOrder(prev => (prev === null ? 'asc' : prev === 'asc' ? 'desc' : null));
-  // };
+  const handleSaveClick =  async () => {
+    console.log("Attempting to show scores");
+
+    const selects = document.querySelectorAll('select');
+    const scores = {};
+
+    selects.forEach(select => {
+      const value = select.value.trim();
+      if (value !== '' && value !== '-') {
+        scores[select.name] = parseInt(value);
+      }
+    });
+    const score_entries = createSQLDictionary();
+    const transformedScores = {};
+    for (const label in scores) {
+      const dbField = score_entries[label];
+      if (dbField) {
+        transformedScores[dbField] = scores[label];
+      }
+}
+    console.log(transformedScores)
+    try {
+      const response = await fetch('http://localhost:3001/api/ace_applications', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(transformedScores)
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Failed to submit form')
+      }
+
+    }catch (error) {
+      console.error('Error submitting application:', error)
+      alert('Submission failed. Please try again.')
+    }
+  };
+
+  function createSQLDictionary() {
+    const myDict = {};
+    myDict["Judge 1: Solution Score"] = 'judge1_solution_score';
+    myDict["Judge 1: Market Score"] = 'judge1_market_score';
+    myDict["Judge 1: Milestone Score"] = 'judge1_milestone_score';
+    myDict["Judge 1: Technology Score"] = 'judge1_technology_score';
+    myDict["Judge 1: Competition Score"] = 'judge1_competition_score';
+    myDict["Judge 1: Team Score"] = 'judge1_team_score';
+    myDict["Judge 2: Solution Score"] = 'judge2_solution_score';
+    myDict["Judge 2: Market Score"] = 'judge2_market_score';
+    myDict["Judge 2: Milestone Score"] = 'judge2_milestone_score';
+    myDict["Judge 2: Technology Score"] = 'judge2_technology_score';
+    myDict["Judge 2: Competition Score"] = 'judge2_competition_score';
+    myDict["Judge 2: Team Score"] = 'judge2_team_score';
+    myDict["Judge 3: Solution Score"] = 'judge3_solution_score';
+    myDict["Judge 3: Market Score"] = 'judge3_market_score';
+    myDict["Judge 3: Milestone Score"] = 'judge3_milestone_score';
+    myDict["Judge 3: Technology Score"] = 'judge3_technology_score';
+    myDict["Judge 3: Competition Score"] = 'judge3_competition_score';
+    myDict["Judge 3: Team Score"] = 'judge3_team_score';
+    return myDict;
+  }
+
+
+
 
   return (
-    <div className="admin-view-container">
-      {/* {showSidebar && (
-        <div className="sidebar">
-          <SidebarMenu />
-          <button
-            className="sidebar-toggle-arrow"
-            onClick={() => setShowSidebar(false)}
-            aria-label="Collapse sidebar"
-          >
-            ←
-          </button>
-        </div>
-      )}
-
-      {!showSidebar && (
-        <button
-          className="sidebar-toggle-collapsed"
-          onClick={() => setShowSidebar(true)}
-          aria-label="Expand sidebar"
-        >
-          →
-        </button>
-      )} */}
-
-      <div className={`admin-content ${showSidebar ? 'with-sidebar' : ''}`}>
+    <div>
+      <div>
         <PSBanner />
-
-        {/* <button
-          className="toggle-sidebar-button"
-          onClick={() => setShowSidebar(!showSidebar)}
-        >
-          {showSidebar ? 'Hide Sidebar' : 'Show Sidebar'}
-        </button> */}
-
+      </div>
+      <button type='button' class='save-button' id='save-button' onClick={handleSaveClick}> Save Entries </button>
+      <div className="admin-view-container">  
         <div>
-          <table>
-            <thead style={{ backgroundColor: 'lightblue' }}>
-              <tr>
-                <th>Company Name</th>
-                <th>Primary Contact Name</th>
-                <th>Judge 1: Presentation Score</th>
-                <th>Judge 1: Innovation Score</th>
-                <th>Judge 1: Scalability Score</th>
-                <th>Judge 1: Market Understanding Score</th>
-              </tr>
-            </thead>
-            <tbody>
-              {displayedApplications.map((app, index) => (
-                <tr key={index}>
-                  <td>{app.corporate_name}</td>
-                  <td>{app.primary_contact_name}</td>
-                  <td>
-                    <select>
-                      <option> 1 </option>
-                      <option> 2 </option>
-                      <option> 3 </option>
-                      <option> 4 </option>
-                      <option> 5 </option>
-                    </select>
-                  </td>
-                  <td>
-                    <select>
-                      <option> 1 </option>
-                      <option> 2 </option>
-                      <option> 3 </option>
-                      <option> 4 </option>
-                      <option> 5 </option>
-                    </select>
-                  </td>
-                  <td>
-                    <select>
-                      <option> 1 </option>
-                      <option> 2 </option>
-                      <option> 3 </option>
-                      <option> 4 </option>
-                      <option> 5 </option>
-                    </select>
-                  </td>
-                  <td>
-                    <select>
-                      <option> 1 </option>
-                      <option> 2 </option>
-                      <option> 3 </option>
-                      <option> 4 </option>
-                      <option> 5 </option>
-                    </select>
-                  </td>
+          <div className='table-container'>
+            <table rules='all'>
+              <thead style={{ backgroundColor: 'lightblue' }}>
+                <tr>
+                  <th>Company Name</th>
+                  <th>Primary Contact Name</th>
+                  <th>Judge 1: Solution Score</th>
+                  <th>Judge 1: Market Score</th>
+                  <th>Judge 1: Milestone Score</th>
+                  <th>Judge 1: Technology Score</th>
+                  <th>Judge 1: Competition Score</th>
+                  <th>Judge 1: Team Score</th>
+                  <th>Judge 2: Solution Score</th>
+                  <th>Judge 2: Market Score</th>
+                  <th>Judge 2: Milestone Score</th>
+                  <th>Judge 2: Technology Score</th>
+                  <th>Judge 2: Competition Score</th>
+                  <th>Judge 2: Team Score</th>
+                  <th>Judge 3: Solution Score</th>
+                  <th>Judge 3: Market Score</th>
+                  <th>Judge 3: Milestone Score</th>
+                  <th>Judge 3: Technology Score</th>
+                  <th>Judge 3: Competition Score</th>
+                  <th>Judge 3: Team Score</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {displayedApplications.map((app, index) => (
+                  <tr key={index}>
+                    <td>{app.corporate_name}</td>
+                    <td>{app.primary_contact_name}</td>
+                    {columns.map((column_name, index) =>
+                      <td>
+                        <select name={column_name}>
+                        <option value=""> - </option>
+                        <option value="1"> 1 </option>
+                        <option value="2"> 2 </option>
+                        <option value="3"> 3 </option>
+                        <option value="4"> 4 </option>
+                        <option value="5"> 5 </option>
+                      </select>
+                    </td>
+                    )}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
