@@ -4,10 +4,11 @@
 
 
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom' // Correctly import useNavigate
+import './Competition.css'
 import './AceApply.css'
-import Banner from './ace-pitch-competition-banner.png'
 import emailjs from '@emailjs/browser'
+import Acebanner from './Acebanner'
 
 export default function ACEApplicationForm() {
   const competitionName = "ACE Pitch Competition"
@@ -179,9 +180,8 @@ export default function ACEApplicationForm() {
   return (
     <div>
       <div className='application-wrapper'>
-        <div className='logo-banner'>
-          <img src={Banner} alt='ACE Bannner' />
-        </div>
+        
+        <Acebanner/>
         <div className='form-container'>
           <form className='ACE-form' onSubmit={handleSubmit}>
             <h1 className='form-title'>Tier 1- Innovation Grant Award Justification Narrative</h1>

@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './SidebarMenu.css';
 
+
+
 const SidebarMenu = () => {
   const navigate = useNavigate();
 
@@ -25,12 +27,16 @@ const SidebarMenu = () => {
     fetch(`/api/get-profile?email=${encodeURIComponent(profile.email)}`)
       .then(res => res.json())
       .then(data => {
+        const firstInitial = (data.first_name || 'D')[0].toUpperCase();
+        const avatarFile = `${firstInitial}-Avatar.png`;
+        const avatarUrl = `/avatars/${avatarFile}`;
         setProfile(p => ({
           ...p,
           company:   data.company || 'N/A',
           phone:     data.phone   || 'N/A',
           firstName: data.first_name,
-          lastName:  data.last_name
+          lastName: data.last_name,
+          profileImage: avatarUrl
         }));
       })
       .catch(err => console.error('Failed to fetch profile:', err));

@@ -1,9 +1,10 @@
-// src/ProfilePage.js
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
-import SidebarMenu from './SidebarMenu';
 import './ProfilePage.css';
+import SidebarMenu from './SidebarMenu';
+import PSBanner from './PSBanner';
+
 
 const ProfilePage = () => {
   const { user, logout } = useAuth();
@@ -29,11 +30,17 @@ const ProfilePage = () => {
       .then((res) => res.json())
       .then((data) => {
         const fullName = `${data.first_name} ${data.last_name}`;
+        const firstInitial = (data.first_name || 'D')[0].toUpperCase();
+        const avatarFile = `${firstInitial}-Avatar.png`;
+        const avatarURL = `/avatars/${avatarFile}`;
+        localStorage.setItem('profileImage', avatarURL)
+        const profileImage = localStorage.getItem('profileImage') || '/avatars/Default.png'
         setProfile({ ...data, name: fullName });
         setEdited({
           name: fullName,
           phone: data.phone || '',
           company: data.company || '',
+          profileImage: profileImage,
         });
       })
       .catch((err) => console.error('Error fetching profile:', err));
@@ -73,6 +80,7 @@ const ProfilePage = () => {
   return (
     <div className="profile-page">
       <SidebarMenu />
+      <PSBanner/>
 
       <div className="main-content">
         <div className="profile-card">

@@ -1,8 +1,8 @@
 import React from 'react';
-import logo from './PitchSuiteBanner.png'
-import './PSBanner.css'
+import logo from './ace-pitch-competition-banner.png'
+import './Acebanner.css'
 
-const PSBanner = () => {
+const Acebanner = () => {
     return (
         <div className="header-container">
             <div className="blue-bars">
@@ -15,4 +15,4 @@ const PSBanner = () => {
         </div>
     );
 };
-export default PSBanner; 
+export default Acebanner; 

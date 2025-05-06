@@ -122,9 +122,9 @@ const JudgeScoreView = () => {
             </thead>
             <tbody>
               {displayedApplications.map((app, index) => (
-                <tr>
-                  <td>app.corporate_name</td>
-                  <td>app.primary_contact_name</td>
+                <tr key={index}>
+                  <td>{app.corporate_name}</td>
+                  <td>{app.primary_contact_name}</td>
                   <td>
                     <select>
                       <option> 1 </option>

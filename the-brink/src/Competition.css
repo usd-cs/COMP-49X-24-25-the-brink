@@ -8,7 +8,7 @@ body{
     max-width: 2000px;
     margin: 0 auto;
     padding: 20px;
-    padding-top: 400px;
+    padding-top: 100px;
     text-align: center;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
    
@@ -67,7 +67,7 @@ body{
 .apply-now-button{
     margin-top: 10px;
     padding: 20px 40px;
-    background-color: #007bff;
+    background-color: #015ec2;
     color: #fff; 
     border: none;
     border-radius: 5px;
@@ -90,7 +90,7 @@ body{
 .banner-image{
     width: 100%;
     height:auto;
-}
+} 
 
 .page-content{
     background: linear-gradient(to bottom, #fdfdfd,  #5197d4);
@@ -111,6 +111,8 @@ body{
     border-radius: 5px;
     font-size: 40px;
     cursor: pointer;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
 }
 
 .login-button:hover{
@@ -119,11 +121,65 @@ body{
 
 @media (max-width: 768px){
     .competitions-grid{
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns: 1fr;
     }
+
+    .competitions{
+        padding-top: 100px; 
+    }
+
+    .competition-logo{
+        width: 150px; 
+        height: 150px;
+    }
+    .competition-info h3{
+        font-size: 30px;
+    }
+    .apply-now-button{
+        font-size: 30px; 
+        padding: 8px 16px;
+    }
+    .login-button{
+        font-size: 30px; 
+        padding: 8px 16px;
+    }
+    
 }
 @media (max-width:480px){
     .competitions-grid{
         grid-template-columns: 1fr;
+    }
+}
+@media (max-width:375px){
+    .competitions-grid{
+        grid-template-columns: 1fr;
+    
+    }
+    .competitions-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .competitions{
+        padding-top: 50px; 
+    }
+
+    .competition-logo{
+        width: 50px; 
+        height: 50px;
+    }
+    .competition-info h3{
+        font-size: 15px;
+    }
+    .apply-now-button{
+        font-size: 15px; 
+        padding: 4px 8px;
+    }
+    .login-button{
+        font-size: 15px; 
+        padding: 4px 8px;
+    }
+    .competitions h2{
+        font-size: 40px;
+        
     }
 }

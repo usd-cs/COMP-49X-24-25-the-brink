@@ -2,6 +2,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import AceApply from './AceApply';
+import AdminSettings from './AdminSettings'
 import AdminView from './AdminView';
 import AppStatusF from './AppStatusF';
 import Competition from './Competition';
@@ -10,6 +11,7 @@ import DashboardPage from './DashboardPage';
 import ForgotPassword from './ForgotPassword';
 import Homepage from './Homepage';
 import JudgesComps from './JudgesComps';
+import JudgeScoreView from './JudgeScoreView';
 import Login from './Loginpage';
 import Messages from './Messages';
 import OrganizerAnnouncements from './OrganizerAnnouncements';
@@ -19,7 +21,6 @@ import ResetPassword from './ResetPassword';
 import ResourcesPage from './ResourcesPage';
 import SignUpPage from './SignUpPage';
 import UserAnnouncements from './UserAnnouncements';
-import JudgeScoreView from './JudgeScoreView';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             </RequireAdmin>
           }
         />
+        <Route path='/admin-settings' element={<AdminSettings />} />
         <Route path='/admin-view' element={<AdminView />} />
         <Route path='/competitions' element={<Competition />} />
         <Route path='/dashboard' element={<DashboardPage />} />
