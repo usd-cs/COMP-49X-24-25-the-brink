@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 import './ProfilePage.css'
 import SidebarMenu from './SidebarMenu'
 
@@ -24,11 +25,18 @@ const ProfilePage = () => {
         if (response.ok) {
           const data = await response.json()
           const fullName = `${data.first_name} ${data.last_name}`
+          const firstInitial = (data.first_name || 'D')[0].toUpperCase();
+          const avatarFile = `${firstInitial}-Avatar.png`;
+          const avatarURL = `/avatars/${avatarFile}`;
+
+          localStorage.setItem('profileImage', avatarURL)
+          const profileImage = localStorage.getItem('profileImage') || '/avatars/Default.png'
+
           setUser({
             ...data,
             name: fullName,
             company: data.company || '',
-            profileImage: 'https://via.placeholder.com/150'
+            profileImage: profileImage
           })
           setEditedUser({
             name: fullName || '',

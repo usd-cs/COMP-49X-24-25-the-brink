@@ -15,13 +15,17 @@ import Messages from './Messages';
 import Homepage from './Homepage';
 import AppStatusF from './AppStatusF'; 
 import JudgeScoreView from './JudgeScoreView';
+import AdminSettings from './AdminSettings'
+import AppStatusF from './AppStatusF'; 
+import UserAnnouncements  from './UserAnnouncemnt'
+import OrganizerAnnouncements from './OrganizerAnnouncements'
 
 function App() {
   return (
     <div>
       {/* Keep Routes Alphabetical by Path! */}
       <Routes>
-        <Route path='/' element={<Homepage />} />
+        <Route path='/' element={<ProfilePage />} />
         <Route path='/ace-apply' element={<AceApply />} />
         <Route path='/ace-details' element={<CompetitionDetails />} />
         <Route path='/admin-view' element={<AdminView />} />
@@ -35,10 +39,12 @@ function App() {
         <Route path='/messages' element={<Messages />} />
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/reset-password' element={<ResetPassword />} />
+        <Route path='/settings' element={<AdminSettings />} />
         <Route path='/signup' element={<SignUpPage />} />
+        <Route path='/user-announcements' element={<UserAnnouncements />} />
+        <Route path='/admin-announcements' element={<OrganizerAnnouncements />} />
       </Routes>
     </div>
   );
 }
-
 export default App;
