@@ -19,6 +19,7 @@ import ResetPassword from './ResetPassword';
 import ResourcesPage from './ResourcesPage';
 import SignUpPage from './SignUpPage';
 import UserAnnouncements from './UserAnnouncements';
+import JudgeScoreView from './JudgeScoreView';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route path='/founder-status' element={<AppStatusF />} />
         <Route path='/judges-comps' element={<JudgesComps />} />
+        <Route path='/judges-scoring' element={<JudgeScoreView />} />
         <Route path='/login' element={<Login />} />
         <Route path='/messages' element={<Messages />} />
         <Route path='/profile' element={<ProfilePage />} />

@@ -12,9 +12,9 @@ const JudgeScoreView = () => {
   const [showFlaggedOnly, setShowFlaggedOnly] = useState(false);
   const [showSidebar, setShowSidebar] = useState(true);
 
-  const navigate = useNavigate();
-  const token = localStorage.getItem('authToken');
-  const role = localStorage.getItem('userRole');
+  // const navigate = useNavigate();
+  // const token = localStorage.getItem('authToken');
+  // const role = localStorage.getItem('userRole');
 
   // useEffect(() => {
   //   if (!token || role !== 'judge') {
@@ -64,18 +64,18 @@ const JudgeScoreView = () => {
     setFlagged(prev => ({ ...prev, [name]: !prev[name] }));
   };
 
-  const handleFilter = (column) => {
-    const nextStep = filter.column === column ? (filter.step + 1) % 3 : 1;
-    setFilter({ column, step: nextStep, value: nextStep === 1 });
-  };
+  // const handleFilter = (column) => {
+  //   const nextStep = filter.column === column ? (filter.step + 1) % 3 : 1;
+  //   setFilter({ column, step: nextStep, value: nextStep === 1 });
+  // };
 
-  const handleSort = () => {
-    setSortOrder(prev => (prev === null ? 'asc' : prev === 'asc' ? 'desc' : null));
-  };
+  // const handleSort = () => {
+  //   setSortOrder(prev => (prev === null ? 'asc' : prev === 'asc' ? 'desc' : null));
+  // };
 
   return (
     <div className="admin-view-container">
-      {showSidebar && (
+      {/* {showSidebar && (
         <div className="sidebar">
           <SidebarMenu />
           <button
@@ -96,21 +96,21 @@ const JudgeScoreView = () => {
         >
           →
         </button>
-      )}
+      )} */}
 
       <div className={`admin-content ${showSidebar ? 'with-sidebar' : ''}`}>
         <PSBanner />
 
-        <button
+        {/* <button
           className="toggle-sidebar-button"
           onClick={() => setShowSidebar(!showSidebar)}
         >
           {showSidebar ? 'Hide Sidebar' : 'Show Sidebar'}
-        </button>
+        </button> */}
 
         <div>
           <table>
-            <thead style={{ backgroundColor: 'blue' }}>
+            <thead style={{ backgroundColor: 'lightblue' }}>
               <tr>
                 <th>Company Name</th>
                 <th>Primary Contact Name</th>
