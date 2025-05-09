@@ -2,7 +2,10 @@
     max-width: 800px;
     padding: 24px;
     margin: auto;
-}
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05); 
+    box-sizing: border-box;
+}   
+
 
 .title{
     font-size: 24px; 
@@ -12,7 +15,7 @@
 }
 
 .competition-card{
-    display: flex; 
+    /*display: flex; 
     align-items: center; 
     justify-content: space-between; 
     background: white; 
@@ -21,7 +24,17 @@
     margin-bottom: 16px;
     box-shadow: 0px 4px 6px rgba(0,0,0, 0.1);
     width: 100%; 
-    max-width: 800px; 
+    max-width: 800px; */
+    width: 100%; 
+    box-sizing: border-box; 
+    padding: 16px; 
+    display: flex; 
+    align-items: center;
+    justify-content: space-between; 
+    background: white; 
+    border-radius: 16px; 
+    margin-bottom: 16px; 
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
 }
 .competition-logo{
     width: 64px; 
@@ -50,4 +63,63 @@
     background-color: #a0aec0;
     color: white; 
     cursor: not-allowed;
+}
+@media screen and (max-width: 600px){
+    .my-judgescomps-container{
+        padding: 12px; 
+    }
+    .title{
+        font-size: 20px; 
+        margin-bottom: 20px;
+    }
+    .competition-card{
+        flex-direction: column; 
+        align-items: flex-start; 
+        padding: 12px;
+        gap: 10px;
+    }
+    .competition-logo{
+        width: 48px; 
+        height: 48px; 
+        margin-right: 0; 
+        margin-bottom: 8px;
+    }
+    .competition-info{
+        font-size: 16px; 
+        text-align: center; 
+        width: 100%; 
+    }
+    .scoring-button{
+        width: 100%; 
+        font-size: 13px; 
+        padding: 8px; 
+    }
+}
+@media screen and (max-width: 480px) {
+    .title {
+        font-size: 18px;
+    }
+
+    .competition-info {
+        font-size: 15px;
+    }
+
+    .scoring-button {
+        font-size: 12px;
+        padding: 7px 10px;
+    }
+}
+@media screen and (max-width: 360px) {
+    .title {
+        font-size: 18px;
+    }
+
+    .competition-info {
+        font-size: 14px;
+    }
+
+    .scoring-button {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
 }
