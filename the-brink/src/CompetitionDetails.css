@@ -1,88 +1,151 @@
-body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #e6eef9, #a0c4ff);
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+/* === CompetitionDetails.css === */
+
+/* Global box-sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-.apply-button {
-    background-color: #007BFF;
-    color: #fff;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16;
-    font-weight: bold;
-    text-align: center;
-    width: 100%;
-    transition: background-color 0.3s ease;
-    margin-bottom: 10px;
+/* Root container */
+.competition-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  background: linear-gradient(to bottom, #e6eef9, #a0c4ff);
+  padding: 2rem 1rem;
+  min-height: 100vh;
+  gap: 2rem;
 }
 
-.apply-button:hover {
-    background-color: #0056b3;
-}
-
-.details-text {
-    position: relative;
-    z-index: 2;
-}
-
-.home-button {
-    background-color: #002b5c;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 20px;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-}
-
-.left-screen {
-    position: relative;
-    width: auto;
-    height: auto;
-    max-width: 50%;
-    max-height: 60%;
-    left: 50px;
-    padding: 10px;
-    background-color: #fff;
-    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-}
-
-.logo {
-    width: 30%;
-    height: 30%;
-    display: flex;
-    margin: auto;
-}
-
-.right-screen {
-    position: fixed;
-    top: 30%;
-    right: 50px;
-    height: auto;
-    width: auto;
-    max-width: 30%;
-    max-height: 20%;
-    background-color: #fff;
-    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
+/* Left panel: text content */
+.details-column {
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  flex: 1 1 400px;
+  max-width: 600px;
 }
 
 .section-header {
-    position: relative;
-    z-index: 1;
-    font-weight: bold;
+  margin-top: 1.5rem;
 }
 
+.section-header h2 {
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem;
+  color: #002b5c;
+}
 
+.details-text p,
+.details-text ul {
+  margin: 0.5rem 0 1rem;
+  line-height: 1.5;
+  color: #333;
+}
 
+.details-text ul {
+  padding-left: 1.25rem;
+}
 
+.details-text li {
+  margin-bottom: 0.5rem;
+}
+
+/* Buttons in left panel */
+.home-button {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin: 2rem auto 0;
+  padding: 0.75rem;
+  background-color: #002b5c;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+  background-color: #00509e;
+}
+
+/* Right panel: logo + apply */
+.logo-column {
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  text-align: center;
+  flex: 1 1 280px;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.logo-column .logo {
+  width: 80%;
+  height: auto;
+  max-width: 200px;
+}
+
+.apply-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.apply-button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive tweaks */
+
+/* Tablets and small desktops */
+@media (max-width: 992px) {
+  .details-column,
+  .logo-column {
+    flex: 1 1 100%;
+    max-width: none;
+  }
+
+  .competition-details {
+    padding: 2rem;
+  }
+}
+
+/* Phones */
+@media (max-width: 576px) {
+  .competition-details {
+    padding: 1rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .details-text p,
+  .details-text li {
+    font-size: 0.9rem;
+  }
+
+  .home-button,
+  .apply-button {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+}
 

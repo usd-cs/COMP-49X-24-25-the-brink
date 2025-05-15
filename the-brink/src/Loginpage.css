@@ -1,123 +1,124 @@
+/* === Loginpage.css === */
+
+/* Global box-sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Page background */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #e3eaf4;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #e3eaf4;
 }
 
-/* The parent container for the page, stacking banner above the login box */
+/* Banner at top */
+.logo-banner {
+  width: 100%;
+}
+.logo-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  max-height: clamp(100px, 25vw, 300px);
+}
+
+/* Container stacks banner then login form */
 .login-page {
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: flex-start;
-    /* Remove fixed height so content sizes naturally */
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1rem;
+  min-height: 100vh;
 }
 
-/* Banner is in normal flow, so it appears at the top */
-.banner {
-    width: 100%;
-    height: auto;
-    /* No absolute positioning, so it won't overlap the login box */
-}
-
-.banner-image {
-    display: block;
-    width: 100%;
-    height: auto;
-    /* If your banner is very tall, consider resizing the image itself */
-}
-
-/* The login box sits right below the banner */
+/* Login box */
 .login-box {
-    background-color: #80bcfb;
-    padding: 30px 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    text-align: center;
-    max-width: 1200px;
-    width: 100%;
-    margin-top: 33vh; /* This sets the top margin to 33% of the viewport height */
+  background-color: #80bcfb;
+  padding: clamp(1rem, 5vw, 2rem);
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  margin-top: clamp(1rem, 5vh, 3rem);
+  text-align: center;
 }
 
-
+/* Title */
 .login-box h2 {
-    margin-bottom: 20px;
-    font-size: 80px; 
-    color: #333;
+  margin: 0 0 clamp(1rem, 3vw, 2rem);
+  font-size: clamp(1.5rem, 6vw, 3rem);
+  color: #333;
 }
 
-/* Keep the same styling for inputs and buttons, 
-   but ensure no giant heights or margins are forcing extra space */
+/* Inputs */
 .input-field {
-    display: block;
-    width: 95%;
-    height: 80px;
-    padding: 20px;
-    margin: 40px auto;
-    border: 1px;
-    border-radius: 8px;
-    font-size: 30px;
-    text-align: center;
+  width: 100%;
+  padding: clamp(0.75rem, 2.5vw, 1.5rem);
+  margin: clamp(0.5rem, 2vw, 1rem) 0;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  border: none;
+  border-radius: 0.5rem;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
 }
 
+/* Login button */
 .login-button {
-    display: block;
-    width: 98%;
-    height: 80px;
-    padding: 10px;
-    margin-top: 15px;
-    background-color: #002b5c;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 40px;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
+  width: 100%;
+  padding: clamp(0.75rem, 2.5vw, 1.5rem);
+  margin-top: clamp(0.5rem, 2vw, 1rem);
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  background-color: #002b5c;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-
 .login-button:hover {
-    background-color: #001d3d; 
+  background-color: #001d3d;
 }
 
-.signup-link {
-    margin-top: 15px; 
-    font-size: 40px;
-    color: #007bff;
-    cursor: pointer;
-}
-
-.signup-link:hover {
-    text-decoration: underline;
-}
-
+/* Links */
+.signup-link,
 .forgot-password-link {
-    margin-top: 15px;
-    font-size: 40px;
-    color: #007bff;
-    cursor: pointer;
+  display: block;
+  margin: clamp(0.5rem, 2vw, 1rem) 0;
+  font-size: clamp(0.875rem, 3vw, 1.25rem);
+  color: #007bff;
+  text-decoration: none;
 }
-
+.signup-link:hover,
 .forgot-password-link:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
+/* Home button container */
 .home-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+  width: 100%;
+  max-width: 400px;
+  margin-top: clamp(1rem, 5vh, 3rem);
+  display: flex;
+  justify-content: center;
 }
 
+/* Home button */
 .home-button {
-    background-color: #002b5c;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 35px;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
+  padding: clamp(0.75rem, 2.5vw, 1.5rem) clamp(1rem, 4vw, 2rem);
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  background-color: #002b5c;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.home-button:hover {
+  background-color: #5095df;
 }
 
-.home-button:hover {
-    background-color: #5095df; 
-}

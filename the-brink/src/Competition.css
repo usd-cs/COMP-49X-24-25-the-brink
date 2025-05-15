@@ -1,129 +1,133 @@
-body{
-    font-family: 'Arial', sans-serif;
-    margin:0;
-    padding:0;
-    background-color: #f5f5f5;
-}
-.competitions{
-    max-width: 2000px;
-    margin: 0 auto;
-    padding: 20px;
-    padding-top: 400px;
-    text-align: center;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-   
+/* === Competition.css === */
+
+/* Global box-sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-.competitions h2{
-    font-size: 80px;
-    text-align: center;
-    font-weight: bold;
-    margin-top: 20px;
-    font-style: italic;
-    color: #333;
+/* Reset & Base */
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  font-family: Arial, sans-serif;
+  color: #333;
+  line-height: 1.5;
 }
 
-.competitions-grid{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
-    margin-top:20px;
+/* ---- Banner (full width) ---- */
+.banner {
+  width: 100%;
+  overflow: hidden;
 }
- 
-.competition-card{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 25px;
-    background-color: white;
-    border-radius: 20px; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow */
-
+.banner img,
+.banner-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  /* optional cap on height to prevent extreme tall banners on narrow viewports */
+  max-height: clamp(100px, 25vw, 300px);
 }
 
+/* ---- Page container ---- */
+.competitions {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+  text-align: center;
+  font-family: 'Franklin Gothic Medium','Arial Narrow',Arial,sans-serif;
+}
 
-.competition-logo{
-   width: 200px; /* Fixed size for logos */
-  height: 200px;
+/* Title */
+.competitions h2 {
+  font-size: clamp(2rem, 6vw, 5rem);
+  font-weight: bold;
+  font-style: italic;
+  margin: 1rem 0;
+  color: #333;
+}
+
+/* Grid */
+.competitions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+/* Card */
+.competition-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 1rem;
+  gap: 1rem;
+}
+
+/* Stack vertically on narrow screens */
+@media (max-width: 600px) {
+  .competition-card {
+    flex-direction: column;
+  }
+}
+
+/* Logo */
+.competition-logo {
+  width: clamp(80px, 20vw, 200px);
+  height: clamp(80px, 20vw, 200px);
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 20px;
   border: 2px solid #ddd;
-
-}
-.competition-info{
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 }
 
-.competition-info h3{
-   margin: 0;
-   font-size: 40px;
-   color: #333;
+/* Info & button */
+.competition-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.competition-info h3 {
+  margin: 0;
+  font-size: clamp(1.25rem, 4vw, 2.5rem);
+  color: #333;
 }
 
-.apply-now-button{
-    margin-top: 10px;
-    padding: 20px 40px;
-    background-color: #007bff;
-    color: #fff; 
-    border: none;
-    border-radius: 5px;
-    cursor: pointer; 
-    font-size: 50px;
+/* Buttons */
+.apply-now-button,
+.login-button {
+  padding: clamp(0.5rem, 2vw, 1rem) clamp(1rem, 4vw, 2rem);
+  font-size: clamp(1rem, 3vw, 2rem);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.apply-now-button:hover{
-    background-color: #555;
+.apply-now-button {
+  background-color: #015ec2;
+  color: #fff;
+}
+.apply-now-button:hover {
+  background-color: #004a9f;
 }
 
-.banner{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width:100%;
-    height: 200px;
+.login-button {
+  margin-top: 2rem;
+  background-color: #002855;
+  color: #fff;
+}
+.login-button:hover {
+  background-color: #00509e;
 }
 
-.banner-image{
-    width: 100%;
-    height:auto;
-}
-
-.page-content{
-    background: linear-gradient(to bottom, #fdfdfd,  #5197d4);
-}
-
-.login-button-container{
-    top: 120px;
-    left: 20px;
-}
-
-.login-button{
-    display: block;
-    margin: 20px auto; 
-    padding: 10px 20px;
-    background-color: #002855;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 40px;
-    cursor: pointer;
-}
-
-.login-button:hover{
-    background-color: #00509e;
-}
-
-@media (max-width: 768px){
-    .competitions-grid{
-        grid-template-columns: repeat(2,1fr);
-    }
-}
-@media (max-width:480px){
-    .competitions-grid{
-        grid-template-columns: 1fr;
-    }
-}

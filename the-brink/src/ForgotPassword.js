@@ -1,7 +1,9 @@
+// ForgotPassword.js
+
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import emailjs from '@emailjs/browser'
-import './Loginpage.css'
+import './ForgotPassword.css'          // ← updated
 import banner from './PitchSuiteBanner.png'
 
 const ForgotPassword = () => {
@@ -26,7 +28,7 @@ const ForgotPassword = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:3001/api/forgot-password', {
+      const response = await fetch('/api/forgot-password', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email })
@@ -38,34 +40,25 @@ const ForgotPassword = () => {
       }
 
       const { name, resetLink } = await response.json()
-
       const templateParams = {
         name,
         reset_link: resetLink,
         time: new Date().toLocaleString(),
         user_email: email
-      }      
+      }
 
-      const serviceId = "service_4whkesk"
-      const templateId = 'template_cndhr08'
-      const publicKey = "3jd-GlP1F4V8LGQdC"
-
-      console.log("Sending reset email with params:", {
-        serviceId, templateId, publicKey, templateParams
-      })
-
-      await emailjs.send(serviceId, templateId, templateParams, publicKey)
+      await emailjs.send(
+        'service_4whkesk',
+        'template_cndhr08',
+        templateParams,
+        '3jd-GlP1F4V8LGQdC'
+      )
 
       setNotification('If this email is registered, a password reset link has been sent.')
-
     } catch (error) {
-      console.error('Error sending forgot password request:', error)
-      setErrorMessage('There was an error processing your request. Please try again later.')
+      console.error('Error:', error)
+      setErrorMessage('There was an error. Please try again later.')
     }
-  }
-
-  const handleBackToLogin = () => {
-    navigate('/login')
   }
 
   return (
@@ -77,8 +70,8 @@ const ForgotPassword = () => {
       <div className='login-box'>
         <h2>Forgot Password</h2>
         <form onSubmit={handleSubmit}>
-          <input 
-            type='email' 
+          <input
+            type='email'
             placeholder='Enter your email'
             className='input-field'
             value={email}
@@ -88,10 +81,13 @@ const ForgotPassword = () => {
         </form>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         {notification && <p className="notification-message">{notification}</p>}
-        <button onClick={handleBackToLogin} className='login-button'>Back to Login</button>
+        <button onClick={() => navigate('/login')} className='login-button'>
+          Back to Login
+        </button>
       </div>
     </div>
   )
 }
 
 export default ForgotPassword
+

@@ -1,72 +1,80 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import './Competition.css'
+// === Competition.js ===
 
-// Corrected relative paths
-import banner from './PitchSuiteBanner.png'
-import aceLogo from './aceCircleLogo.png'
-import usdLogo from './usd-logo.png'
-import socialLogo from './SocialInnovationCircleLogo.png'
-import techLogo from './techCircleLogo.png'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import './Competition.css';
+
+// Import the same full-width banner image
+import banner from './PitchSuiteBanner.png';
+
+// Competition logos
+import aceLogo from './aceCircleLogo.png';
+import usdLogo from './usd-logo.png';
+import socialLogo from './SocialInnovationCircleLogo.png';
+import techLogo from './techCircleLogo.png';
 
 const competitionData = [
   {
     logo: aceLogo,
-    title: 'Accelerate California Entrepeneurship Pitch Competition',
+    title: 'Accelerate California Entrepreneurship Pitch Competition',
     route: '/ace-details'
   },
   {
     logo: usdLogo,
-    title: 'Fowler Business Concept Challenge'
+    title: 'Fowler Business Concept Challenge',
+    route: '/competitions'
   },
   {
     logo: socialLogo,
-    title: 'Fowler Global Social Innovation Challenge'
+    title: 'Fowler Global Social Innovation Challenge',
+    route: '/competitions'
   },
   {
     logo: techLogo,
-    title: 'Torero Entrepeneurship Challenge'
+    title: 'Torero Entrepreneurship Challenge',
+    route: '/competitions'
   }
-]
+];
 
 const Competitions = () => {
-  const navigate = useNavigate()
-
-  const handleApplyNowClick = (route) => {
-    navigate(route)
-  }
-
-  const handleLoginClick = () => {
-    navigate('/login')
-  }
+  const navigate = useNavigate();
 
   return (
-    <div className='competitions'>
-
-      <div className='banner'>
-        <img src={banner} alt='banner' className='banner-image' />
+    <div className="competitions">
+      {/* Full-width banner */}
+      <div className="banner">
+        <img src={banner} alt="PitchSuite Banner" className="banner-image" />
       </div>
 
       <h2>Competitions</h2>
-      <div className='competitions-grid'>
-        {competitionData.map((competition, index) => (
-          <div className='competition-card' key={index}>
-            <img src={competition.logo} alt='logo' className='competition-logo' />
 
-            <div className='competition-info'>
+      <div className="competitions-grid">
+        {competitionData.map((competition, idx) => (
+          <div className="competition-card" key={idx}>
+            <img
+              src={competition.logo}
+              alt={`${competition.title} logo`}
+              className="competition-logo"
+            />
+            <div className="competition-info">
               <h3>{competition.title}</h3>
               <button
-                className='apply-now-button'
-                onClick={() => handleApplyNowClick(competition.route)}
-              >Apply Now
+                className="apply-now-button"
+                onClick={() => navigate(competition.route)}
+              >
+                Apply Now
               </button>
             </div>
           </div>
         ))}
       </div>
-      <button onClick={handleLoginClick} className='login-button'>Login</button>
-    </div>
-  )
-}
 
-export default Competitions
+      <button className="login-button" onClick={() => navigate('/login')}>
+        Login
+      </button>
+    </div>
+  );
+};
+
+export default Competitions;
+

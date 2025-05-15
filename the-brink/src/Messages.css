@@ -1,257 +1,280 @@
-/*.sidebar {
-    width: 225px;
-    height: 100vh; 
-    background: #f4f4f4;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    /*overflow-y: auto; 
+/* Messages.css */
 
-}*/
+/* Reset & globals */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 html, body, #root {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-  }
-  
-/* Full Page Layout */
+  height: 100%;
+  width: 100%;
+  font-family: Arial, sans-serif;
+  background: #f0f4f9;
+}
+
+/* === Layout === */
 .messages-page {
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
-    width: 100vh;
-    /*width: 100vw;
-    font-family: 'Satoshi', sans-serif; /* Keep current font */
-    /*background-color: rgb(0, 77, 122); /* Light blue background */
-    /*padding-top: 60px; /* Adds spacing for the fixed header */
-
-}
-.sidebar{
-    height: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
 }
 
-/* Header - Fix Spacing */
-.messages-header {
-    background-color: rgb(0, 77, 122); /* Light blue background */
-    color: white;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    font-size: 24px;
-    font-weight: bold;
-    padding-left: 50px;
-    position: fixed;
-    top: 0;
-    left: 300px;
-    right: 0;
-    z-index: 900;
-  
+/* Sidebar (chat list) */
+.sidebar {
+  flex: 0 0 225px;
+  height: 100%;
+  overflow-y: auto;
 }
-
-
-.messages-container {
-    position:absolute;
-    display: flex;
-    flex-direction: row;
-    height: calc(100vh - 60px); /* full height minus header */
-    top: 60px;
-    left: 300px;
-    right: 0;
-    overflow: hidden;
-    /*width: calc(100% - 225px);
-    margin-left:m225px;
-    margin-left: 265px; /* Ensure it's aligned with the header */
-    /*padding-top: 80px; /* Push content below the header */
-
-    
-}
-
-/* Sidebar (Chat List) */
 .messages-sidebar {
-    width: 320px;
-    background: white;
-    display: flex;
-    flex-direction: column;
-    padding: 15px;
-    border-right: 1px solid #ddd;
-    overflow-y: auto;
-    flex-shrink: 0;
+  background: #fff;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-right: 1px solid #ddd;
 }
-
-/* Sidebar Title */
 .sidebar-title {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
 }
-.main-content{
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    height: 100%;
-    overflow: hidden;
-}
-
-/* Fix Sidebar Overflow */
 .conversation-list {
-    max-height: calc(100vh - 150px);
-    overflow-y: auto;
+  flex: 1;
+  overflow-y: auto;
 }
-
-/* Individual conversation item */
 .conversation {
-    display: flex;
-    align-items: center;
-    padding: 12px;
-    border-bottom: 1px solid #eee;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding: 0.6rem;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-radius: 4px;
 }
-
 .conversation:hover {
-    background-color: #f5f5f5;
+  background: #f5f5f5;
 }
-
 .conversation.active {
-    background-color: #e6e6e6;
+  background: #e6e6e6;
 }
 
-/* Avatar */
-.conversation img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
+/* Initials avatar in chat list */
+.conversation .user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #004d7a;
+  color: #fff;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
 }
 
-/* Conversation Details */
 .conversation-details {
-    flex: 1;
-    overflow: hidden;
+  flex: 1;
+  overflow: hidden;
 }
-
+.conversation-details strong {
+  display: block;
+  font-size: 0.95rem;
+}
 .company-name {
-    font-size: 12px;
-    color: #777;
-    margin: 2px 0;
+  font-size: 0.8rem;
+  color: #777;
 }
-
 .last-message {
-    font-size: 14px;
-    color: #444;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  font-size: 0.85rem;
+  color: #444;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-
-/* Date */
 .message-date {
-    font-size: 12px;
-    color: #999;
-    margin-left: auto;
+  font-size: 0.75rem;
+  color: #999;
+  margin-left: 0.5rem;
+  flex-shrink: 0;
 }
 
-/* Chat Area - Fix Width */
+/* Main content area */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Header */
+.messages-header {
+  background-color: #004d7a;
+  color: #fff;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+/* Chat area */
+.messages-container {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
 .chat-area {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    background: white;
-    position: relative;
-    padding-bottom: 60px;
-    overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  overflow-y: auto;
+  padding: 1rem;
+  position: relative;
 }
-
-/* Chat Title - Fix Spacing */
 .chat-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 5px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+.no-conversation {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
 }
 
-/* Message Bubbles - Fix Alignment */
+/* Individual messages */
 .message {
-    display: flex;
-    align-items: flex-start;
-    margin: 10px 0;
-    max-width: 80%;
+  display: flex;
+  margin-bottom: 0.75rem;
+  max-width: 100%;
 }
-
-/* Left Messages (From Other Users) */
 .message.left {
-    justify-content: flex-start;
+  justify-content: flex-start;
 }
-
-/* Right Messages (From Current User) */
 .message.right {
-    justify-content: flex-end;
-    flex-direction: row-reverse;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
 }
-
-/* Fix Message Bubbles */
+/* Initials avatar in chat bubbles */
+.message .user-avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #004d7a;
+  color: #fff;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  margin: 0 0.5rem;
+  flex-shrink: 0;
+}
 .message-bubble {
-    background: #f1f1f1;
-    padding: 12px 15px;
-    border-radius: 18px;
-    font-size: 14px;
-    max-width: 60%;
-    word-wrap: break-word;
-    line-height: 1.4;
+  background: #f1f1f1;
+  padding: 0.5rem 0.75rem;
+  border-radius: 18px;
+  font-size: 0.85rem;
+  max-width: 70%;
+  word-wrap: break-word;
+  line-height: 1.2;
 }
 
-/* Fix Small Messages Not Changing Bubble Size */
-.message-bubble.small {
-    max-width: 40%;
-}
-
-/* Avatars */
-.user-avatar {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
-/* Fix User Alignment */
-.message.left .user-avatar {
-    margin-right: 10px;
-}
-
-.message.right .user-avatar {
-    margin-left: 10px;
-}
-
-/* Fix Message Input Box */
+/* Input area */
 .message-input-container {
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: auto;
-    padding: 10px;
-    background: white;
-    position: absolute;
-    border-top: 1px solid #ddd;
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #ddd;
+  padding: 0.5rem;
+  background: #fff;
+  position: sticky;
+  bottom: 0;
+}
+.message-input {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  resize: none;
+  outline: none;
+  margin-right: 0.5rem;
+  height: 2.5rem;
 }
 
-.message-input {
-    width: 60%;
-    height: 40px;
-    border: none;
-    padding: 10px;
-    font-size: 14px;
-    outline: none;
-    resize: none;
-    border-radius: 10px;
-    background: #f5f5f5;
+/* === Responsive breakpoints === */
+@media (max-width: 768px) {
+  .messages-page {
+    flex-direction: column;
+  }
+  .sidebar {
+    display: none;
+  }
+  .messages-header {
+    font-size: 1rem;
+    padding: 0 0.5rem;
+    height: 50px;
+  }
+  .messages-container {
+    flex-direction: column;
+  }
+  .messages-sidebar {
+    flex-direction: row;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+  }
+  .conversation {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .conversation .user-avatar {
+    margin-bottom: 0.5rem;
+  }
+  .message-date {
+    align-self: flex-end;
+  }
+  .chat-area {
+    padding: 0.75rem;
+  }
+  .chat-title {
+    font-size: 1rem;
+  }
+  .message-bubble {
+    font-size: 0.8rem;
+  }
+  .message-input {
+    height: 2rem;
+    font-size: 0.85rem;
+  }
 }
+
+@media (max-width: 480px) {
+  .messages-header {
+    font-size: 0.9rem;
+    height: 45px;
+  }
+  .chat-title {
+    font-size: 0.9rem;
+  }
+  .message-bubble {
+    font-size: 0.75rem;
+  }
+  .message-input {
+    height: 1.75rem;
+    font-size: 0.8rem;
+  }
+}
+
