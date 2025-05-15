@@ -1,6 +1,22 @@
 services:
+  nginx:
+    image: nginx:stable-alpine
+    container_name: the-brink-proxy
+    restart: unless-stopped
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - the-brink-net
+
   frontend:
-    container_name: react
+    container_name: frontend
     build:
       context: .
       dockerfile: Dockerfile
@@ -14,11 +30,13 @@ services:
       NODE_OPTIONS: "--openssl-legacy-provider"
       HOST: "0.0.0.0"
       DANGEROUSLY_DISABLE_HOST_CHECK: "true"
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
+    networks:
+      - the-brink-net
 
   backend:
-    container_name: api
+    container_name: backend
     build:
       context: .
       dockerfile: Dockerfile
@@ -31,10 +49,11 @@ services:
       DATABASE_URL: postgres://PitchSuite:theBrink0628@db:5432/brinkdatabase
       EMAIL_USER: ${EMAIL_USER}
       EMAIL_PASS: ${EMAIL_PASS}
-    depends_on:
-      - db
-    ports:
-      - "3001:3001" 
+    expose:
+      - "3001"
+    networks:
+      - the-brink-net
+
   db:
     container_name: postgres
     image: postgres:15
@@ -42,10 +61,16 @@ services:
       POSTGRES_DB: brinkdatabase
       POSTGRES_USER: PitchSuite
       POSTGRES_PASSWORD: theBrink0628
-    ports:
-      - "5433:5432"
     volumes:
+      - db_data:/var/lib/postgresql/data
       - ./db:/docker-entrypoint-initdb.d
-      
+    networks:
+      - the-brink-net
+
 volumes:
   db_data:
+
+networks:
+  the-brink-net:
+    driver: bridge
+
